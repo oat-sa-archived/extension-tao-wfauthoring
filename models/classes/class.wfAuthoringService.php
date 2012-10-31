@@ -3,13 +3,13 @@
 error_reporting(E_ALL);
 
 /**
- * TAO - wfAuthoring/models/classes/class.ProcessTaoService.php
+ * TAO - wfAuthoring/models/classes/class.wfAuthoringService.php
  *
  * $Id$
  *
  * This file is part of TAO.
  *
- * Automatically generated on 29.10.2012, 15:39:27 with ArgoUML PHP module 
+ * Automatically generated on 30.10.2012, 17:55:07 with ArgoUML PHP module 
  * (last revised $Date: 2010-01-12 20:14:42 +0100 (Tue, 12 Jan 2010) $)
  *
  * @author Joel Bout, <joel.bout@tudor.lu>
@@ -37,14 +37,14 @@ require_once('tao/models/classes/class.TaoService.php');
 // section 10-13-1-39-1f91722d:12e9641f6ad:-8000:0000000000002C56-constants end
 
 /**
- * Short description of class wfAuthoring_models_classes_ProcessTaoService
+ * Short description of class wfAuthoring_models_classes_wfAuthoringService
  *
  * @access public
  * @author Joel Bout, <joel.bout@tudor.lu>
  * @package wfAuthoring
  * @subpackage models_classes
  */
-class wfAuthoring_models_classes_ProcessTaoService
+class wfAuthoring_models_classes_wfAuthoringService
     extends tao_models_classes_TaoService
 {
     // --- ASSOCIATIONS ---
@@ -156,6 +156,6 @@ class wfAuthoring_models_classes_ProcessTaoService
         return $returnValue;
     }
 
-} /* end of class wfAuthoring_models_classes_ProcessTaoService */
+} /* end of class wfAuthoring_models_classes_wfAuthoringService */
 
 ?>

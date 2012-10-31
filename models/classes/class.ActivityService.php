@@ -9,7 +9,7 @@ error_reporting(E_ALL);
  *
  * This file is part of TAO.
  *
- * Automatically generated on 29.10.2012, 14:42:50 with ArgoUML PHP module 
+ * Automatically generated on 30.10.2012, 18:38:20 with ArgoUML PHP module 
  * (last revised $Date: 2010-01-12 20:14:42 +0100 (Tue, 12 Jan 2010) $)
  *
  * @author Joel Bout, <joel.bout@tudor.lu>
@@ -109,40 +109,63 @@ class wfAuthoring_models_classes_ActivityService
     }
 
     /**
-     * Short description of method createInteractiveServiceActivity
+     * Short description of method createFromServiceDefinition
      *
      * @access public
      * @author Joel Bout, <joel.bout@tudor.lu>
      * @param  Resource process
+     * @param  Resource serviceDefinition
+     * @param  array inputParameters
      * @return core_kernel_classes_Resource
      */
-    public function createInteractiveServiceActivity( core_kernel_classes_Resource $process)
+    public function createFromServiceDefinition( core_kernel_classes_Resource $process,  core_kernel_classes_Resource $serviceDefinition, $inputParameters = array())
+    {
+        $returnValue = null;
+
+        // section 10-30-1--78--1bae53d3:13ab273fb8e:-8000:0000000000003BF9 begin
+        $returnValue = $this->createActivity($process);
+        $service = $this->addService($returnValue);
+        $service->editPropertyValues(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_SERVICEDEFINITION), $serviceDefinition);
+        
+        // section 10-30-1--78--1bae53d3:13ab273fb8e:-8000:0000000000003BF9 end
+
+        return $returnValue;
+    }
+
+    /**
+     * Short description of method addService
+     *
+     * @access protected
+     * @author Joel Bout, <joel.bout@tudor.lu>
+     * @param  Resource activity
+     * @return core_kernel_classes_Resource
+     */
+    protected function addService( core_kernel_classes_Resource $activity)
     {
         $returnValue = null;
 
         // section 10-30-1--78-1d59cf09:13aab8708e6:-8000:0000000000003BF0 begin
-        $returnValue = $this->createActivity($process);
-    	$number = $returnValue->getPropertyValuesCollection(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_INTERACTIVESERVICES))->count();
+    	$number = $activity->getPropertyValuesCollection(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_INTERACTIVESERVICES))->count();
 		$number += 1;
 
 		//an interactive service of an activity is a call of service:
 		$callOfServiceClass = new core_kernel_classes_Class(CLASS_CALLOFSERVICES);
 
 		//create new resource for the property value of the current call of service PROPERTY_CALLOFSERVICES_ACTUALPARAMETERIN or PROPERTY_CALLOFSERVICES_ACTUALPARAMETEROUT
-		$service = $callOfServiceClass->createInstance($returnValue->getLabel()."_service_".$number, "created by ProcessAuthoringService.Class");
+		$returnValue = $callOfServiceClass->createInstance($activity->getLabel()."_service_".$number, "created by ProcessAuthoringService.Class");
 
-		if(!empty($service)){
-			//associate the new instance to the activity instance
-			$returnValue->setPropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_INTERACTIVESERVICES), $service->uriResource);
-
-			//set default position and size value:
-			$service->setPropertyValue(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_WIDTH), 100);
-			$service->setPropertyValue(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_HEIGHT), 100);
-			$service->setPropertyValue(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_TOP), 0);
-			$service->setPropertyValue(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_LEFT), 0);
-		}else{
+		if(empty($returnValue)){
 			throw new Exception("the interactive service cannot be created for the activity {$activity->uriResource}");
 		}
+		
+		//associate the new instance to the activity instance
+		$activity->setPropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_INTERACTIVESERVICES), $returnValue->uriResource);
+
+		//set default position and size value:
+		$returnValue->setPropertyValue(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_WIDTH), 100);
+		$returnValue->setPropertyValue(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_HEIGHT), 100);
+		$returnValue->setPropertyValue(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_TOP), 0);
+		$returnValue->setPropertyValue(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_LEFT), 0);
         // section 10-30-1--78-1d59cf09:13aab8708e6:-8000:0000000000003BF0 end
 
         return $returnValue;

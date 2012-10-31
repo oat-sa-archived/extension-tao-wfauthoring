@@ -162,6 +162,9 @@ class wfAuthoring_models_classes_ConnectorService
         $returnValue = null;
 
         // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BD3 begin
+		$returnValue = $this->createConnector($source);
+		$this->setConnectorType($returnValue, new core_kernel_classes_Resource(INSTANCE_TYPEOFCONNECTORS_SEQUENCE));
+		$returnValue->setPropertyValue(new core_kernel_classes_Property(PROPERTY_STEP_NEXT), $destination);
         // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BD3 end
 
         return $returnValue;
