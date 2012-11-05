@@ -113,15 +113,17 @@ class wfAuthoring_models_classes_ConnectorService
 
         // section 10-30-1--78--3f16755c:13a9722f969:-8000:0000000000003BC0 begin
 		//Connector
-		$authoringService = taoTests_models_classes_TestAuthoringService::singleton();
-		$connector = $authoringService->createConnector($from);
-		$connector->setPropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TYPE), INSTANCE_TYPEOFCONNECTORS_CONDITIONAL);
+		$connector = $this->createConnector($from);
+		$this->setConnectorType($connector, new core_kernel_classes_Resource(INSTANCE_TYPEOFCONNECTORS_CONDITIONAL));
 
 		//Rule
-		$conditionRule = $authoringService->createConditionRuleFromXML($connector, $condition);
-		$conditionRule->editPropertyValues(new core_kernel_classes_Property(PROPERTY_TRANSITIONRULES_THEN), $then->getUri());
+		$authoringService = wfAuthoring_models_classes_ProcessService::singleton();
+		$transitionRule = $this->createTransitionRule($connector, $condition);
+		$transitionRule->editPropertyValues(new core_kernel_classes_Property(PROPERTY_TRANSITIONRULES_THEN), $then);
 
-		if (isset($else)) $conditionRule->editPropertyValues(new core_kernel_classes_Property(PROPERTY_TRANSITIONRULES_ELSE), $else->getUri());
+		if (isset($else)) {
+			$transitionRule->editPropertyValues(new core_kernel_classes_Property(PROPERTY_TRANSITIONRULES_ELSE), $else);
+		}
 
 		$returnValue = $connector;
         // section 10-30-1--78--3f16755c:13a9722f969:-8000:0000000000003BC0 end
@@ -143,6 +145,29 @@ class wfAuthoring_models_classes_ConnectorService
         $returnValue = null;
 
         // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BC5 begin
+        $transitionRule = $connector->getOnePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TRANSITIONRULE));
+
+		if (empty($transitionRule) || $transitionRule == null) {
+			//create an instance of transition rule:
+			$transitionRuleClass = new core_kernel_classes_Class(CLASS_TRANSITIONRULES);
+			$label = $isXML ? $question->saveXML() : $question;
+			$transitionRule = $transitionRuleClass->createInstance('TransitionRule : ' . $label);
+			//Associate the newly created transition rule to the connector:
+			$connector->editPropertyValues(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TRANSITIONRULE), $transitionRule->uriResource);
+		}
+
+		if (empty($expression)) {
+			common_Logger::e('condition is not an instance of ressource : '.$condition);
+		} else {
+			//delete old condition:
+			$oldCondition = $transitionRule->getOnePropertyValue(new core_kernel_classes_Property(PROPERTY_RULE_IF));
+			if (!is_null($oldCondition)) {
+				$this->deleteCondition($oldCondition);
+			}
+			$transitionRule->editPropertyValues(new core_kernel_classes_Property(PROPERTY_RULE_IF), $expression);
+		}
+
+		$returnValue = $transitionRule;
         // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BC5 end
 
         return $returnValue;
@@ -234,6 +259,35 @@ class wfAuthoring_models_classes_ConnectorService
         $returnValue = null;
 
         // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BDB begin
+        $returnValue = $this->createConnector($source);
+        $this->setConnectorType($returnValue, new core_kernel_classes_Resource(INSTANCE_TYPEOFCONNECTORS_PARALLEL));
+        $returnValue->setPropertyValue(new core_kernel_classes_Property(PROPERTY_STEP_NEXT), $destinations);
+
+		$propNextActivities = new core_kernel_classes_Property(PROPERTY_STEP_NEXT);
+		$cardinalityService = wfEngine_models_classes_ActivityCardinalityService::singleton();
+
+		foreach ($destinations as $destination) {
+			
+		}
+		
+		//remove old property values:
+		$nextActivitiesCollection = $connectorInstance->getPropertyValuesCollection($propNextActivities);
+		$oldSplitVariablesByActivity = array();
+		foreach ($nextActivitiesCollection->getIterator() as $activityMultiplicityResource){
+			if($cardinalityService->isCardinality($activityMultiplicityResource)){
+
+				//record the old split variables values in case it is needed (TODO: optimize this process)
+				$activity = $cardinalityService->getDestination($activityMultiplicityResource);
+				$splitVars = $cardinalityService->getSplitVariables($activityMultiplicityResource);
+				if(!empty($splitVars)){
+					$oldSplitVariablesByActivity[$activity->uriResource] = $splitVars;
+				}
+
+				//delete it
+				$activityMultiplicityResource->delete();
+			}
+		}
+		$returnValue = $connectorInstance->removePropertyValues($propNextActivities);
         // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BDB end
 
         return $returnValue;
