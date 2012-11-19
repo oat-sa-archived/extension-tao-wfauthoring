@@ -421,11 +421,11 @@ class TokenString extends Token {
     return "\"{$this->content}\"";
   }
 
-  function render($spaces) {
+  function render($spaces = '') {
     return $spaces."\"".$this->content."\"\n";
   }
 
-  function getXml() {
+  function getXml($name = null) {
     $tokenConstant = new TokenConstant($this->content);
     return $tokenConstant->getXml();
   }
@@ -558,7 +558,7 @@ class TokenElseIf extends AbsTokenIfElseif {
   var $content = "elseif";
   var $stickness = 15;
 
-  function getXml() {
+  function getXml($name = null) {
     $dom = parent::getXml();
 
     $this->renameNode($dom, $dom->documentElement, "if");
@@ -620,7 +620,7 @@ class TokenAnd extends BinaryToken {
     );
 
 
-  function getXml() {
+  function getXml($name = null) {
     return parent::getXmlOperator("and");
   }
 
@@ -661,7 +661,7 @@ class TokenOrOrIf extends BinaryToken {
       )
     );
 
-  function getXml() {
+  function getXml($name = null) {
     return parent::getXmlOperator("or");
   }
 
@@ -673,7 +673,7 @@ class TokenIf extends AbsTokenIfElseif {
   var $content = "if";
 
 
-  function getXml() {
+  function getXml($name = null) {
     return parent::getXml("if");
   }
 
@@ -699,7 +699,7 @@ class TokenThen extends AbsTokenThenElse {
   var $content = "then";
   var $regexp = "\bthen\b";
 
-  function getXml() {
+  function getXml($name = null) {
     return parent::getXml("then");
   }
 
@@ -721,7 +721,7 @@ class TokenElse extends AbsTokenThenElse {
       )
     );
 
-  function getXml() {
+  function getXml($name = null) {
     return parent::getXml("else");
   }
 
@@ -744,7 +744,7 @@ class TokenGoto extends UnaryToken {
     );
 
 
-  function getXml() {
+  function getXml($name = null) {
     $dom = new DOMDocument();
     $node = $dom->createElement("goto");
     $dom->appendChild($node);
@@ -764,7 +764,7 @@ class TokenVariable extends Token {
 
   var $regexp = "[A-Z]_[A-Z0-9_]+|\^\s*([A-Z0-9_]+)|\bRANDOM\b|\bdirect assessment\b";
 
-  function getXml() {
+  function getXml($name = null) {
     $dom = new DOMDocument();
     $node = $dom->createElement("variable");
     $dom->appendChild($node);
@@ -780,7 +780,7 @@ class TokenConstant extends Token {
   var $regexp = "[0-9]+(?:\.[0-9]+)?|\bDK\b|\bRF\b|\bNULL\b|\bNI\b";
   //var $regexp = "[0-9]+(?:\.[0-9]+)?|\bDK\b|\bRF\b|\bNULL\b|(?<!\w)['\"](.*?)['\"](?!\w)"; //NOTICE: strings things are also constant
 
-  function getXml() {
+  function getXml($name = null) {
     $dom = new DOMDocument();
     $node = $dom->createElement("constant");
     $dom->appendChild($node);
@@ -828,7 +828,7 @@ class TokenLessEqual extends BinaryToken {
       )
     );
 
-  function getXml() {
+  function getXml($name = null) {
     return parent::getXmlOperator("lessEqual");
   }
 
@@ -862,7 +862,7 @@ class TokenGreaterEqual extends BinaryToken {
       )
     );
 
-  function getXml() {
+  function getXml($name = null) {
     return parent::getXmlOperator("greaterEqual");
   }
 
@@ -896,7 +896,7 @@ class TokenNotEqual extends BinaryToken {
       )
     );
 
-  function getXml() {
+  function getXml($name = null) {
     return $this->getXmlOperator("notEqual");
   }
 
@@ -941,7 +941,7 @@ class TokenEqual extends BinaryToken {
     $this->children->add($right);
   }
 
-  function getXml() {
+  function getXml($name = null) {
     return $this->getXmlOperator("equal");
   }
 
@@ -972,7 +972,7 @@ class TokenAssign extends BinaryToken {
       )
     );
 
-  function getXml() {
+  function getXml($name = null) {
     return parent::getXml("assignment");
   }
 
@@ -1009,7 +1009,7 @@ class TokenLess extends BinaryToken {
       )
     );
 
-  function getXml() {
+  function getXml($name = null) {
     return parent::getXmlOperator("less");
   }
 
@@ -1043,7 +1043,7 @@ class TokenGreater extends BinaryToken {
       )
     );
 
-  function getXml() {
+  function getXml($name = null) {
     return parent::getXmlOperator("greater");
   }
 
@@ -1076,7 +1076,7 @@ class TokenPlus extends BinaryToken {
     );
 
 
-  function getXml() {
+  function getXml($name = null) {
     return parent::getXmlOperator("+");
   }
 
@@ -1108,7 +1108,7 @@ class TokenMinus extends BinaryToken {
       )
     );
 
-  function getXml() {
+  function getXml($name = null) {
     return parent::getXmlOperator("-");
   }
 
@@ -1140,7 +1140,7 @@ class TokenTimes extends BinaryToken {
       )
     );
 
-  function getXml() {
+  function getXml($name = null) {
     return parent::getXmlOperator("*");
   }
 
@@ -1172,7 +1172,7 @@ class TokenDivide extends BinaryToken {
       )
     );
 
-  function getXml() {
+  function getXml($name = null) {
     return parent::getXmlOperator("/");
   }
 
@@ -1200,7 +1200,7 @@ class TokenConcat extends BinaryToken {
       )
     );
 
-  function getXml() {
+  function getXml($name = null) {
     return parent::getXmlOperator(".");
   }
 
@@ -1312,7 +1312,7 @@ class TokenExpr extends Token {
 
 
 
-  function getXml() {
+  function getXml($name = null) {
     // takes the XML of the child, not that of this token, which is no sense
     $dom = $this->children->get(0)->getXml();
 
