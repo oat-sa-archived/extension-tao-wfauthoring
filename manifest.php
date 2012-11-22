@@ -17,6 +17,9 @@ return array(
 		'http://www.tao.lu/middleware/wfEngine.rdf',
 		'http://www.tao.lu/Ontologies/taoFuncACL.rdf'),
 	'install' => array(
+		'checks' => array(
+			array('type' => 'CheckFileSystemComponent', 'value' => array('id' => 'fs_wfAuthoring_includes', 'location' => 'wfAuthoring/includes', 'rights' => 'r'))
+		)
 	),
 	'classLoaderPackages' => array(
 		dirname(__FILE__).'/actions/',
