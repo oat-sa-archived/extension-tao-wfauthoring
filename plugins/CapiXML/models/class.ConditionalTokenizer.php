@@ -1329,7 +1329,8 @@ class TokenExpr extends Token {
           <then/>
         </if>
       ";
-      $fakeDom = DOMDocument::loadXML($xmlText);
+      $fakeDom = new DOMDocument();
+      $fakeDom->loadXML($xmlText);
       $then = $fakeDom->getElementsByTagName("then")->item(0);
       $then->appendChild($fakeDom->importNode($dom->documentElement, true));
       $dom = $fakeDom;

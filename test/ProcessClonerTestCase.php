@@ -103,7 +103,7 @@ class ProcessClonerTestCase extends UnitTestCase {
 	}
 	*/
 
-	public function testCloneSequentialProcess(){
+	/*public function testCloneSequentialProcess(){
 		$this->processCloner->initCloningVariables();
 		
 		$activity1 = $this->activityService->createInteractiveServiceActivity($this->proc);
@@ -112,14 +112,14 @@ class ProcessClonerTestCase extends UnitTestCase {
 		$activity3 = $this->activityService->createActivity($this->proc);
 		$connector2 = $this->connectorService->createSequential($activity2, $activity3);
 		
-		/*		
+				
 		$activity1 = $this->authoringService->createActivity($this->proc);
 		$this->authoringService->createInteractiveService($activity1);
 		$connector1 = $this->authoringService->createConnector($activity1);
 		$activity2 = $this->authoringService->createSequenceActivity($connector1);
 		$connector2 = $this->authoringService->createConnector($activity2);
 		$activity3 = $this->authoringService->createSequenceActivity($connector2);
-		*/
+		
 		$processClone = $this->processCloner->cloneProcess($this->proc);
 		
 		$this->assertIsA($processClone, 'core_kernel_classes_Resource');
@@ -130,7 +130,7 @@ class ProcessClonerTestCase extends UnitTestCase {
 		}
 		
 		$this->authoringService->deleteProcess($processClone);
-	}
+	}*/
 	
 	/*
 	public function testCloneProcessSegment(){

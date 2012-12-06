@@ -1388,8 +1388,9 @@ class wfAuthoring_models_classes_ProcessService
 					$returnValue = $joinConnector->removePropertyValues($propPreviousActivities);
 					*/
 				}
-
-				$previousActvityUri = array_pop($processFlow->getCheckedActivities());
+				
+				$toPop = $processFlow->getCheckedActivities();
+				$previousActvityUri = array_pop($toPop);
 			}
 			if(!is_null($joinConnector)){
 				if(empty($previousActvityUri)){
