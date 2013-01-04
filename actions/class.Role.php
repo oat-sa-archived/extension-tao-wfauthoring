@@ -153,7 +153,7 @@ class wfAuthoring_actions_Role extends tao_actions_TaoModule {
 			throw new Exception("wrong request mode");
 		}
 		$userService = wfEngine_models_classes_UserService::singleton();
-		echo json_encode($userService->toTree());
+		echo json_encode($userService->toTree(new core_kernel_classes_Class(CLASS_GENERIS_USER), array()));
 	}
 	
 	/**
