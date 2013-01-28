@@ -50,7 +50,6 @@ class wfAuthoring_actions_Users extends tao_actions_CommonModule {
 
 		if (!$sidx) $sidx = 1;
 
-		$this->userService->feedAllowedRoles();
 		$gau = array(
 			'order' 	=> $sidx,
 			'orderDir'	=> $sord,
@@ -121,7 +120,7 @@ class wfAuthoring_actions_Users extends tao_actions_CommonModule {
 
 		//Like class.UserService.php:130 (getAllUsers)
 		$userClass = new core_kernel_classes_Class(CLASS_GENERIS_USER);
-		$backoffice = new core_kernel_classes_Class(CLASS_ROLE_BACKOFFICE);
+		$backoffice = new core_kernel_classes_Class(INSTANCE_ROLE_BACKOFFICE);
 		$types = array();
 		$bos = $backoffice->getInstances(true, array());
 		foreach ($bos as $i => $e) {
@@ -164,7 +163,7 @@ class wfAuthoring_actions_Users extends tao_actions_CommonModule {
 	public function add()
 	{
 		
-		$myFormContainer = new tao_actions_form_Users(new core_kernel_classes_Class(CLASS_ROLE_WORKFLOWUSERROLE));
+		$myFormContainer = new tao_actions_form_Users(new core_kernel_classes_Class(CLASS_GENERIS_USER));
 		$myForm = $myFormContainer->getForm();
 		if($myForm->isSubmited()){
 			

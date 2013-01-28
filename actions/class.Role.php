@@ -11,7 +11,7 @@ class wfAuthoring_actions_Role extends tao_actions_TaoModule {
 	
 	
 	protected $authoringService = null;
-	protected $forbidden = null;
+	protected $forbidden = array();
 	
 	/**
 	 * constructor: initialize the service and the default data
@@ -98,6 +98,7 @@ class wfAuthoring_actions_Role extends tao_actions_TaoModule {
 			if($myForm->isValid()){
 				
 				$role = $this->service->bindProperties($role, $myForm->getValues());
+				core_kernel_users_Cache::removeIncludedRoles($role); // flush cache for this role.
 				
 				$this->setSessionAttribute("showNodeUri", tao_helpers_Uri::encode($role->uriResource));
 				$this->setData('message', __('Role saved'));
@@ -127,24 +128,26 @@ class wfAuthoring_actions_Role extends tao_actions_TaoModule {
 
 			$role = $this->getCurrentInstance();
 		
-			if(!in_array($role->uriResource, $this->forbidden)){
+			if(!in_array($role->getUri(), $this->forbidden)){
 					//check if no user is using this role:
-					$roleClass = new core_kernel_classes_Class($role->uriResource);
-					$users = $roleClass->getInstances();
+					$userClass = new core_kernel_classes_Class(CLASS_GENERIS_USER);
+					$options = array('recursive' => true, 'like' => false);
+					$filters = array(PROPERTY_USER_ROLES => $role->getUri());
+					$users = $userClass->searchInstances($filters, array());
 					if(empty($users)){
 						//delete role here:
 						$deleted = $this->service->deleteRole($role);
+						core_kernel_users_Cache::removeIncludedRoles($role);
 					}else{
 						//set message error
-						// $this->setData('message', 'nope');
-						throw new Exception(__('The role is using by one or several users. Please remove the role to these users first.'));
+						throw new Exception(__('This role is still given to one or more users. Please remove the role to these users first.'));
 					}
 			}else{
-				throw new Exception($role->getLabel().' cannot be deleted');
+				throw new Exception($role->getLabel() . ' could not be deleted');
 			}
 		}
 		
-		echo json_encode(array('deleted'	=> $deleted));
+		echo json_encode(array('deleted' => $deleted));
 	}
 	
 	public function getUsers()
@@ -165,21 +168,38 @@ class wfAuthoring_actions_Role extends tao_actions_TaoModule {
 		if(!tao_helpers_Request::isAjax()){
 			throw new Exception("wrong request mode");
 		}
+		
 		$saved = false;
-		$users = array();
+		$role = $this->getCurrentInstance();
+		$userRolesProperty = new core_kernel_classes_Property(PROPERTY_USER_ROLES);
+		
+		// Detect users selected to be given the role.
+		$detectedUsers = array(); // URIs of detected users.
 		foreach($this->getRequestParameters() as $key => $value){
 			if(preg_match("/^instance_/", $key)){
-				array_push($users, tao_helpers_Uri::decode($value));
+				array_push($detectedUsers, tao_helpers_Uri::decode($value));
 			}
 		}
 		
-		$role = $this->getCurrentInstance();
+		// get the users currently associated to the target role.
+		$userClass = new core_kernel_classes_Class(CLASS_GENERIS_USER);
+		$options = array('recursive' => true, 'like' => false);
+		$filters = array($userRolesProperty->getUri() => $role->getUri());
+		$users = $userClass->searchInstances($filters, $options);
 		
-		if($this->service->setRoleToUsers($role, $users)){
+		// Remove role to some users if not selected anymore.
+		foreach ($users as $u){	
+			if (!in_array($u->getUri(), $detectedUsers)){
+				// if the user has the role but is not in the selected users
+				// remove the role from him.
+				$u->removePropertyValues($userRolesProperty, array('pattern' => $role->getUri()));
+			}
+		}
+		
+		if(true === $this->service->setRoleToUsers($role, $detectedUsers)){
 			$saved = true;
 		}
 
-		
 		echo json_encode(array('saved'	=> $saved));
 	}
 	
