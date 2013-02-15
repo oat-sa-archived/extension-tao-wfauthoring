@@ -1,5 +1,3 @@
-<?include(TAO_TPL_PATH . 'messages.tpl')?>
-
 <?if(get_data('error')):?>
 
 	<div class="main-container">
