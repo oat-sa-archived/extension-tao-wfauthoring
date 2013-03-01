@@ -11,7 +11,7 @@ return array(
 	'name' => 'wfAuthoring ',
 	'description' => 'Workflow Authoring extension',
 	'version' => '2.4',
-	'author' => 'CRP Henri Tudor',
+	'author' => 'Open Assessment Technologies',
 	'dependencies' => array('tao', 'wfEngine'),
 	'models' => array(
 		'http://www.tao.lu/middleware/wfEngine.rdf',
