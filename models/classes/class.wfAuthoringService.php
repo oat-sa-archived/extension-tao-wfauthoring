@@ -148,7 +148,7 @@ class wfAuthoring_models_classes_wfAuthoringService
 
         // section 10-13-1-39-1f91722d:12e9641f6ad:-8000:0000000000002C73 begin
 		if(!is_null($instance) && !is_null($clazz)){
-			$processCloner = new wfEngine_models_classes_ProcessCloner();
+			$processCloner = new wfAuthoring_models_classes_ProcessCloner();
 			$returnValue = $processCloner->cloneProcess($instance);
 		}				
         // section 10-13-1-39-1f91722d:12e9641f6ad:-8000:0000000000002C73 end
