@@ -89,7 +89,8 @@ class wfAuthoring_actions_Process extends tao_actions_TaoModule {
 		if($myForm->isSubmited()){
 			if($myForm->isValid()){
 				
-				$process = $this->service->bindProperties($process, $myForm->getValues());
+				$binder = new tao_models_classes_dataBinding_GenerisFormDataBinder($process);
+				$process = $binder->bind($myForm->getValues());
 				
 				$this->setSessionAttribute("showNodeUri", tao_helpers_Uri::encode($process->uriResource));
 				$this->setData('message', __('Process saved'));

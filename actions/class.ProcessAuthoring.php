@@ -261,14 +261,6 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 				if($myForm->isValid()){
 					$propertyValues = $myForm->getValues();
 
-					// if(empty($propertyValues[PROPERTY_SERVICESDEFINITION_FORMALPARAMOUT])){
-						// unset($propertyValues[PROPERTY_SERVICESDEFINITION_FORMALPARAMOUT]);
-						// $instance->removePropertyValues(new core_kernel_classes_Property(PROPERTY_SERVICESDEFINITION_FORMALPARAMOUT));
-					// }
-					// if(empty($propertyValues[PROPERTY_SERVICESDEFINITION_FORMALPARAMIN])){
-						// unset($propertyValues[PROPERTY_SERVICESDEFINITION_FORMALPARAMIN]);
-						// $instance->removePropertyValues(new core_kernel_classes_Property(PROPERTY_SERVICESDEFINITION_FORMALPARAMIN));
-					// }
 
 					foreach($propertyValues as $key=>$value){
 						if(empty($value)){
@@ -278,8 +270,6 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 					}
 
 					$instance = $this->service->bindProperties($instance, $propertyValues);
-//					echo __("saved");
-//					return;
 				}
 			}
 			
