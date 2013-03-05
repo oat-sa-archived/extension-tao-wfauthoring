@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: TAO v2.4-alpha\n"
-"PO-Revision-Date: 2013-01-04T11:16:03\n"
+"Project-Id-Version: TAO v2.4-beta1\n"
+"PO-Revision-Date: 2013-03-05T10:36:16\n"
 "Last-Translator: TAO Translation Team <translation@tao.lu>\n"
 "MIME-Version: 1.0\n"
 "Language: SE\n"
@@ -14,9 +14,6 @@ msgstr ""
 msgid "Access Control Mode"
 msgstr ""
 
-msgid "Actions"
-msgstr ""
-
 msgid "Activity"
 msgstr ""
 
@@ -27,16 +24,6 @@ msgid "Activity or Connector"
 msgstr ""
 
 msgid "Activity Variables"
-msgstr ""
-
-#, tao-public
-msgid "Add a user"
-msgstr ""
-
-msgid "An error occured during user deletion"
-msgstr ""
-
-msgid "Assign User to role"
 msgstr ""
 
 msgid "Back"
@@ -100,16 +87,7 @@ msgstr ""
 msgid "Current User"
 msgstr ""
 
-msgid "Data Language"
-msgstr ""
-
 msgid "delete"
-msgstr ""
-
-msgid "Delete"
-msgstr ""
-
-msgid "Delete user"
 msgstr ""
 
 msgid "Do you want to change the connector type? \n"
@@ -119,17 +97,7 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#, tao-public
-msgid "Edit a user"
-msgstr ""
-
-msgid "Edit user"
-msgstr ""
-
 msgid "Else"
-msgstr ""
-
-msgid "Email"
 msgstr ""
 
 msgid "export"
@@ -156,43 +124,17 @@ msgstr ""
 msgid "interactive service saved"
 msgstr ""
 
-msgid "Interface Language"
-msgstr ""
-
 msgid "Label"
 msgstr ""
 
 msgid "Language"
 msgstr ""
 
-msgid "list the users"
-msgstr ""
-
 msgid "loading..."
-msgstr ""
-
-msgid "Login"
-msgstr ""
-
-msgid "Login available"
-msgstr ""
-
-msgid "Login not available"
 msgstr ""
 
 #, tao-public
 msgid "Manage processes"
-msgstr ""
-
-#, tao-public
-msgid "Manage roles"
-msgstr ""
-
-msgid "Manage Roles and associate roles to workflow users"
-msgstr ""
-
-#, tao-public
-msgid "Manage users"
 msgstr ""
 
 msgid "Merge to "
@@ -211,13 +153,7 @@ msgstr ""
 msgid "More detailed description here."
 msgstr ""
 
-msgid "Name"
-msgstr ""
-
 msgid "new process"
-msgstr ""
-
-msgid "new role"
 msgstr ""
 
 msgid "newly edited"
@@ -244,9 +180,6 @@ msgstr ""
 
 msgid "Please confirm the deletion of the connector: \n"
 " child connectors will be delete at the same time"
-msgstr ""
-
-msgid "Please confirm user deletion"
 msgstr ""
 
 msgid "Please select a delivery before authoring it"
@@ -308,22 +241,7 @@ msgstr ""
 msgid "Role"
 msgstr ""
 
-msgid "Role saved"
-msgstr ""
-
-msgid "Role(s)"
-msgstr ""
-
-msgid "Roles library"
-msgstr ""
-
 msgid "save"
-msgstr ""
-
-msgid "Save"
-msgstr ""
-
-msgid "saved"
 msgstr ""
 
 msgid "search"
@@ -351,9 +269,6 @@ msgstr ""
 msgid "The Process module allows to create Process"
 msgstr ""
 
-msgid "The role is using by one or several users. Please remove the role to these users first."
-msgstr ""
-
 msgid "Then"
 msgstr ""
 
@@ -370,15 +285,6 @@ msgstr ""
 msgid "Use the * character to replace any string"
 msgstr ""
 
-msgid "User added"
-msgstr ""
-
-msgid "User deleted successfully"
-msgstr ""
-
-msgid "User saved"
-msgstr ""
-
 msgid "Value"
 msgstr ""
 
@@ -389,9 +295,6 @@ msgid "VFF"
 msgstr ""
 
 msgid "VFF version"
-msgstr ""
-
-msgid "Workflow Users"
 msgstr ""
 
 msgid "XLIFF"
