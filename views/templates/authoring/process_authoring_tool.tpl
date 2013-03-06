@@ -28,7 +28,7 @@
 		#processAuthoring_loading{position:absolute; width:99%; height:99%; z-index:1000; background-color:#FFFFFF;}
 		#processAuthoring_loading_message{position:relative; top:45%; left:45%; width:150px;}
 	</style>
-	<link rel="stylesheet" type="text/css" href="<?=BASE_WWW?>css/process_authoring_tool.css" />
+	<link rel="stylesheet" type="text/css" href="<?=WFAUTHORING_CSS_URL?>process_authoring_tool.css" />
 
 	<div id="processAuthoring_loading">
 		<div id="processAuthoring_loading_message">
