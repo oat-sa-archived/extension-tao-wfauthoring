@@ -56,7 +56,7 @@ class wfAuthoring_models_classes_ActivityService
     {
         $returnValue = null;
 
-        // section 10-30-1--78-1d59cf09:13aab8708e6:-8000:0000000000003C06 begin
+
 	    $activityLabel = "";
 		$number = 0;
 
@@ -92,7 +92,7 @@ class wfAuthoring_models_classes_ActivityService
 		}else{
 			throw new Exception("the activity cannot be created for the process {$process->uriResource}");
 		}
-        // section 10-30-1--78-1d59cf09:13aab8708e6:-8000:0000000000003C06 end
+
 
         return $returnValue;
     }
@@ -111,12 +111,12 @@ class wfAuthoring_models_classes_ActivityService
     {
         $returnValue = null;
 
-        // section 10-30-1--78--1bae53d3:13ab273fb8e:-8000:0000000000003BF9 begin
+
         $returnValue = $this->createActivity($process);
         $service = $this->addService($returnValue);
         $service->editPropertyValues(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_SERVICEDEFINITION), $serviceDefinition);
         
-        // section 10-30-1--78--1bae53d3:13ab273fb8e:-8000:0000000000003BF9 end
+
 
         return $returnValue;
     }
@@ -133,7 +133,7 @@ class wfAuthoring_models_classes_ActivityService
     {
         $returnValue = null;
 
-        // section 10-30-1--78-1d59cf09:13aab8708e6:-8000:0000000000003BF0 begin
+
     	$number = $activity->getPropertyValuesCollection(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_INTERACTIVESERVICES))->count();
 		$number += 1;
 
@@ -155,7 +155,6 @@ class wfAuthoring_models_classes_ActivityService
 		$returnValue->setPropertyValue(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_HEIGHT), 100);
 		$returnValue->setPropertyValue(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_TOP), 0);
 		$returnValue->setPropertyValue(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_LEFT), 0);
-        // section 10-30-1--78-1d59cf09:13aab8708e6:-8000:0000000000003BF0 end
 
         return $returnValue;
     }
@@ -172,7 +171,7 @@ class wfAuthoring_models_classes_ActivityService
     {
         $returnValue = (bool) false;
 
-        // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BE3 begin
+
         $connectorService = wfAuthoring_models_classes_ConnectorService::singleton();
 		$interactiveServiceService = wfEngine_models_classes_InteractiveServiceService::singleton();
 		$connectorClass = new core_kernel_classes_Class(CLASS_CONNECTORS);
@@ -197,7 +196,7 @@ class wfAuthoring_models_classes_ActivityService
 		
 		//delete activity itself:
 		$returnValue = $activity->delete(true);
-        // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BE3 end
+
 
         return (bool) $returnValue;
     }
@@ -216,8 +215,7 @@ class wfAuthoring_models_classes_ActivityService
     {
         $returnValue = (bool) false;
 
-        // section 10-30-1--78-1d59cf09:13aab8708e6:-8000:0000000000003BEE begin
-        
+
 		//check the kind of resources
         if($this->getClass($activity)->uriResource != CLASS_ACTIVITIES){
         	throw new Exception("Activity must be an instance of the class Activities");
@@ -254,7 +252,6 @@ class wfAuthoring_models_classes_ActivityService
         //bind the mode and the target (user or role) to the activity
         $returnValue = $this->bindProperties($activity, $properties);
 		
-        // section 10-30-1--78-1d59cf09:13aab8708e6:-8000:0000000000003BEE end
 
         return (bool) $returnValue;
     }
@@ -272,7 +269,6 @@ class wfAuthoring_models_classes_ActivityService
     {
         $returnValue = (bool) false;
 
-        // section 10-30-1--78-1d59cf09:13aab8708e6:-8000:0000000000003BF3 begin
         $possibleValues = $this->getAllControls();
 		if(is_array($controls)){
 			$values = array();
@@ -283,7 +279,6 @@ class wfAuthoring_models_classes_ActivityService
 			}
 			$returnValue = $activity->editPropertyValues(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_CONTROLS), $values);
 		}
-        // section 10-30-1--78-1d59cf09:13aab8708e6:-8000:0000000000003BF3 end
 
         return (bool) $returnValue;
     }
@@ -301,12 +296,12 @@ class wfAuthoring_models_classes_ActivityService
     {
         $returnValue = (bool) false;
 
-        // section 10-30-1--78-1d59cf09:13aab8708e6:-8000:0000000000003BF5 begin
+
         $propHidden = new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISHIDDEN);
 		$hidden = (bool) $hidden;
 		$returnValue = $activity->editPropertyValues($propHidden, ($hidden)?GENERIS_TRUE:GENERIS_FALSE);
 		$this->setCache(__CLASS__.'::isHidden', array($activity), $hidden);
-        // section 10-30-1--78-1d59cf09:13aab8708e6:-8000:0000000000003BF5 end
+
 
         return (bool) $returnValue;
     }

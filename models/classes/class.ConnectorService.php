@@ -1,43 +1,32 @@
 <?php
+/*
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; under version 2
+ * of the License (non-upgradable).
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * Copyright (c) 2013 (original work) Open Assessment Techonologies SA (under the project TAO-PRODUCT);
+ *
+ *
+ */
 
 error_reporting(E_ALL);
 
 /**
  * TAO - wfAuthoring/models/classes/class.ConnectorService.php
  *
- * $Id$
- *
- * This file is part of TAO.
- *
- * Automatically generated on 29.10.2012, 16:38:08 with ArgoUML PHP module 
- * (last revised $Date: 2010-01-12 20:14:42 +0100 (Tue, 12 Jan 2010) $)
- *
- * @author Joel Bout, <joel.bout@tudor.lu>
- * @package wfAuthoring
- * @subpackage models_classes
- */
-
-if (0 > version_compare(PHP_VERSION, '5')) {
-    die('This file was generated for PHP 5');
-}
-
-/**
  * Connector Services
  *
- * @author Joel Bout, <joel.bout@tudor.lu>
- */
-require_once('wfEngine/models/classes/class.ConnectorService.php');
-
-/* user defined includes */
-// section 10-30-1--78--3f16755c:13a9722f969:-8000:0000000000003BBE-includes begin
-// section 10-30-1--78--3f16755c:13a9722f969:-8000:0000000000003BBE-includes end
-
-/* user defined constants */
-// section 10-30-1--78--3f16755c:13a9722f969:-8000:0000000000003BBE-constants begin
-// section 10-30-1--78--3f16755c:13a9722f969:-8000:0000000000003BBE-constants end
-
-/**
- * Short description of class wfAuthoring_models_classes_ConnectorService
+ * This file is part of TAO.
  *
  * @access public
  * @author Joel Bout, <joel.bout@tudor.lu>
@@ -59,22 +48,22 @@ class wfAuthoring_models_classes_ConnectorService
      *
      * @access public
      * @author Joel Bout, <joel.bout@tudor.lu>
-     * @param  Resource sourceStep
-     * @param  string label
+     * @param core_kernel_classes_Resource sourceStep
+     * @param string label
+     * @throws Exception
      * @return core_kernel_classes_Resource
      */
     public function createConnector( core_kernel_classes_Resource $sourceStep, $label = '')
     {
         $returnValue = null;
 
-        // section 10-30-1--78-4ca28256:13aace225cc:-8000:0000000000003BF9 begin
-		$label = empty($label) ? $sourceStep->getLabel()."_c" : $label; 
+		$label = empty($label) ? $sourceStep->getLabel()."_c" : $label;
 		
 		$connectorClass = new core_kernel_classes_Class(CLASS_CONNECTORS);
 		$returnValue = $connectorClass->createInstance($label, "created by ProcessService.Class");
 		
 		if (is_null($returnValue)) {
-			throw new Exception("the connector cannot be created for the activity {$activity->getUri()}");
+			throw new Exception("the connector cannot be created for the activity {$sourceStep->getUri()}");
 		}
 		$activityService = wfEngine_models_classes_ActivityService::singleton();
 		$connectorService = wfEngine_models_classes_ConnectorService::singleton();
@@ -91,7 +80,6 @@ class wfAuthoring_models_classes_ConnectorService
 		}else{
 			throw new Exception("invalid resource type for the activity parameter: {$sourceStep->getUri()}");
 		}
-        // section 10-30-1--78-4ca28256:13aace225cc:-8000:0000000000003BF9 end
 
         return $returnValue;
     }
@@ -111,7 +99,6 @@ class wfAuthoring_models_classes_ConnectorService
     {
         $returnValue = null;
 
-        // section 10-30-1--78--3f16755c:13a9722f969:-8000:0000000000003BC0 begin
 		//Connector
 		$connector = $this->createConnector($from);
 		$this->setConnectorType($connector, new core_kernel_classes_Resource(INSTANCE_TYPEOFCONNECTORS_CONDITIONAL));
@@ -126,7 +113,6 @@ class wfAuthoring_models_classes_ConnectorService
 		}
 
 		$returnValue = $connector;
-        // section 10-30-1--78--3f16755c:13a9722f969:-8000:0000000000003BC0 end
 
         return $returnValue;
     }
@@ -144,7 +130,7 @@ class wfAuthoring_models_classes_ConnectorService
     {
         $returnValue = null;
 
-        // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BC5 begin
+
         $transitionRule = $connector->getOnePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TRANSITIONRULE));
 
 		if (empty($transitionRule) || $transitionRule == null) {
@@ -157,7 +143,7 @@ class wfAuthoring_models_classes_ConnectorService
 		}
 
 		if (empty($expression)) {
-			common_Logger::e('condition is not an instance of ressource : '.$condition);
+			common_Logger::e('condition is not an instance of ressource : '.$expression);
 		} else {
 			//delete old condition:
 			$oldCondition = $transitionRule->getOnePropertyValue(new core_kernel_classes_Property(PROPERTY_RULE_IF));
@@ -168,7 +154,6 @@ class wfAuthoring_models_classes_ConnectorService
 		}
 
 		$returnValue = $transitionRule;
-        // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BC5 end
 
         return $returnValue;
     }
@@ -186,11 +171,9 @@ class wfAuthoring_models_classes_ConnectorService
     {
         $returnValue = null;
 
-        // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BD3 begin
 		$returnValue = $this->createConnector($source);
 		$this->setConnectorType($returnValue, new core_kernel_classes_Resource(INSTANCE_TYPEOFCONNECTORS_SEQUENCE));
 		$returnValue->setPropertyValue(new core_kernel_classes_Property(PROPERTY_STEP_NEXT), $destination);
-        // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BD3 end
 
         return $returnValue;
     }
@@ -208,7 +191,6 @@ class wfAuthoring_models_classes_ConnectorService
     {
         $returnValue = null;
 
-        // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BD7 begin
         foreach ($sources as $step) {
         	$followings = $step->getPropertyValues(new core_kernel_classes_Property(PROPERTY_STEP_NEXT));
         	if (count($followings) > 0) {
@@ -240,7 +222,7 @@ class wfAuthoring_models_classes_ConnectorService
 			$activity->setPropertyValue(new core_kernel_classes_Property(PROPERTY_STEP_NEXT), $cardinality);
 			common_Logger::d('spawned cardinality '.$cardinality->getUri().' with value '.$multiplicity);
 		}
-        // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BD7 end
+
 
         return $returnValue;
     }
@@ -258,7 +240,7 @@ class wfAuthoring_models_classes_ConnectorService
     {
         $returnValue = null;
 
-        // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BDB begin
+
         $returnValue = $this->createConnector($source);
         $this->setConnectorType($returnValue, new core_kernel_classes_Resource(INSTANCE_TYPEOFCONNECTORS_PARALLEL));
         $returnValue->setPropertyValue(new core_kernel_classes_Property(PROPERTY_STEP_NEXT), $destinations);
@@ -288,7 +270,7 @@ class wfAuthoring_models_classes_ConnectorService
 			}
 		}
 		$returnValue = $connectorInstance->removePropertyValues($propNextActivities);
-        // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BDB end
+
 
         return $returnValue;
     }
@@ -306,7 +288,7 @@ class wfAuthoring_models_classes_ConnectorService
     {
         $returnValue = (bool) false;
 
-        // section 10-30-1--78-1d59cf09:13aab8708e6:-8000:0000000000003BEA begin
+
     	if($this->getType($connector)->getUri() == INSTANCE_TYPEOFCONNECTORS_PARALLEL){
 			$cardinalityService = wfEngine_models_classes_ActivityCardinalityService::singleton();
 			foreach($this->getNextActivities($connector) as $cardinality){
@@ -323,7 +305,7 @@ class wfAuthoring_models_classes_ConnectorService
 			}
 		
 		}
-        // section 10-30-1--78-1d59cf09:13aab8708e6:-8000:0000000000003BEA end
+
 
         return (bool) $returnValue;
     }
@@ -341,12 +323,12 @@ class wfAuthoring_models_classes_ConnectorService
     {
         $returnValue = (bool) false;
 
-        // section 10-30-1--78-1d59cf09:13aab8708e6:-8000:0000000000003BE6 begin
+
         
         //@TODO: check range of type of connectors:
 		$returnValue = $connector->editPropertyValues(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TYPE), $type->getUri());
 		
-        // section 10-30-1--78-1d59cf09:13aab8708e6:-8000:0000000000003BE6 end
+
 
         return (bool) $returnValue;
     }
@@ -363,7 +345,7 @@ class wfAuthoring_models_classes_ConnectorService
     {
         $returnValue = (bool) false;
 
-        // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BDF begin
+
         $cardinalityService = wfEngine_models_classes_ActivityCardinalityService::singleton();
 		
 		if(!$this->isConnector($connector)){
@@ -419,7 +401,7 @@ class wfAuthoring_models_classes_ConnectorService
 		
 		//delete connector itself:
 		$returnValue = $connector->delete(true);
-        // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BDF end
+
 
         return (bool) $returnValue;
     }
