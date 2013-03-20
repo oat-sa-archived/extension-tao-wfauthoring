@@ -239,36 +239,16 @@ class wfAuthoring_models_classes_ConnectorService
     {
         $returnValue = null;
 
-
-        $returnValue = $this->createConnector($source);
-        $this->setConnectorType($returnValue, new core_kernel_classes_Resource(INSTANCE_TYPEOFCONNECTORS_PARALLEL));
-        $returnValue->setPropertyValue(new core_kernel_classes_Property(PROPERTY_STEP_NEXT), $destinations);
-
-		$propNextActivities = new core_kernel_classes_Property(PROPERTY_STEP_NEXT);
 		$cardinalityService = wfEngine_models_classes_ActivityCardinalityService::singleton();
-
 		foreach ($destinations as $destination) {
-			
+			$cardinalities[] = $cardinalityService->createCardinality($destination, 1);
 		}
 		
-		//remove old property values:
-		$nextActivitiesCollection = $connectorInstance->getPropertyValuesCollection($propNextActivities);
-		$oldSplitVariablesByActivity = array();
-		foreach ($nextActivitiesCollection->getIterator() as $activityMultiplicityResource){
-			if($cardinalityService->isCardinality($activityMultiplicityResource)){
-
-				//record the old split variables values in case it is needed (TODO: optimize this process)
-				$activity = $cardinalityService->getDestination($activityMultiplicityResource);
-				$splitVars = $cardinalityService->getSplitVariables($activityMultiplicityResource);
-				if(!empty($splitVars)){
-					$oldSplitVariablesByActivity[$activity->uriResource] = $splitVars;
-				}
-
-				//delete it
-				$activityMultiplicityResource->delete();
-			}
-		}
-		$returnValue = $connectorInstance->removePropertyValues($propNextActivities);
+        $returnValue = $this->createConnector($source);
+        $this->setConnectorType($returnValue, new core_kernel_classes_Resource(INSTANCE_TYPEOFCONNECTORS_PARALLEL));
+		$returnValue->setPropertiesValues(array(
+        	PROPERTY_STEP_NEXT => $cardinalities
+        ));
 
 
         return $returnValue;

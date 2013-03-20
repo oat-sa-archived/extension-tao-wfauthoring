@@ -137,6 +137,57 @@ class ConnectorAuthoringTestCase extends wfEngineServiceTest {
 		
 	}
 	
+	/*
+		             	+---------------+
+                		|  activity 1   |
+		                +---------------+
+		                        |
+		                    +---v---+
+		                    |  c 1  |
+		                    +--+-+--+
+		              1        | |       1
+		            +----------+ +---------+
+		            |                      |
+		    +-------v--------+     +-------v--------+
+		    |   activity 2   |     |  activity 3    |
+		    +-------+--------+     +--------+-------+
+		            |						|
+		            +-----------+-----------+
+		                        |
+		                    +---v---+
+		                    |  c 2  |
+		                    +---+---+
+		                        |
+		             	+-------v-------+
+                		|  activity 4   |
+		                +---------------+
+	*/
+		                    
+	public function testSplitJoin() {
+		$process = wfAuthoring_models_classes_ProcessService::singleton()->createProcess('Scripted Process');
+	
+		$activityAuthoring = wfAuthoring_models_classes_ActivityService::singleton();
+		
+		$webservice = new core_kernel_classes_Resource('http://www.tao.lu/Ontologies/TAODelivery.rdf#ServiceWebService');
+		$activity = array();
+		for ($i = 1; $i <= 4; $i++) {
+			$activity[$i] = $activityAuthoring->createFromServiceDefinition($process, $webservice, array());
+		}
+		
+		wfAuthoring_models_classes_ProcessService::singleton()->setFirstActivity($process, $activity[1]);
+		
+		$alwaysTrue		= wfAuthoring_models_classes_RuleService::singleton()->createConditionExpressionFromString('2 > 1');
+		$alwaysFalse	= wfAuthoring_models_classes_RuleService::singleton()->createConditionExpressionFromString('2 < 1');
+		
+		$c1 = $this->service->createSplit($activity[1], array($activity[2], $activity[3]));
+		$c2 = $this->service->createJoin(array($activity[2], $activity[3]), $activity[4]);
+		
+		$this->runProcess($process, 4);
+		
+		wfAuthoring_models_classes_ProcessService::singleton()->deleteProcess($process);
+		
+	}
+	
 	private function runProcess($processDefinition, $expectedSteps) {
 		$user = $this->createUser('timmy');
 		$this->changeUser('timmy');
@@ -165,6 +216,7 @@ class ConnectorAuthoringTestCase extends wfEngineServiceTest {
 		$this->assertEqual($steps, $expectedSteps);
 		$processExecutionService->deleteProcessExecution($processInstance);
 		$user->delete();
+		$this->logoutUser();
 	}
 	
 	public function tearDown() {
