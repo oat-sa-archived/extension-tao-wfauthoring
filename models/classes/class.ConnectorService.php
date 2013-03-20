@@ -95,7 +95,7 @@ class wfAuthoring_models_classes_ConnectorService
      * @param  Resource else
      * @return core_kernel_classes_Resource
      */
-    public function createConditional( core_kernel_classes_Resource $from,  core_kernel_classes_Expression $condition,  core_kernel_classes_Resource $then,  core_kernel_classes_Resource $else = null)
+    public function createConditional( core_kernel_classes_Resource $from,  core_kernel_rules_Expression $condition,  core_kernel_classes_Resource $then,  core_kernel_classes_Resource $else = null)
     {
         $returnValue = null;
 
@@ -126,7 +126,7 @@ class wfAuthoring_models_classes_ConnectorService
      * @param  Expression expression
      * @return core_kernel_classes_Resource
      */
-    private function createTransitionRule( core_kernel_classes_Resource $connector,  core_kernel_classes_Expression $expression)
+    private function createTransitionRule( core_kernel_classes_Resource $connector,  core_kernel_rules_Expression $expression)
     {
         $returnValue = null;
 
@@ -136,10 +136,9 @@ class wfAuthoring_models_classes_ConnectorService
 		if (empty($transitionRule) || $transitionRule == null) {
 			//create an instance of transition rule:
 			$transitionRuleClass = new core_kernel_classes_Class(CLASS_TRANSITIONRULES);
-			$label = $isXML ? $question->saveXML() : $question;
-			$transitionRule = $transitionRuleClass->createInstance('TransitionRule : ' . $label);
+			$transitionRule = $transitionRuleClass->createInstance();
 			//Associate the newly created transition rule to the connector:
-			$connector->editPropertyValues(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TRANSITIONRULE), $transitionRule->uriResource);
+			$connector->editPropertyValues(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TRANSITIONRULE), $transitionRule->getUri());
 		}
 
 		if (empty($expression)) {

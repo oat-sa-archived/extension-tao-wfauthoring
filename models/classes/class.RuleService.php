@@ -40,6 +40,7 @@ require_once('wfAuthoring/plugins/CapiImport/models/class.DescriptorFactory.php'
  * @subpackage models_classes
  */
 class wfAuthoring_models_classes_RuleService
+	extends wfEngine_models_classes_RuleService
 {
     // --- ASSOCIATIONS ---
 
@@ -54,7 +55,7 @@ class wfAuthoring_models_classes_RuleService
      * @access public
      * @author Joel Bout, <joel.bout@tudor.lu>
      * @param  DomDocument xml
-     * @return core_kernel_classes_Expression
+     * @return core_kernel_rules_Expression
      */
     public function createConditionExpressionFromXML( DomDocument $xml)
     {
@@ -83,7 +84,7 @@ class wfAuthoring_models_classes_RuleService
      * @access public
      * @author Joel Bout, <joel.bout@tudor.lu>
      * @param  string string
-     * @return core_kernel_classes_Expression
+     * @return core_kernel_rules_Expression
      */
     public function createConditionExpressionFromString($string)
     {
