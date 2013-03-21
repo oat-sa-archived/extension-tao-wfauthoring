@@ -27,7 +27,6 @@ class wfAuthoring_actions_Process extends tao_actions_TaoModule {
 		$this->authoringService = new wfAuthoring_models_classes_ProcessService();
 		$this->defaultData();
 		
-		$this->setSessionAttribute('currentSection', 'process');
 	}
 	
 /*
