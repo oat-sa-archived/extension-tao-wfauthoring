@@ -283,8 +283,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 
 		$activity = $this->getCurrentActivity();
 		$excludedProperties = array(
-			PROPERTY_ACTIVITIES_INTERACTIVESERVICES,
-			PROPERTY_GENERIS_ALLOWFREEVALUEOF
+			PROPERTY_ACTIVITIES_INTERACTIVESERVICES
 		);
 		
 		$this->setData('newLabel', '');
