@@ -29,7 +29,7 @@ error_reporting(E_ALL);
  * This file is part of TAO.
  *
  * @access public
- * @author Joel Bout, <joel.bout@tudor.lu>
+ * @author Joel Bout, <joel@taotesting.com>
  * @package wfAuthoring
  * @subpackage models_classes
  */
@@ -47,7 +47,7 @@ class wfAuthoring_models_classes_ConnectorService
      * Short description of method createConnector
      *
      * @access public
-     * @author Joel Bout, <joel.bout@tudor.lu>
+     * @author Joel Bout, <joel@taotesting.com>
      * @param core_kernel_classes_Resource sourceStep
      * @param string label
      * @throws Exception
@@ -88,7 +88,7 @@ class wfAuthoring_models_classes_ConnectorService
      * Short description of method createConditional
      *
      * @access public
-     * @author Joel Bout, <joel.bout@tudor.lu>
+     * @author Joel Bout, <joel@taotesting.com>
      * @param  Resource from
      * @param  Expression condition
      * @param  Resource then
@@ -121,7 +121,7 @@ class wfAuthoring_models_classes_ConnectorService
      * Short description of method createTransitionRule
      *
      * @access private
-     * @author Joel Bout, <joel.bout@tudor.lu>
+     * @author Joel Bout, <joel@taotesting.com>
      * @param  Resource connector
      * @param  Expression expression
      * @return core_kernel_classes_Resource
@@ -161,7 +161,7 @@ class wfAuthoring_models_classes_ConnectorService
      * Short description of method createSequential
      *
      * @access public
-     * @author Joel Bout, <joel.bout@tudor.lu>
+     * @author Joel Bout, <joel@taotesting.com>
      * @param  Resource source
      * @param  Resource destination
      * @return core_kernel_classes_Resource
@@ -181,7 +181,7 @@ class wfAuthoring_models_classes_ConnectorService
      * Short description of method createJoin
      *
      * @access public
-     * @author Joel Bout, <joel.bout@tudor.lu>
+     * @author Joel Bout, <joel@taotesting.com>
      * @param  array sources
      * @param  Resource destination
      * @return core_kernel_classes_Resource
@@ -230,7 +230,7 @@ class wfAuthoring_models_classes_ConnectorService
      * Short description of method createSplit
      *
      * @access public
-     * @author Joel Bout, <joel.bout@tudor.lu>
+     * @author Joel Bout, <joel@taotesting.com>
      * @param  Resource source
      * @param  array destinations
      * @return core_kernel_classes_Resource
@@ -258,7 +258,7 @@ class wfAuthoring_models_classes_ConnectorService
      * Short description of method setSplitVariables
      *
      * @access public
-     * @author Joel Bout, <joel.bout@tudor.lu>
+     * @author Joel Bout, <joel@taotesting.com>
      * @param  Resource connector
      * @param  array variables
      * @return boolean
@@ -268,32 +268,97 @@ class wfAuthoring_models_classes_ConnectorService
         $returnValue = (bool) false;
 
 
-    	if($this->getType($connector)->getUri() == INSTANCE_TYPEOFCONNECTORS_PARALLEL){
-			$cardinalityService = wfEngine_models_classes_ActivityCardinalityService::singleton();
-			foreach($this->getNextActivities($connector) as $cardinality){
+    	if($this->getType($connector)->getUri() != INSTANCE_TYPEOFCONNECTORS_PARALLEL){
+    		throw new wfAuthoring_models_classes_ProcessAuthoringException('Called '.__FUNCTION__.' on non parallel connector');
+    	}
+
+    	$cardinalityService = wfEngine_models_classes_ActivityCardinalityService::singleton();
+		foreach($this->getNextActivities($connector) as $cardinality){
+			
+			if($cardinalityService->isCardinality($cardinality)){
 				
-				if($cardinalityService->isCardinality($cardinality)){
-					
-					//find the right cardinality resource (according to the activity defined in the connector):
-					$activity = $cardinalityService->getDestination($cardinality);
-					if(!is_null($activity) && isset($variables[$activity->getUri()])){
-						$returnValue = $cardinalityService->editSplitVariables($cardinality, $variables[$activity->getUri()]);
-					}
+				//find the right cardinality resource (according to the activity defined in the connector):
+				$activity = $cardinalityService->getDestination($cardinality);
+				if(!is_null($activity) && isset($variables[$activity->getUri()])){
+					common_Logger::i('found '.$cardinality->getUri());
+					$returnValue = $cardinalityService->editSplitVariables($cardinality, $variables[$activity->getUri()]);
 				}
-				
 			}
-		
+			
 		}
 
-
         return (bool) $returnValue;
+    }
+    
+	/**
+     * sets the cardinality for the split connector of the specified
+     * next steps
+     * 
+     * array in the form of stepUri => integer
+     *
+     * @access public
+     * @author Joel Bout, <joel@taotesting.com>
+     * @param  Resource connector
+     * @param  array cardinalities
+     */
+    public function setSplitCardinality( core_kernel_classes_Resource $connector, $cardinalities)
+    {
+    	if($this->getType($connector)->getUri() != INSTANCE_TYPEOFCONNECTORS_PARALLEL){
+    		throw new wfAuthoring_models_classes_ProcessAuthoringException('Called '.__FUNCTION__.' on non parallel connector '.$connector->getUri());
+    	}
+
+    	$cardinalityService = wfEngine_models_classes_ActivityCardinalityService::singleton();
+		foreach($this->getNextActivities($connector) as $cardinality){
+			
+			if($cardinalityService->isCardinality($cardinality)){
+				
+				//find the right cardinality resource (according to the activity defined in the connector):
+				$activity = $cardinalityService->getDestination($cardinality);
+				if(!is_null($activity) && isset($cardinalities[$activity->getUri()])){
+					$cardinalityService->editCardinality($cardinality, $cardinalities[$activity->getUri()]);
+				}
+			}
+			
+		}
+    }
+    
+	/**
+     * sets the cardinality for the join connector of the specified
+     * previous steps
+     * 
+     * array in the form of stepUri => integer
+     *
+     * @access public
+     * @author Joel Bout, <joel@taotesting.com>
+     * @param  Resource connector
+     * @param  array cardinalities
+     */
+    public function setJoinCardinality( core_kernel_classes_Resource $connector, $cardinalities)
+    {
+    	if($this->getType($connector)->getUri() != INSTANCE_TYPEOFCONNECTORS_JOIN){
+    		throw new wfAuthoring_models_classes_ProcessAuthoringException('Called '.__FUNCTION__.' on the non join connector '.$connector->getUri());
+    	}
+
+    	$cardinalityService = wfEngine_models_classes_ActivityCardinalityService::singleton();
+    	foreach($this->getPreviousSteps($connector) as $cardinality){
+			
+			if($cardinalityService->isCardinality($cardinality)){
+				
+				//find the right cardinality resource (according to the activity defined in the connector):
+				$activity = $cardinalityService->getSource($cardinality);
+				if(!is_null($activity) && isset($cardinalities[$activity->getUri()])){
+					$cardinalityService->editCardinality($cardinality, $cardinalities[$activity->getUri()]);
+				}
+			}
+			
+		}
     }
 
     /**
      * Short description of method setConnectorType
      *
      * @access public
-     * @author Joel Bout, <joel.bout@tudor.lu>
+     * @author Joel Bout, <joel@taotesting.com>
      * @param  Resource connector
      * @param  Resource type
      * @return boolean
@@ -316,7 +381,7 @@ class wfAuthoring_models_classes_ConnectorService
      * Short description of method delete
      *
      * @access public
-     * @author Joel Bout, <joel.bout@tudor.lu>
+     * @author Joel Bout, <joel@taotesting.com>
      * @param  Resource connector
      * @return boolean
      */

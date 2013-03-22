@@ -176,15 +176,63 @@ class ConnectorAuthoringTestCase extends wfEngineServiceTest {
 		
 		wfAuthoring_models_classes_ProcessService::singleton()->setFirstActivity($process, $activity[1]);
 		
-		$alwaysTrue		= wfAuthoring_models_classes_RuleService::singleton()->createConditionExpressionFromString('2 > 1');
-		$alwaysFalse	= wfAuthoring_models_classes_RuleService::singleton()->createConditionExpressionFromString('2 < 1');
-		
 		$c1 = $this->service->createSplit($activity[1], array($activity[2], $activity[3]));
 		$c2 = $this->service->createJoin(array($activity[2], $activity[3]), $activity[4]);
 		
 		$this->runProcess($process, 4);
 		
 		wfAuthoring_models_classes_ProcessService::singleton()->deleteProcess($process);
+		
+	}
+	
+/*
+		             	+---------------+
+                		|  activity 1   |
+		                +---------------+
+		                        |
+		                    +---v---+
+		                    |  c 1  |
+		                    +---+---+
+								|
+							3   |
+								|
+					    +-------v--------+
+					    |   activity 2   |
+					    +-------+--------+
+		                        |
+		                    +---v---+
+		                    |  c 2  |
+		                    +---+---+
+		                        |
+		             	+-------v-------+
+                		|  activity 3   |
+		                +---------------+
+	*/
+	public function testSplitJoinVariable() {
+		$process = wfAuthoring_models_classes_ProcessService::singleton()->createProcess('Scripted Process');
+	
+		$activityAuthoring = wfAuthoring_models_classes_ActivityService::singleton();
+		
+		$webservice = new core_kernel_classes_Resource('http://www.tao.lu/Ontologies/TAODelivery.rdf#ServiceWebService');
+		$activity = array();
+		for ($i = 1; $i <= 3; $i++) {
+			$activity[$i] = $activityAuthoring->createFromServiceDefinition($process, $webservice, array());
+		}
+		
+		wfAuthoring_models_classes_ProcessService::singleton()->setFirstActivity($process, $activity[1]);
+		
+		$c1 = $this->service->createSplit($activity[1], array($activity[2]));
+		$c2 = $this->service->createJoin(array($activity[2]), $activity[3]);
+		$this->service->setSplitCardinality($c1, array(
+			$activity[2]->getUri() => '3'
+		));
+		$this->service->setJoinCardinality($c2, array(
+			$activity[2]->getUri() => '3'
+		));
+		
+		$this->runProcess($process, 5);
+		
+		//wfAuthoring_models_classes_ProcessService::singleton()->deleteProcess($process);
 		
 	}
 	
