@@ -668,7 +668,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 						if($left != null && $left instanceof core_kernel_classes_Literal){
 							$serviceStylingData['left'] = intval($left->literal);
 						}
-						$servicesData['other'][taoDelivery_helpers_Compilator::getUniqueId($service->uriResource)] = $serviceStylingData;
+						$servicesData['other'][tao_helpers_Uri::getUniqueId($service->uriResource)] = $serviceStylingData;
 					}
 				}
 			}
