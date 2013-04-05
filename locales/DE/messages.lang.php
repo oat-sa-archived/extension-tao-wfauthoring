@@ -48,6 +48,7 @@ $GLOBALS['__l10n']["Password"]="Passwort";
 $GLOBALS['__l10n']["Password *"]="Passwort *";
 $GLOBALS['__l10n']["Please confirm property deletion!"]="Möchten Sie die Eigenschaft wirklich löschen?";
 $GLOBALS['__l10n']["Please confirm user deletion"]="Wollen Sie den Benutzer wirklich löschen?";
+$GLOBALS['__l10n']["Preview"]="Vorschau";
 $GLOBALS['__l10n']["Property"]="Eigenschaften";
 $GLOBALS['__l10n']["Remove"]="Entfernen";
 $GLOBALS['__l10n']["Rename"]="Umbenennen";

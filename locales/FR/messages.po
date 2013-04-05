@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: TAO v2.4-beta1\n"
-"PO-Revision-Date: 2013-03-05T10:36:16\n"
+"Project-Id-Version: TAO v2.4-beta3\n"
+"PO-Revision-Date: 2013-04-05T18:42:13\n"
 "Last-Translator: TAO Translation Team <translation@tao.lu>\n"
 "MIME-Version: 1.0\n"
 "Language: FR\n"
@@ -74,9 +74,6 @@ msgstr "créer une nouvelle activité"
 
 msgid "create new connector"
 msgstr "créer un nouveau connecteur"
-
-msgid "create table"
-msgstr "créer un tableau"
 
 msgid "Current Activities"
 msgstr "Activités courantes"
@@ -249,6 +246,9 @@ msgstr "sauver"
 
 msgid "search"
 msgstr "recherche"
+
+msgid "Select a test"
+msgstr ""
 
 msgid "Service Definition"
 msgstr "Définition de service"

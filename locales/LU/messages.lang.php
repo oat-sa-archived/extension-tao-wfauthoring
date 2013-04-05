@@ -48,6 +48,7 @@ $GLOBALS['__l10n']["Password"]="PAsswuert";
 $GLOBALS['__l10n']["Password *"]="Passwuert *";
 $GLOBALS['__l10n']["Please confirm property deletion!"]="W.e.g. konfirméiert d'Läschen vun der Proprietéit";
 $GLOBALS['__l10n']["Please confirm user deletion"]="W.e.g. konfirméiert Läschen vum User";
+$GLOBALS['__l10n']["Preview"]="Viirbléck";
 $GLOBALS['__l10n']["Property"]="Propriétéit";
 $GLOBALS['__l10n']["Remove"]="Ewech huelen";
 $GLOBALS['__l10n']["Rename"]="Embenennen";
