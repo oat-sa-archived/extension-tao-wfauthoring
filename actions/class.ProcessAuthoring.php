@@ -1373,18 +1373,6 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 		$saved = $process->editPropertyValues(new core_kernel_classes_Property(PROPERTY_PROCESS_DIAGRAMDATA), $_POST['data']);
 		echo json_encode(array('ok'=>$saved));
 	}
-	
-	/*
-	 * @TODO implement the following actions
-	 */
-	
-	public function getMetaData(){
-		throw new Exception("Not implemented yet");
-	}
-	
-	public function saveComment(){
-		throw new Exception("Not implemented yet");
-	}
-	
+
 }
 ?>
