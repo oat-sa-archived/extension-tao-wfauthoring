@@ -329,7 +329,7 @@ $GLOBALS['__l10n']["the chosen code has already been used for the process variab
 $GLOBALS['__l10n']["The column "]="La colonne ";
 $GLOBALS['__l10n']["the file was not uploaded successfully"]="le fichier n'a pas été téléversé correctement";
 $GLOBALS['__l10n']["The format of this field is not valid."]="Le format de ce champ est invalide";
-$GLOBALS['__l10n']["The Process module allows to create Process"]="Le module des processus vous permet de créer des processus organisés sous forme d'activités liées par des connecteurs";
+$GLOBALS['__l10n']["The Processes module allows to create Processes"]="Le module des processus vous permet de créer des processus organisés sous forme d'activités liées par des connecteurs";
 $GLOBALS['__l10n']["The uploaded file is too large"]="Le fichier téléchargé est trop volumineux";
 $GLOBALS['__l10n']["The value of this field must be a valide date format, e.g. YYYY-MM-DD"]="La valeur de ce champs doit être formatée telle une date valide, ex. AAAA-MM-JJ";
 $GLOBALS['__l10n']["The value of this field must be an integer"]="La valeur de ce champ doit être un entier";

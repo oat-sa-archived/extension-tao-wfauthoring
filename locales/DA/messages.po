@@ -266,7 +266,7 @@ msgstr ""
 msgid "the chosen code has already been used for the process variable"
 msgstr ""
 
-msgid "The Process module allows to create Process"
+msgid "The Processes module allows to create Processes"
 msgstr ""
 
 msgid "Then"
