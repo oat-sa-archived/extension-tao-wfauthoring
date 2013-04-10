@@ -19,7 +19,6 @@
  *
  */
 
-error_reporting(E_ALL);
 
 /**
  * TAO - wfAuthoring/models/classes/class.ActivityService.php
