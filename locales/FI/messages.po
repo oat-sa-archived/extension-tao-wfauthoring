@@ -188,7 +188,7 @@ msgstr ""
 msgid "Positionning"
 msgstr ""
 
-msgid "Process"
+msgid "Processes"
 msgstr ""
 
 #, tao-public
@@ -266,7 +266,7 @@ msgstr ""
 msgid "the chosen code has already been used for the process variable"
 msgstr ""
 
-msgid "The Processes module allows to create Processes"
+msgid "The Processes module allows to create Processes."
 msgstr ""
 
 msgid "Then"

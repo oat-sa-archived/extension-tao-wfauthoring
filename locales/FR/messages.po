@@ -191,7 +191,7 @@ msgstr "Veuillez sélectionner un processus afin de l'éditer"
 msgid "Positionning"
 msgstr "Positionnement"
 
-msgid "Process"
+msgid "Processes"
 msgstr "Processus"
 
 #, tao-public
@@ -270,7 +270,7 @@ msgstr "Sûr?"
 msgid "the chosen code has already been used for the process variable"
 msgstr "le code choisi est déjà en cours d'utilisation pour une autre variable"
 
-msgid "The Processes module allows to create Processes"
+msgid "The Processes module allows to create Processes."
 msgstr "Le module des processus vous permet de créer des processus organisés sous forme d'activités liées par des connecteurs"
 
 msgid "Then"

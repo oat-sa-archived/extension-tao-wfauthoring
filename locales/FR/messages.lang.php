@@ -265,7 +265,7 @@ $GLOBALS['__l10n']["Please upload a CSV file formated as defined by the options 
 $GLOBALS['__l10n']["Please upload an RDF file."]="Veuillez télécharger un fichier RDF.";
 $GLOBALS['__l10n']["Positionning"]="Positionnement";
 $GLOBALS['__l10n']["Preview"]="Afficher";
-$GLOBALS['__l10n']["Process"]="Processus";
+$GLOBALS['__l10n']["Processes"]="Processus";
 $GLOBALS['__l10n']["Process authoring"]="Editeur de processus";
 $GLOBALS['__l10n']["Process Definition"]="Définition de processus";
 $GLOBALS['__l10n']["Process Execution"]="Exécution de processus";
@@ -329,7 +329,7 @@ $GLOBALS['__l10n']["the chosen code has already been used for the process variab
 $GLOBALS['__l10n']["The column "]="La colonne ";
 $GLOBALS['__l10n']["the file was not uploaded successfully"]="le fichier n'a pas été téléversé correctement";
 $GLOBALS['__l10n']["The format of this field is not valid."]="Le format de ce champ est invalide";
-$GLOBALS['__l10n']["The Processes module allows to create Processes"]="Le module des processus vous permet de créer des processus organisés sous forme d'activités liées par des connecteurs";
+$GLOBALS['__l10n']["The Processes module allows to create Processes."]="Le module des processus vous permet de créer des processus organisés sous forme d'activités liées par des connecteurs";
 $GLOBALS['__l10n']["The uploaded file is too large"]="Le fichier téléchargé est trop volumineux";
 $GLOBALS['__l10n']["The value of this field must be a valide date format, e.g. YYYY-MM-DD"]="La valeur de ce champs doit être formatée telle une date valide, ex. AAAA-MM-JJ";
 $GLOBALS['__l10n']["The value of this field must be an integer"]="La valeur de ce champ doit être un entier";
