@@ -182,20 +182,20 @@
 
 		//bind events to activity diagram:
 		$.getScript('<?=WFAUTHORING_SCRIPTS_URL?>ActivityDiagramEventBinding.js', function(){
-                        $(ActivityDiagramClass.canvas).click(function(evt){
-                                if (evt.target == evt.currentTarget) {
-                                        ModeController.setMode('ModeInitial');
-                                }
-                        });
+				$(ActivityDiagramClass.canvas).click(function(evt){
+						if (evt.target == evt.currentTarget) {
+								ModeController.setMode('ModeInitial');
+						}
+				});
 
-                        //load activity diagram:
-                        try{
-                                ActivityDiagramClass.loadDiagram();
-                        }
-                        catch(err){
-                                console.log('feed&draw diagram exception', err);
-                        }
-                });
+				//load activity diagram:
+				try{
+						ActivityDiagramClass.loadDiagram();
+				}
+				catch(err){
+						console.log('feed&draw diagram exception', err);
+				}
+		});
 
 	});
 
