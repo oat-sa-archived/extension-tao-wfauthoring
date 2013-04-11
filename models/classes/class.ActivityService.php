@@ -112,10 +112,7 @@ class wfAuthoring_models_classes_ActivityService
 
 
         $returnValue = $this->createActivity($process);
-        $service = $this->addService($returnValue);
-        $service->editPropertyValues(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_SERVICEDEFINITION), $serviceDefinition);
-        
-
+        $service = $this->addService($returnValue, $serviceDefinition);
 
         return $returnValue;
     }
@@ -128,7 +125,7 @@ class wfAuthoring_models_classes_ActivityService
      * @param  Resource activity
      * @return core_kernel_classes_Resource
      */
-    protected function addService( core_kernel_classes_Resource $activity)
+    protected function addService( core_kernel_classes_Resource $activity, $serviceDefinition)
     {
         $returnValue = null;
 
@@ -149,12 +146,15 @@ class wfAuthoring_models_classes_ActivityService
 		//associate the new instance to the activity instance
 		$activity->setPropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_INTERACTIVESERVICES), $returnValue->uriResource);
 
-		//set default position and size value:
+		tao_models_classes_InteractiveServiceService::singleton()->setCallOfServiceDefinition($returnValue, $serviceDefinition);
+		
 		$returnValue->setPropertyValue(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_WIDTH), 100);
 		$returnValue->setPropertyValue(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_HEIGHT), 100);
 		$returnValue->setPropertyValue(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_TOP), 0);
 		$returnValue->setPropertyValue(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_LEFT), 0);
-
+		
+		$defaultParams = tao_models_classes_InteractiveServiceService::singleton()->setDefaultParameters($returnValue);
+		
         return $returnValue;
     }
 

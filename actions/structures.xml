@@ -27,6 +27,22 @@
 			<section id="process_authoring" name="Process authoring" url="/wfAuthoring/Process/authoring" />
 
 			<section id="monitor_process" name="Monitor processes" url="/wfAuthoring/Monitor/index" />
+			
+			<section id="manage_services" name="Manage services" url="/wfAuthoring/Service/index">
+				<trees>
+					<tree name="Service library"
+						className="Services"
+						dataUrl="/wfAuthoring/Service/getOntologyData"
+						editInstanceUrl="/wfAuthoring/Service/editInstance"
+						addInstanceUrl="/wfAuthoring/Service/addInstance"
+						deleteUrl="/wfAuthoring/Service/delete"
+						editClassUrl="/wfAuthoring/Service/index"
+					/>
+				</trees>
+				<actions>
+					<action name="meta data" js="generisActions.loadMetaData" url="/tao/MetaData/getMetaData"  context="instance" />
+				</actions>
+			</section>
 		</sections>
 	</structure>
 </structures>

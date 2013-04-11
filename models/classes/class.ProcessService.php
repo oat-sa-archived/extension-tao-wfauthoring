@@ -1258,7 +1258,7 @@ class wfAuthoring_models_classes_ProcessService
 			}
 
 		}else{
-			throw new Exception('the formal parameter does not exist');
+			throw new Exception('the formal parameter '.$formalParam->getUri().' does not exist');
 		}
 
         // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E79 end
