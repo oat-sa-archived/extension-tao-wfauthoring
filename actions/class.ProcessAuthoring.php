@@ -254,12 +254,10 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 			$formName = 'role';
 			$formContainer = new wfAuthoring_actions_form_InstanceRole($clazz, $instance);
 			
-		}elseif($clazz->isSubClassOf(new core_kernel_classes_Class(CLASS_SUPPORTSERVICES))
-			){
+		}elseif($clazz->getUri() == CLASS_SUPPORTSERVICES || $clazz->isSubClassOf(new core_kernel_classes_Class(CLASS_SUPPORTSERVICES))){
 			
 			//note: direct instanciating CLASS_SERVICEDEFINITION should be forbidden
 			$formName = 'serviceDefinition';
-//			$classProperties = tao_helpers_form_GenerisFormFactory::getClassProperties($clazz, new core_kernel_classes_Class(CLASS_SERVICESDEFINITION));
 			$formContainer = new wfAuthoring_actions_form_InstanceServiceDefinition($clazz, $instance);
 			
 		}elseif($clazz->getUri() == CLASS_PROCESSVARIABLES){
@@ -268,7 +266,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 			$formContainer = new wfAuthoring_actions_form_InstanceProcessVariable($clazz, $instance);
 			
 		}else{
-			throw new common_exception_Error("Attempt to editing an instance of an unsupported class ".$class->getUri());
+			throw new common_exception_Error("Attempt to editing an instance of an unsupported class ".$clazz->getUri());
 		}
 		
 		if(!is_null($formContainer)){
