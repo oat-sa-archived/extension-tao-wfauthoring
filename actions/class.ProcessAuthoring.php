@@ -736,10 +736,6 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 			$this->service->setCallOfServiceDefinition($callOfService, $serviceDefinition);
 		}
 		
-		if(isset($data["label"])){
-			$callOfService->setLabel($data["label"]);
-		}
-		
 		//note: equivalent to $callOfService->editPropertyValues(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_SERVICEDEFINITION), $serviceDefinition->uriResource);
 		
 		//reset new actual parameters : clear ALL and recreate new values at each save
@@ -748,6 +744,37 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 			throw new Exception("the actual parameters related to the call of service cannot be removed");
 		}
 		
+		
+		// quick and dirty form fix
+		$inParams = array();
+		foreach($data as $key=>$value){
+			if($index = strpos($key,'_IN_choice')){
+				$inParams[] = substr($key,0,$index);
+			}
+			if (substr($key, 0, strlen('callOfServiceEditor_')) == 'callOfServiceEditor_') {
+				unset($data[$key]);
+			}
+		}
+		foreach ($inParams as $paramUri) {
+			switch ($data[$paramUri.'_IN_choice']) {
+				case 'constant' :
+					$actualParameterType = PROPERTY_ACTUALPARAMETER_CONSTANTVALUE;
+					$paramValue = $data[$paramUri.'_IN_constant'];
+					break;
+				case 'processvariable' :
+					$actualParameterType = PROPERTY_ACTUALPARAMETER_PROCESSVARIABLE;
+					$paramValue = $data[$paramUri.'_IN_var'];
+					break;
+				default:
+					throw new Exception('wrong actual parameter type posted: '.$data[$paramUri.'_IN_choice']);
+			}
+			$formalParam = new core_kernel_classes_Resource($paramUri);
+			$saved = $saved & $this->service->setActualParameter($callOfService, $formalParam, $paramValue, PROPERTY_CALLOFSERVICES_ACTUALPARAMETERIN, $actualParameterType);
+			unset($data[$paramUri.'_IN_choice']);
+			unset($data[$paramUri.'_IN_constant']);
+			unset($data[$paramUri.'_IN_var']);
+		} 
+		/*
 		// var_dump($data);
 		foreach($data as $key=>$value){
 			$formalParamUri = '';
@@ -757,7 +784,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 			
 			//method 1: use the connection relation between the subject serviceDefinition and the object formalParameter: 
 			//issue with the use of the same instance of formal parameter for both parameter in and out of an instance of a service definiton
-			/*
+			
 			$formalParameterType = core_kernel_impl_ApiModelOO::getPredicate($serviceDefinition->uriResource, $formalParam->uriResource);
 			if(strcasecmp($formalParameterType->uriResource, PROPERTY_SERVICESDEFINITION_FORMALPARAMIN)==0){
 				$parameterInOrOut = PROPERTY_CALLOFSERVICES_ACTUALPARAMETERIN;
@@ -767,7 +794,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 				//unknown actual parameter type to be bind to the current call of service
 				continue;
 			}
-			*/
+			
 			
 			//method2: use the suffix of the name of the form input:
 			$index = 0;
@@ -809,7 +836,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 				break;
 			}
 		}
-		
+		*/
 		//save positioning and style data:
 		$this->service->bindProperties($callOfService, $data);
 		

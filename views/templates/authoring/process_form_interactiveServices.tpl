@@ -254,7 +254,8 @@ $(function(){
 
 			//send the form
 			$.ajax({
-				url: authoringControllerPath+'saveCallOfService',
+//				url: authoringControllerPath+'saveCallOfService',
+				url: helpers._url('setServiceDefinition','ServiceCall','wfAuthoring'),
 				type: "POST",
 				data: $("#<?=get_data("formId")?>").serialize(),
 				dataType: 'json',

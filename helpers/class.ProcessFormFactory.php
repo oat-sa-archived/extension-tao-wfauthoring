@@ -219,7 +219,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 		$myForm->addElement($classUriElt);
 		
 		//add label input:
-		$elementLabel = tao_helpers_form_FormFactory::getElement('label', 'Textbox');
+		$elementLabel = tao_helpers_form_FormFactory::getElement(tao_helpers_Uri::encode(RDFS_LABEL), 'Textbox');
 		$elementLabel->setDescription(__('Label'));
 		$elementLabel->setValue($callOfService->getLabel());
 		$myForm->addElement($elementLabel);
