@@ -135,8 +135,8 @@ class wfAuthoring_helpers_Monitoring_VersionedFileAdapter
 					}
 					
 					if($xliff instanceof core_kernel_classes_Resource){
-						$xliff = new core_kernel_versioning_File($xliff->uriResource);
-						$this->data[$rowId]['xliff'] = $xliff->uriResource;
+						$xliff = new core_kernel_versioning_File($xliff);
+						$this->data[$rowId]['xliff'] = $xliff->getUri();
 						$this->data[$rowId]['xliff_version'] = (string) $processVariableService->get('xliff', $activityExecution);
 					}else{
 						$this->data[$rowId]['xliff'] = 'n/a';
@@ -144,8 +144,8 @@ class wfAuthoring_helpers_Monitoring_VersionedFileAdapter
 					}
 					
 					if($vff instanceof core_kernel_classes_Resource){
-						$vff = new core_kernel_versioning_File($vff->uriResource);
-						$this->data[$rowId]['vff'] = $vff->uriResource;
+						$vff = new core_kernel_versioning_File($vff);
+						$this->data[$rowId]['vff'] = $vff->getUri();
 						$this->data[$rowId]['vff_version'] = (string) $processVariableService->get('vff', $activityExecution);
 					}
 					else{

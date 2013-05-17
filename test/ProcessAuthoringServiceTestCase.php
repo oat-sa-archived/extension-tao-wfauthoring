@@ -56,12 +56,12 @@ class ProcessAuthoringServiceTestCase extends UnitTestCase {
 	public function testCreateActivity(){
 		
 		$activity1 = $this->authoringService->createActivity($this->proc);
-		$this->assertEqual($activity1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISINITIAL))->uriResource, GENERIS_TRUE);
+		$this->assertEqual($activity1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISINITIAL))->getUri(), GENERIS_TRUE);
 		$this->assertEqual($activity1->getLabel(), 'Activity_1');
-		$this->assertEqual($activity1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISHIDDEN))->uriResource, GENERIS_FALSE);
+		$this->assertEqual($activity1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISHIDDEN))->getUri(), GENERIS_FALSE);
 		
 		$activity2 = $this->authoringService->createActivity($this->proc, 'myActivity');
-		$this->assertEqual($activity2->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISINITIAL))->uriResource, GENERIS_FALSE);
+		$this->assertEqual($activity2->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISINITIAL))->getUri(), GENERIS_FALSE);
 	}
 	
 	public function testIsActivity(){
@@ -83,11 +83,11 @@ class ProcessAuthoringServiceTestCase extends UnitTestCase {
 		$connector1 = $this->authoringService->createConnector($activity1);
 		$next = $activity1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_STEP_NEXT));
 		$this->assertEqual($next->getUri(), $connector1->getUri());
-		$this->assertEqual($connector1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_ACTIVITYREFERENCE))->uriResource, $activity1->uriResource);
+		$this->assertEqual($connector1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_ACTIVITYREFERENCE))->getUri(), $activity1->getUri());
 		
 		//create a connector of a connector:
 		$connector2 = $this->authoringService->createConnector($connector1);
-		$this->assertEqual($connector2->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_ACTIVITYREFERENCE))->uriResource, $activity1->uriResource);
+		$this->assertEqual($connector2->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_ACTIVITYREFERENCE))->getUri(), $activity1->getUri());
 	}
 	
 	public function testAnalyseExpression(){
@@ -127,18 +127,18 @@ class ProcessAuthoringServiceTestCase extends UnitTestCase {
 		$followingActivity1 = $this->authoringService->createSequenceActivity($connector1);
 		$this->assertIsA($followingActivity1, 'core_kernel_classes_Resource');
 		$this->assertEqual($followingActivity1->getLabel(), 'Activity_2');
-		$this->assertEqual($connector1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TYPE))->uriResource, INSTANCE_TYPEOFCONNECTORS_SEQUENCE);
+		$this->assertEqual($connector1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TYPE))->getUri(), INSTANCE_TYPEOFCONNECTORS_SEQUENCE);
 		
 		$followingConnector1 = $this->authoringService->createConnector($followingActivity1);
 		$this->assertIsA($followingConnector1, 'core_kernel_classes_Resource');
 
 		$shouldBeActivity1 = null;
 		$shouldBeActivity1 = $this->authoringService->createSequenceActivity($followingConnector1, $activity1);
-		$this->assertEqual($activity1->uriResource, $shouldBeActivity1->uriResource);
+		$this->assertEqual($activity1->getUri(), $shouldBeActivity1->getUri());
 		
 		$shouldBeActivity1 = null;
 		$shouldBeActivity1 = $followingConnector1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_STEP_NEXT));
-		$this->assertEqual($activity1->uriResource,$shouldBeActivity1->uriResource);
+		$this->assertEqual($activity1->getUri(),$shouldBeActivity1->getUri());
 	}
 	
 	public function testCreateConditionalActivity(){
@@ -147,7 +147,7 @@ class ProcessAuthoringServiceTestCase extends UnitTestCase {
 		
 		$then = $this->authoringService->createConditionalActivity($connector1, 'then');//create "Activity_2"
 		$else = $this->authoringService->createConditionalActivity($connector1, 'else', null, '', true);//create another connector
-		$this->assertEqual($connector1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TYPE))->uriResource, INSTANCE_TYPEOFCONNECTORS_CONDITIONAL);
+		$this->assertEqual($connector1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TYPE))->getUri(), INSTANCE_TYPEOFCONNECTORS_CONDITIONAL);
 		$activityService = wfEngine_models_classes_ActivityService::singleton();
 		$this->assertTrue($activityService->isActivity($then));
 		$connectorService =  wfEngine_models_classes_ConnectorService::singleton();
@@ -157,13 +157,13 @@ class ProcessAuthoringServiceTestCase extends UnitTestCase {
 		$this->assertEqual($activity3->getLabel(), 'Act3');
 		
 		$transitionRule = $connector1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TRANSITIONRULE));
-		$this->assertEqual($then->uriResource, $transitionRule->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_TRANSITIONRULES_THEN))->uriResource);
-		$this->assertEqual($else->uriResource, $transitionRule->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_TRANSITIONRULES_ELSE))->uriResource);
+		$this->assertEqual($then->getUri(), $transitionRule->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_TRANSITIONRULES_THEN))->getUri());
+		$this->assertEqual($else->getUri(), $transitionRule->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_TRANSITIONRULES_ELSE))->getUri());
 		
 		$myProcessVar1 = null;
 		$myProcessVar1 = $this->variableService->getProcessVariable('myProcessVarCode1', true);
 		$transitionRuleBis = $this->authoringService->createTransitionRule($connector1, '^myProcessVarCode1 == 1');
-		$this->assertEqual($transitionRule->uriResource, $transitionRuleBis->uriResource);
+		$this->assertEqual($transitionRule->getUri(), $transitionRuleBis->getUri());
 		
 		
 		$this->assertTrue($this->variableService->deleteProcessVariable('myProcessVarCode1'));
@@ -227,8 +227,8 @@ class ProcessAuthoringServiceTestCase extends UnitTestCase {
 		$connectorF = $this->authoringService->createConnector($activityF);
 		
 		$newActivitiesArray = array(
-			$activityC->uriResource => 2,
-			$activityD->uriResource => 3
+			$activityC->getUri() => 2,
+			$activityD->getUri() => 3
 		);
 		
 		$this->assertTrue($this->authoringService->setParallelActivities($connectorB, $newActivitiesArray));

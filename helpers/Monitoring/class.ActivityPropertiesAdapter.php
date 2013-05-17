@@ -150,7 +150,7 @@ class wfAuthoring_helpers_Monitoring_ActivityPropertiesAdapter
 				
 				if (!in_array(PROPERTY_ACTIVITY_EXECUTION_PROCESSEXECUTION, $excludedProperties)){
 					$processExecution = $activityExecutionService->getRelatedProcessExecution($activityExecution);
-					$this->data[$rowId][PROPERTY_ACTIVITY_EXECUTION_PROCESSEXECUTION] = (is_null($processExecution))?'n/a':$processExecution->uriResource;
+					$this->data[$rowId][PROPERTY_ACTIVITY_EXECUTION_PROCESSEXECUTION] = (is_null($processExecution))?'n/a':$processExecution->getUri();
 				}
 				
 				if (!in_array('runnable', $excludedProperties)){
@@ -162,9 +162,9 @@ class wfAuthoring_helpers_Monitoring_ActivityPropertiesAdapter
                          * @see Sam when a change will occur
                          */
                         $runnable = is_null($status) 
-                            || ($status->uriResource != INSTANCE_PROCESSSTATUS_FINISHED
-                            && $status->uriResource != INSTANCE_PROCESSSTATUS_CLOSED
-                            && $status->uriResource != INSTANCE_PROCESSSTATUS_STOPPED
+                            || ($status->getUri() != INSTANCE_PROCESSSTATUS_FINISHED
+                            && $status->getUri() != INSTANCE_PROCESSSTATUS_CLOSED
+                            && $status->getUri() != INSTANCE_PROCESSSTATUS_STOPPED
                             && $activityExecutionService->checkAcl($activityExecution, $crtUser));
                     }
                     $this->data[$rowId]['runnable'] = $runnable;

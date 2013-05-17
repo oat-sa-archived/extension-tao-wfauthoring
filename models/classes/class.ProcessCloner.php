@@ -194,30 +194,30 @@ class wfAuthoring_models_classes_ProcessCloner
 		
 		if(!is_null($oldActivity)){
 			//set the in:
-			$this->clonedActivities[$oldActivity->uriResource]['in'] = $newActivityIn->uriResource;
+			$this->clonedActivities[$oldActivity->getUri()]['in'] = $newActivityIn->getUri();
 			//debug:
 			$this->setDebugClonedActivities($oldActivity);
 				
 			//set the out:
 			if($newActivityOut instanceof core_kernel_classes_Resource){
 			
-				$this->clonedActivities[$oldActivity->uriResource]['out'] = $newActivityOut->uriResource;
+				$this->clonedActivities[$oldActivity->getUri()]['out'] = $newActivityOut->getUri();
 				//debug:
 				$this->setDebugClonedActivities($newActivityOut);
 				
 			}else if(is_array($newActivityOut)){
 				//debug
-				$this->clonedActivities[$oldActivity->uriResource]['out'] = array();
+				$this->clonedActivities[$oldActivity->getUri()]['out'] = array();
 				foreach($newActivityOut as $aNewActivityOut){
 					if($aNewActivityOut instanceof core_kernel_classes_Resource) {
-						$this->clonedActivities[$oldActivity->uriResource]['out'][] = $aNewActivityOut->uriResource;
+						$this->clonedActivities[$oldActivity->getUri()]['out'][] = $aNewActivityOut->getUri();
 						$this->setDebugClonedActivities($aNewActivityOut);
 					}
 				}
 				
 			}
 		}else{
-			$this->clonedActivities[] = $newActivityIn->uriResource;
+			$this->clonedActivities[] = $newActivityIn->getUri();
 		}
 		
 		$this->setDebugClonedActivities($newActivityIn);
@@ -236,7 +236,7 @@ class wfAuthoring_models_classes_ProcessCloner
     public function addClonedConnector( core_kernel_classes_Resource $oldConnector,  core_kernel_classes_Resource $newConnector)
     {
         // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FDC begin
-		$this->clonedConnectors[$oldConnector->uriResource] = $newConnector->uriResource;
+		$this->clonedConnectors[$oldConnector->getUri()] = $newConnector->getUri();
         // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FDC end
     }
 
@@ -268,9 +268,9 @@ class wfAuthoring_models_classes_ProcessCloner
 				foreach($services as $service){
 					$serviceClone = $this->cloneInteractiveService($service);
 					if(!is_null($serviceClone)){
-						$activityClone->setPropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_INTERACTIVESERVICES), $serviceClone->uriResource);
+						$activityClone->setPropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_INTERACTIVESERVICES), $serviceClone->getUri());
 					}else{
-						throw new Exception("the interactive service cannot be cloned: {$service->getLabel()}({$service->uriResource}) for the activity {$activityClone->getLabel()}({$activityClone->uriResource}) ");
+						throw new Exception("the interactive service cannot be cloned: {$service->getLabel()}({$service->getUri()}) for the activity {$activityClone->getLabel()}({$activityClone->getUri()}) ");
 					}
 					
 				}
@@ -324,7 +324,7 @@ class wfAuthoring_models_classes_ProcessCloner
 				if(!$newReferenceActivity instanceof $newReferenceActivity){
 					throw new Exception("the cloned reference activity found is not a resource!");
 				}
-				$connectorClone->setPropertyValue($propActivityRef, $newReferenceActivity->uriResource);
+				$connectorClone->setPropertyValue($propActivityRef, $newReferenceActivity->getUri());
 			}else{
 				//echo 'oldReferenceActivity label: '.$oldReferenceActivity->getLabel();
 				//print_r($this);
@@ -365,12 +365,12 @@ class wfAuthoring_models_classes_ProcessCloner
 									if(is_array($newPropActivity)){
 										foreach($newPropActivity as $activityResource){
 											if($activityResource instanceof core_kernel_classes_Resource){
-												$transitionRuleClone->setPropertyValue($connectorActivityProperty, $activityResource->uriResource);
+												$transitionRuleClone->setPropertyValue($connectorActivityProperty, $activityResource->getUri());
 												$activityResource->editPropertyValues(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISINITIAL), GENERIS_FALSE);
 											}
 										}
 									}else if($newPropActivity instanceof core_kernel_classes_Resource){
-										$transitionRuleClone->setPropertyValue($connectorActivityProperty, $newPropActivity->uriResource);
+										$transitionRuleClone->setPropertyValue($connectorActivityProperty, $newPropActivity->getUri());
 										$newPropActivity->editPropertyValues(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISINITIAL), GENERIS_FALSE);
 									}
 									
@@ -405,7 +405,7 @@ class wfAuthoring_models_classes_ProcessCloner
 									if(!is_null($newPropActivity)){
 										if($activityType == 'next'){
 											if($newPropActivity instanceof core_kernel_classes_Resource){
-												$newPropActivitiesUris[] = $newPropActivity->uriResource;
+												$newPropActivitiesUris[] = $newPropActivity->getUri();
 												$newPropActivity->editPropertyValues(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISINITIAL), GENERIS_FALSE);
 											}else{
 												throw new Exception('the next activity must be a single activity resource');
@@ -413,18 +413,18 @@ class wfAuthoring_models_classes_ProcessCloner
 										}else if($activityType == 'prev'){
 											//prev:
 											if($newPropActivity instanceof core_kernel_classes_Resource){
-												$newPropActivitiesUris[] = $newPropActivity->uriResource;
+												$newPropActivitiesUris[] = $newPropActivity->getUri();
 											}else if(is_array($newPropActivity)){
 												$count = 0;
 												$sequentialConnectorType = new core_kernel_classes_Resource(INSTANCE_TYPEOFCONNECTORS_SEQUENCE);
 												foreach($newPropActivity as $inputActivity){
 													if($count == 0){
-														$newPropActivitiesUris[] = $inputActivity->uriResource;
+														$newPropActivitiesUris[] = $inputActivity->getUri();
 													}else{
 														//required to build a new sequential connector:
 														$sequentialConnector = $this->authoringService->createConnector($inputActivity);
 														// $this->authoringService->setConnectorType($sequentialConnector, $sequentialConnectorType);
-														// $newPropActivitiesUris[] = $sequentialConnector->uriResource;
+														// $newPropActivitiesUris[] = $sequentialConnector->getUri();
 														$this->authoringService->createSequenceActivity($sequentialConnector, $connectorClone);
 													}
 													$count++;
@@ -471,13 +471,13 @@ class wfAuthoring_models_classes_ProcessCloner
 		$classActualParam = new core_kernel_classes_Class(CLASS_ACTUALPARAMETER);
 		$propActualParamIn = new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_ACTUALPARAMETERIN);
 		
-		$serviceClone = $this->cloneWfResource($service, $classCallOfServices, array($propActualParamIn->uriResource, PROPERTY_CALLOFSERVICES_ACTUALPARAMETEROUT));
+		$serviceClone = $this->cloneWfResource($service, $classCallOfServices, array($propActualParamIn->getUri(), PROPERTY_CALLOFSERVICES_ACTUALPARAMETEROUT));
 		if(!is_null($serviceClone)){
 			foreach($service->getPropertyValuesCollection($propActualParamIn)->getIterator() as $actualParamIn){
 				if($actualParamIn instanceof core_kernel_classes_Resource){
 					$actualParamInClone = $this->cloneWfResource($actualParamIn, $classActualParam);
 					if(!is_null($actualParamInClone)){
-						$serviceClone->setPropertyValue($propActualParamIn, $actualParamInClone->uriResource);
+						$serviceClone->setPropertyValue($propActualParamIn, $actualParamInClone->getUri());
 					}else{
 						throw new Exception('an input actual parameter cannot be clonned');
 					}
@@ -587,7 +587,7 @@ class wfAuthoring_models_classes_ProcessCloner
 			
 			//get the clone of the intiial acitivty:
 			if(is_null($newInitialActivity)){
-				throw new Exception("the intial activity has not been cloned: {$initialActivity->getLabel()}({$initialActivity->uriResource})");
+				throw new Exception("the intial activity has not been cloned: {$initialActivity->getLabel()}({$initialActivity->getUri()})");
 			}
 			$this->authoringService->createSequenceActivity($connector, $newInitialActivity);//this function also automatically set the former $iniitalAcitivty to "not initial"
 			//TODO: rename the function createSequenceActivity to addSequenceActivity, clearer that way
@@ -673,7 +673,7 @@ class wfAuthoring_models_classes_ProcessCloner
 				$this->addClonedActivity($activityClone, $activity);
 				common_Logger::d('Cloned A '.$activity->getUri().' to '.$activityClone->getUri());
 			}else{
-				throw new Exception("the activity '{$activity->getLabel()}'({$activity->uriResource}) cannot be cloned");
+				throw new Exception("the activity '{$activity->getLabel()}'({$activity->getUri()}) cannot be cloned");
 			}
 		}
 		
@@ -731,21 +731,21 @@ class wfAuthoring_models_classes_ProcessCloner
 						foreach($newActivityIO[$interface] as $activityUri){
 							$activity = new core_kernel_classes_Resource($activityUri);
 							if($this->activityService->isActivity($activity)){
-								$returnValue[$activity->uriResource] = $activity;
+								$returnValue[$activity->getUri()] = $activity;
 							}
 						}
 					}
 					else{
 						$activity = new core_kernel_classes_Resource($newActivityIO[$interface]);
 						if($this->activityService->isActivity($activity)){
-							$returnValue[$activity->uriResource] = $activity;
+							$returnValue[$activity->getUri()] = $activity;
 						}
 					}
 				}
 			}else if(is_string($newActivityIO)){
 				$activity = new core_kernel_classes_Resource($newActivityIO);
 				if($this->activityService->isActivity($activity)){
-					$returnValue[$activity->uriResource] = $activity;
+					$returnValue[$activity->getUri()] = $activity;
 				}
 				
 			}
@@ -771,9 +771,9 @@ class wfAuthoring_models_classes_ProcessCloner
 
         // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000005018 begin
 		$InOut = strtolower($InOut);
-		if(in_array($InOut, array('in', 'out')) && isset($this->clonedActivities[$oldActivity->uriResource])){
-			if(isset($this->clonedActivities[$oldActivity->uriResource][$InOut])){
-				$activities = $this->clonedActivities[$oldActivity->uriResource][$InOut];
+		if(in_array($InOut, array('in', 'out')) && isset($this->clonedActivities[$oldActivity->getUri()])){
+			if(isset($this->clonedActivities[$oldActivity->getUri()][$InOut])){
+				$activities = $this->clonedActivities[$oldActivity->getUri()][$InOut];
 				if(is_array($activities)){
 					$returnValue = array();
 					foreach($activities as $activityUri){
@@ -806,8 +806,8 @@ class wfAuthoring_models_classes_ProcessCloner
         $returnValue = null;
 
         // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000005020 begin
-		if(isset($this->clonedConnectors[$oldConnector->uriResource])){
-			$returnValue = new core_kernel_classes_Resource($this->clonedConnectors[$oldConnector->uriResource]);
+		if(isset($this->clonedConnectors[$oldConnector->getUri()])){
+			$returnValue = new core_kernel_classes_Resource($this->clonedConnectors[$oldConnector->getUri()]);
 		}
         // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000005020 end
 
@@ -829,7 +829,7 @@ class wfAuthoring_models_classes_ProcessCloner
 		foreach($this->clonedConnectors as $connectorUri){
 			$connector = new core_kernel_classes_Resource($connectorUri);
 			if($this->connectorService->isConnector($connector)){
-				$returnValue[$connector->uriResource] = $connector;
+				$returnValue[$connector->getUri()] = $connector;
 			}
 		}
         // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000005024 end
@@ -889,7 +889,7 @@ class wfAuthoring_models_classes_ProcessCloner
 				throw new Exception("unknown connectionType");
 			}
 		}
-		//note: most of the time, $this->clonedActivities[$activity->uriResource]['in'] = $this->clonedActivities[$activity->uriResource]['out']
+		//note: most of the time, $this->clonedActivities[$activity->getUri()]['in'] = $this->clonedActivities[$activity->getUri()]['out']
 		
 		if(!is_null($activity) && !is_null($oldReferenceActivity)){
 			if($this->activityService->isActivity($activity)){
@@ -911,7 +911,7 @@ class wfAuthoring_models_classes_ProcessCloner
 					//not cloned yet:
 					//clone it only if the reference id is the current activity
 					//OR if the previous activities of a split connector:
-					if($oldReferenceActivity->uriResource == $activity->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_ACTIVITYREFERENCE))->uriResource && $activityIO=='in'){
+					if($oldReferenceActivity->getUri() == $activity->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_ACTIVITYREFERENCE))->getUri() && $activityIO=='in'){
 						//recursively clone it
 						
 						$nextConnectorClone = $this->cloneConnector($activity);
@@ -1006,7 +1006,7 @@ class wfAuthoring_models_classes_ProcessCloner
     {
         // section 10-13-1-39--56440278:12d4c05ae3c:-8000:000000000000715A begin
 		if(!is_null($activity))
-			$this->debugClonedActivities[$activity->uriResource] = $activity->getLabel();
+			$this->debugClonedActivities[$activity->getUri()] = $activity->getLabel();
         // section 10-13-1-39--56440278:12d4c05ae3c:-8000:000000000000715A end
     }
 
@@ -1029,13 +1029,13 @@ class wfAuthoring_models_classes_ProcessCloner
 		if(!in_array($connectionType, $authorizedConnectionTypes)){
 			throw new Exception("unavailable connection type");
 		}
-		if(!isset($this->waitingConnectors[$waitingOldConnectorToBeCloned->uriResource])){
+		if(!isset($this->waitingConnectors[$waitingOldConnectorToBeCloned->getUri()])){
 			foreach($authorizedConnectionTypes as $authorizedConnectionType){
-				$this->waitingConnectors[$waitingOldConnectorToBeCloned->uriResource][$authorizedConnectionType] = array();
+				$this->waitingConnectors[$waitingOldConnectorToBeCloned->getUri()][$authorizedConnectionType] = array();
 			}
 			
 		}
-		$this->waitingConnectors[$waitingOldConnectorToBeCloned->uriResource][$connectionType][] = $clonedConnectorToUpdate;
+		$this->waitingConnectors[$waitingOldConnectorToBeCloned->getUri()][$connectionType][] = $clonedConnectorToUpdate;
 		
         // section 10-13-1-39--56440278:12d4c05ae3c:-8000:000000000000715D end
     }
@@ -1062,9 +1062,9 @@ class wfAuthoring_models_classes_ProcessCloner
 			'else' => new core_kernel_classes_Property(PROPERTY_TRANSITIONRULES_ELSE)
 		);
 
-		if(isset($this->waitingConnectors[$expectedConnector->uriResource])){
+		if(isset($this->waitingConnectors[$expectedConnector->getUri()])){
 			
-			foreach($this->waitingConnectors[$expectedConnector->uriResource] as $connectionType=>$connectors){
+			foreach($this->waitingConnectors[$expectedConnector->getUri()] as $connectionType=>$connectors){
 				if(isset($activityPropertiesMap[$connectionType])){
 					
 					$connectorProperty = $activityPropertiesMap[$connectionType];
@@ -1072,7 +1072,7 @@ class wfAuthoring_models_classes_ProcessCloner
 					foreach($connectors as $aConnector){
 						switch($connectionType){
 							case 'next':{
-								$aConnector->setPropertyValue($connectorProperty, $expectedConnectorClone->uriResource);
+								$aConnector->setPropertyValue($connectorProperty, $expectedConnectorClone->getUri());
 								$returnValue = true;
 								break;
 							}
@@ -1082,7 +1082,7 @@ class wfAuthoring_models_classes_ProcessCloner
 								$transitionRule = $aConnector->getOnePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TRANSITIONRULE));
 								if(!is_null($transitionRule)){
 									//transition rule copied
-									$transitionRule->setPropertyValue($connectorProperty, $expectedConnectorClone->uriResource);
+									$transitionRule->setPropertyValue($connectorProperty, $expectedConnectorClone->getUri());
 									$returnValue = true;
 								}else{
 									throw new Exception("the transition rule does not exist anymore");
@@ -1096,7 +1096,7 @@ class wfAuthoring_models_classes_ProcessCloner
 				}
 			}
 			
-			unset($this->waitingConnectors[$expectedConnector->uriResource]);
+			unset($this->waitingConnectors[$expectedConnector->getUri()]);
 			
 		}
 		

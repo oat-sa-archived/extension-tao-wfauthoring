@@ -111,14 +111,14 @@ class wfAuthoring_actions_Process extends tao_actions_TaoModule {
 				$binder = new tao_models_classes_dataBinding_GenerisFormDataBinder($process);
 				$process = $binder->bind($myForm->getValues());
 				
-				$this->setSessionAttribute("showNodeUri", tao_helpers_Uri::encode($process->uriResource));
+				$this->setSessionAttribute("showNodeUri", tao_helpers_Uri::encode($process->getUri()));
 				$this->setData('message', __('Process saved'));
 				$this->setData('reload', true);
 			}
 		}
 		
-		$this->setData('uri', tao_helpers_Uri::encode($process->uriResource));
-		$this->setData('classUri', tao_helpers_Uri::encode($clazz->uriResource));
+		$this->setData('uri', tao_helpers_Uri::encode($process->getUri()));
+		$this->setData('classUri', tao_helpers_Uri::encode($clazz->getUri()));
 		$this->setData('formTitle', 'Process properties');
 		$this->setData('myForm', $myForm->render());
 		$this->setView('form_process.tpl');
@@ -151,7 +151,7 @@ class wfAuthoring_actions_Process extends tao_actions_TaoModule {
 		try{
 			//get process instance to be authored
 			$processDefinition = $this->getCurrentInstance();
-			$this->setData('processUri', tao_helpers_Uri::encode($processDefinition->uriResource));
+			$this->setData('processUri', tao_helpers_Uri::encode($processDefinition->getUri()));
 		}
 		catch(Exception $e){
 			$this->setData('error', true);
@@ -183,7 +183,7 @@ class wfAuthoring_actions_Process extends tao_actions_TaoModule {
 		if(!is_null($clone)){
 			echo json_encode(array(
 				'label'	=> $clone->getLabel(),
-				'uri' 	=> tao_helpers_Uri::encode($clone->uriResource)
+				'uri' 	=> tao_helpers_Uri::encode($clone->getUri())
 			));
 		}
 	}

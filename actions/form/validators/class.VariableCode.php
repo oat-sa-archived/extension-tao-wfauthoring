@@ -94,7 +94,7 @@ class wfAuthoring_actions_form_validators_VariableCode
 			$variableService = wfEngine_models_classes_VariableService::singleton();
 			$processVar = $variableService->getProcessVariable($values);
 			if(!is_null($processVar)) {
-				if ($this->options['uri'] != $processVar->uriResource) {
+				if ($this->options['uri'] != $processVar->getUri()) {
 					$returnValue = false;
 				}
 			}

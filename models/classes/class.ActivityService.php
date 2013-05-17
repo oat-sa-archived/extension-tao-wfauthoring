@@ -72,7 +72,7 @@ class wfAuthoring_models_classes_ActivityService
 
 		if(!empty($activity)){
 			//associate the new instance to the process instance
-			$process->setPropertyValue(new core_kernel_classes_Property(PROPERTY_PROCESS_ACTIVITIES), $activity->uriResource);
+			$process->setPropertyValue(new core_kernel_classes_Property(PROPERTY_PROCESS_ACTIVITIES), $activity->getUri());
 
 			//set if it is the first or not:
 			if($number == 1){
@@ -89,7 +89,7 @@ class wfAuthoring_models_classes_ActivityService
 
 			$returnValue = $activity;
 		}else{
-			throw new Exception("the activity cannot be created for the process {$process->uriResource}");
+			throw new Exception("the activity cannot be created for the process {$process->getUri()}");
 		}
 
 
@@ -140,11 +140,11 @@ class wfAuthoring_models_classes_ActivityService
 		$returnValue = $callOfServiceClass->createInstance($activity->getLabel()."_service_".$number, "created by ProcessAuthoringService.Class");
 
 		if(empty($returnValue)){
-			throw new Exception("the interactive service cannot be created for the activity {$activity->uriResource}");
+			throw new Exception("the interactive service cannot be created for the activity {$activity->getUri()}");
 		}
 		
 		//associate the new instance to the activity instance
-		$activity->setPropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_INTERACTIVESERVICES), $returnValue->uriResource);
+		$activity->setPropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_INTERACTIVESERVICES), $returnValue->getUri());
 
 		tao_models_classes_InteractiveServiceService::singleton()->setCallOfServiceDefinition($returnValue, $serviceDefinition);
 		
@@ -174,7 +174,7 @@ class wfAuthoring_models_classes_ActivityService
         $connectorService = wfAuthoring_models_classes_ConnectorService::singleton();
 		$interactiveServiceService = wfEngine_models_classes_InteractiveServiceService::singleton();
 		$connectorClass = new core_kernel_classes_Class(CLASS_CONNECTORS);
-		$connectors = $connectorClass->searchInstances(array(PROPERTY_CONNECTORS_ACTIVITYREFERENCE => $activity->uriResource), array('like' => false, 'recursive' => 0));
+		$connectors = $connectorClass->searchInstances(array(PROPERTY_CONNECTORS_ACTIVITYREFERENCE => $activity->getUri()), array('like' => false, 'recursive' => 0));
 		foreach($connectors as $connector){
 			$connectorService->delete($connector);
 		}
@@ -188,7 +188,7 @@ class wfAuthoring_models_classes_ActivityService
 		
 		//delete referenced actiivty cardinality resources:
 		$activityCardinalityClass = new core_kernel_classes_Class(CLASS_ACTIVITYCARDINALITY);
-		$cardinalities = $activityCardinalityClass->searchInstances(array(PROPERTY_STEP_NEXT => $activity->uriResource), array('like'=>false));
+		$cardinalities = $activityCardinalityClass->searchInstances(array(PROPERTY_STEP_NEXT => $activity->getUri()), array('like'=>false));
 		foreach($cardinalities as $cardinality) {
 			$cardinality->delete(true);
 		}
@@ -216,19 +216,19 @@ class wfAuthoring_models_classes_ActivityService
 
 
 		//check the kind of resources
-        if($this->getClass($activity)->uriResource != CLASS_ACTIVITIES){
+        if($this->getClass($activity)->getUri() != CLASS_ACTIVITIES){
         	throw new Exception("Activity must be an instance of the class Activities");
         }
-        if(!in_array($mode->uriResource, array_keys($this->getAclModes()))){
+        if(!in_array($mode->getUri(), array_keys($this->getAclModes()))){
         	throw new Exception("Unknow acl mode");
         }
         
         //set the ACL mode
         $properties = array(
-        	PROPERTY_ACTIVITIES_ACL_MODE => $mode->uriResource
+        	PROPERTY_ACTIVITIES_ACL_MODE => $mode->getUri()
         );
         
-        switch($mode->uriResource){
+        switch($mode->getUri()){
         	case INSTANCE_ACL_ROLE:
         	case INSTANCE_ACL_ROLE_RESTRICTED_USER:
         	case INSTANCE_ACL_ROLE_RESTRICTED_USER_INHERITED:
@@ -236,14 +236,14 @@ class wfAuthoring_models_classes_ActivityService
         		if(is_null($target)){
         			throw new Exception("Target must reference a role resource");
         		}
-        		$properties[PROPERTY_ACTIVITIES_RESTRICTED_ROLE] = $target->uriResource;
+        		$properties[PROPERTY_ACTIVITIES_RESTRICTED_ROLE] = $target->getUri();
         		break;
         	}	
         	case INSTANCE_ACL_USER:{
         		if(is_null($target)){
         			throw new Exception("Target must reference a user resource");
         		}
-        		$properties[PROPERTY_ACTIVITIES_RESTRICTED_USER] = $target->uriResource;
+        		$properties[PROPERTY_ACTIVITIES_RESTRICTED_USER] = $target->getUri();
         		break;
 			}
         }

@@ -100,7 +100,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 					
 			foreach(array_merge($defaultProperties, $classProperties) as $property){
 				
-				if(!empty($excludedProp) && in_array($property->uriResource, $excludedProp)){
+				if(!empty($excludedProp) && in_array($property->getUri(), $excludedProp)){
 					continue;
 				}
 				
@@ -117,7 +117,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 						foreach($values->getIterator() as $value){
 							if(!is_null($value)){
 								if($value instanceof core_kernel_classes_Resource){
-									$element->setValue($value->uriResource);
+									$element->setValue($value->getUri());
 								}
 								if($value instanceof core_kernel_classes_Literal){
 									$element->setValue((string)$value);
@@ -131,13 +131,13 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 			
 			//add an hidden elt for the class uri
 			$classUriElt = tao_helpers_form_FormFactory::getElement('classUri', 'Hidden');
-			$classUriElt->setValue(tao_helpers_Uri::encode($clazz->uriResource));
+			$classUriElt->setValue(tao_helpers_Uri::encode($clazz->getUri()));
 			$myForm->addElement($classUriElt);
 			
 			if(!is_null($instance)){
 				//add an hidden elt for the instance Uri
 				$instanceUriElt = tao_helpers_form_FormFactory::getElement('uri', 'Hidden');
-				$instanceUriElt->setValue(tao_helpers_Uri::encode($instance->uriResource));
+				$instanceUriElt->setValue(tao_helpers_Uri::encode($instance->getUri()));
 				$myForm->addElement($instanceUriElt);
 			}
 			
@@ -160,10 +160,10 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 		if(is_null($widgetResource)){
 			return null;
 		}
-		$widget = ucfirst(strtolower(substr($widgetResource->uriResource, strrpos($widgetResource->uriResource, '#') + 1 )));
-		$element = tao_helpers_form_FormFactory::getElement(tao_helpers_Uri::encode($property->uriResource), $widget);
+		$widget = ucfirst(strtolower(substr($widgetResource->getUri(), strrpos($widgetResource->getUri(), '#') + 1 )));
+		$element = tao_helpers_form_FormFactory::getElement(tao_helpers_Uri::encode($property->getUri()), $widget);
 		if(!is_null($element)){
-			if($element->getWidget() != $widgetResource->uriResource){
+			if($element->getWidget() != $widgetResource->getUri()){
 				return null;
 			}
 	
@@ -185,7 +185,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 								$value .= " (code:{$code->literal})";
 							}
 						}
-						$options[ tao_helpers_Uri::encode($rangeInstance->uriResource) ] = $value;
+						$options[ tao_helpers_Uri::encode($rangeInstance->getUri()) ] = $value;
 					}
 					
 					//set the default value to an empty space
@@ -215,7 +215,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 		
 		//add a hidden input to post the uri of the call of service that is being edited
 		$classUriElt = tao_helpers_form_FormFactory::getElement('callOfServiceUri', 'Hidden');
-		$classUriElt->setValue(tao_helpers_Uri::encode($callOfService->uriResource));
+		$classUriElt->setValue(tao_helpers_Uri::encode($callOfService->getUri()));
 		$myForm->addElement($classUriElt);
 		
 		//add label input:
@@ -231,7 +231,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 		if($range != null){
 			$options = array();
 			foreach($range->getInstances(true) as $rangeInstance){
-				$options[ tao_helpers_Uri::encode($rangeInstance->uriResource) ] = $rangeInstance->getLabel();
+				$options[ tao_helpers_Uri::encode($rangeInstance->getUri()) ] = $rangeInstance->getLabel();
 			}
 			$elementServiceDefinition->setOptions($options);
 		}
@@ -252,7 +252,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 				foreach ($collection->getIterator() as $value){
 					if($value instanceof core_kernel_classes_Resource){//a service definition has been found!
 						$serviceDefinition = $value;
-						$elementServiceDefinition->setValue($serviceDefinition->uriResource);//no need to use tao_helpers_Uri::encode here: seems like that it would be done sw else
+						$elementServiceDefinition->setValue($serviceDefinition->getUri());//no need to use tao_helpers_Uri::encode here: seems like that it would be done sw else
 						$myForm->addElement($elementServiceDefinition);
 						break;//stop at the first occurence, which should be the unique one
 					}
@@ -269,7 +269,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 		/*else{
 			//add a hidden input element to allow easier form value evaluation after submit
 			$serviceDefinitionUriElt = tao_helpers_form_FormFactory::getElement('serviceDefinitionUri', 'Hidden');
-			$serviceDefinitionUriElt->setValue(tao_helpers_Uri::encode($serviceDefinition->uriResource));
+			$serviceDefinitionUriElt->setValue(tao_helpers_Uri::encode($serviceDefinition->getUri()));
 			// $classUriElt->setLevel($level);
 			$myForm->addElement($serviceDefinitionUriElt);
 		}*/
@@ -319,7 +319,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 			PROPERTY_CALLOFSERVICES_HEIGHT
 		);
 		
-		if(!in_array($prop->uriResource, $authorizedProperties)){
+		if(!in_array($prop->getUri(), $authorizedProperties)){
 			throw new Exception("wrong type of property for the call of service position");
 		}
 		
@@ -329,7 +329,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 			$widget = 'Textbox';
 		}
 		
-		$element = tao_helpers_form_FormFactory::getElement(tao_helpers_Uri::encode($prop->uriResource), $widget);
+		$element = tao_helpers_form_FormFactory::getElement(tao_helpers_Uri::encode($prop->getUri()), $widget);
 		$element->setDescription($prop->getLabel());
 		$value = $callOfService->getOnePropertyValue($prop);
 		if($value != null && $value instanceof core_kernel_classes_Literal){
@@ -385,7 +385,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 			
 				//create a form element:
 				$inputName = $formalParam->getLabel();//which will be equal to $actualParam->getLabel();
-				$inputUri = $formalParam->uriResource;
+				$inputUri = $formalParam->getUri();
 				// $inputUri = "";
 				$inputValue = "";
 				
@@ -393,7 +393,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 				//find actual param first!
 				$actualParamValue='';
 				$actualParamFromFormalParam = new core_kernel_classes_ContainerCollection(new common_Object(__METHOD__));
-				$actualParamFromFormalParamArray = $actualParamClass->searchInstances(array(PROPERTY_ACTUALPARAMETER_FORMALPARAMETER => $formalParam->uriResource), array('like'=>false, 'recursive' => 0));
+				$actualParamFromFormalParamArray = $actualParamClass->searchInstances(array(PROPERTY_ACTUALPARAMETER_FORMALPARAMETER => $formalParam->getUri()), array('like'=>false, 'recursive' => 0));
 				foreach($actualParamFromFormalParamArray as $actualParam){
 					$actualParamFromFormalParam->add($actualParam);
 				}
@@ -418,7 +418,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 								}
 								
 								$paramType = 'processvariable';
-								$inputValue = $inParameterProcessVariable->uriResource;
+								$inputValue = $inParameterProcessVariable->getUri();
 								
 							}elseif(!is_null($inParameterConstant)){
 								//the type is a constant:
@@ -426,7 +426,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 								if($inParameterConstant instanceof core_kernel_classes_Literal){
 									$inputValue = $inParameterConstant->literal;
 								}else if($inParameterConstant instanceof core_kernel_classes_Resource){
-									$inputValue = $inParameterConstant->uriResource;//encode??
+									$inputValue = $inParameterConstant->getUri();//encode??
 								}
 								
 							}else{
@@ -448,7 +448,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 					$defaultValue = '';
 					if(!is_null($defaultProcessVariable)){
 						if($defaultProcessVariable instanceof core_kernel_classes_Resource){
-							$defaultValue = $defaultProcessVariable->uriResource;//the case a url
+							$defaultValue = $defaultProcessVariable->getUri();//the case a url
 						}else{
 							throw new Exception('the process variable must be a resource');
 						}
@@ -461,7 +461,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 						if($defaultConstantValue instanceof core_kernel_classes_Literal){
 							$defaultValue = $defaultConstantValue->literal;
 						}else if($defaultConstantValue instanceof core_kernel_classes_Resource){
-							$defaultValue = $defaultConstantValue->uriResource;//the case a url
+							$defaultValue = $defaultConstantValue->getUri();//the case a url
 						}
 						
 						if(!empty($defaultValue)){
@@ -503,7 +503,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 				$processVariables = array('none' => ' ');
 				$range = new core_kernel_classes_Class(CLASS_PROCESSVARIABLES);
 				foreach($range->getInstances(true) as $rangeInstance){
-					$processVariables[ tao_helpers_Uri::encode($rangeInstance->uriResource) ] = $rangeInstance->getLabel();
+					$processVariables[ tao_helpers_Uri::encode($rangeInstance->getUri()) ] = $rangeInstance->getLabel();
 				}
 				$elementVar->setOptions($processVariables);
 				
@@ -538,12 +538,12 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 		
 		//add a hidden input to post the uri of the connector that is being edited
 		$elementConnectorUri = tao_helpers_form_FormFactory::getElement('connectorUri', 'Hidden');
-		$elementConnectorUri->setValue(tao_helpers_Uri::encode($connector->uriResource));
+		$elementConnectorUri->setValue(tao_helpers_Uri::encode($connector->getUri()));
 		$myForm->addElement($elementConnectorUri);
 		
 		//add a hidden input to post the uri of the activity of the connector that is being edited
 		$elementActivityUri = tao_helpers_form_FormFactory::getElement('activityUri', 'Hidden');
-		$elementActivityUri->setValue(tao_helpers_Uri::encode($activity->uriResource));
+		$elementActivityUri->setValue(tao_helpers_Uri::encode($activity->getUri()));
 		$myForm->addElement($elementActivityUri);
 		
 		//add label input: authorize connector label editing or not?
@@ -559,7 +559,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 		if($range != null){
 			$options = array();
 			foreach($range->getInstances(true) as $rangeInstance){
-				$options[ tao_helpers_Uri::encode($rangeInstance->uriResource) ] = $rangeInstance->getLabel();
+				$options[ tao_helpers_Uri::encode($rangeInstance->getUri()) ] = $rangeInstance->getLabel();
 			}
 			$elementConnectorType->setOptions($options);
 		}
@@ -579,7 +579,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 				foreach ($collection->getIterator() as $value){
 					if($value instanceof core_kernel_classes_Resource){//a connector type has been found!
 						$connectorType = $value;
-						$elementConnectorType->setValue($connectorType->uriResource);//no need to use tao_helpers_Uri::encode here: seems like that it would be done sw else
+						$elementConnectorType->setValue($connectorType->getUri());//no need to use tao_helpers_Uri::encode here: seems like that it would be done sw else
 						$myForm->addElement($elementConnectorType);
 						break;//stop at the first occurence, which should be the unique one (use newly added getOnePropertyValue here instead)
 					}
@@ -595,11 +595,11 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 		
 		//continue building the form according the the type of connector:
 		$elementInputs=array();
-		if($connectorType->uriResource == INSTANCE_TYPEOFCONNECTORS_SEQUENCE){
+		if($connectorType->getUri() == INSTANCE_TYPEOFCONNECTORS_SEQUENCE){
 			
 			$elementInputs = self::nextActivityElements($connector, 'next');
 			
-		}else if($connectorType->uriResource == INSTANCE_TYPEOFCONNECTORS_CONDITIONAL){
+		}else if($connectorType->getUri() == INSTANCE_TYPEOFCONNECTORS_CONDITIONAL){
 				
 			$transitionRule = $connector->getOnePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TRANSITIONRULE));
 			$elementInputs[] = self::getConditionElement($transitionRule);
@@ -607,11 +607,11 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 			$elementInputs = array_merge($elementInputs, self::nextActivityElements($connector, 'then'));
 			$elementInputs = array_merge($elementInputs, self::nextActivityElements($connector, 'else'));
 			
-		}else if($connectorType->uriResource == INSTANCE_TYPEOFCONNECTORS_PARALLEL){
+		}else if($connectorType->getUri() == INSTANCE_TYPEOFCONNECTORS_PARALLEL){
 			
 			$elementInputs = self::nextActivityElements($connector, 'parallel', false, false, 'Checkbox');
 			
-		}else if($connectorType->uriResource == INSTANCE_TYPEOFCONNECTORS_JOIN){
+		}else if($connectorType->getUri() == INSTANCE_TYPEOFCONNECTORS_JOIN){
 			
 			$elementInputs = self::nextActivityElements($connector, 'join', true, false, 'Combobox');
 			
@@ -656,7 +656,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 	public static function getChoiceElement(core_kernel_classes_Resource $instance, core_kernel_classes_Property $property, $options, $widget='Radiobox'){
 		
 		$elementChoice = null;
-		$elementChoice = tao_helpers_form_FormFactory::getElement(tao_helpers_Uri::encode($property->uriResource),  $widget);
+		$elementChoice = tao_helpers_form_FormFactory::getElement(tao_helpers_Uri::encode($property->getUri()),  $widget);
 		$elementChoice->setDescription($property->getLabel());
 		
 		//check the validity of the widget type
@@ -671,7 +671,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 		$propertyValuesCollection = $instance->getPropertyValuesCollection($property);
 		foreach($propertyValuesCollection->getIterator() as $propertyValue){
 			if($propertyValue instanceof core_kernel_classes_Resource){
-				$elementChoice->setValue($propertyValue->uriResource);
+				$elementChoice->setValue($propertyValue->getUri());
 			}elseif($propertyValue instanceof core_kernel_classes_Literal){
 				$elementChoice->setValue($propertyValue->literal);
 			}
@@ -808,7 +808,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 		$referencedActivity = $connector->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_ACTIVITYREFERENCE));//mandatory property value, initiated at the connector creation
 		if($referencedActivity instanceof core_kernel_classes_Resource){
 			$processDefClass = new core_kernel_classes_Class(CLASS_PROCESS);
-			$processes = $processDefClass->searchInstances(array(PROPERTY_PROCESS_ACTIVITIES => $referencedActivity->uriResource), array('like'=>false));
+			$processes = $processDefClass->searchInstances(array(PROPERTY_PROCESS_ACTIVITIES => $referencedActivity->getUri()), array('like'=>false));
 			if(count($processes)>0){
 				$process = array_shift($processes);
 				if(!empty($process)){
@@ -820,19 +820,19 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 					foreach($activities as $activityTemp){
 						
 						//include activities options:
-						$encodedUri = tao_helpers_Uri::encode($activityTemp->uriResource);
+						$encodedUri = tao_helpers_Uri::encode($activityTemp->getUri());
 						$activityOptions[$encodedUri] = $activityTemp->getLabel();
 						if(strtolower($type) == 'parallel'){
 							$elementHidden = tao_helpers_form_FormFactory::getElement("{$encodedUri}_num_hidden", 'Hidden');
-							$returnValue[$idPrefix . '_' . $activityTemp->uriResource] = $elementHidden;
+							$returnValue[$idPrefix . '_' . $activityTemp->getUri()] = $elementHidden;
 						}
 						
 						//include connectors options:
 						if($includeConnectors){
-							$connectors = $connectorClass->searchInstances(array(PROPERTY_CONNECTORS_ACTIVITYREFERENCE => $activityTemp->uriResource), array('like'=>false));
+							$connectors = $connectorClass->searchInstances(array(PROPERTY_CONNECTORS_ACTIVITYREFERENCE => $activityTemp->getUri()), array('like'=>false));
 							foreach($connectors as $connectorTemp){
-								if( $connector->uriResource != $connectorTemp->uriResource){
-									$connectorOptions[ tao_helpers_Uri::encode($connectorTemp->uriResource) ] = $connectorTemp->getLabel();
+								if( $connector->getUri() != $connectorTemp->getUri()){
+									$connectorOptions[ tao_helpers_Uri::encode($connectorTemp->getUri()) ] = $connectorTemp->getLabel();
 								}
 							}
 						}
@@ -880,17 +880,17 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 
 						$activity = $cardinalityService->getDestination($cardinality);
 						$number = $cardinalityService->getCardinality($cardinality);
-						if(isset($returnValue[$idPrefix.'_'.$activity->uriResource])){
-							$returnValue[$idPrefix.'_'.$activity->uriResource]->setValue(($number instanceof core_kernel_classes_Resource)?tao_helpers_Uri::encode($number->uriResource):intval($number));
+						if(isset($returnValue[$idPrefix.'_'.$activity->getUri()])){
+							$returnValue[$idPrefix.'_'.$activity->getUri()]->setValue(($number instanceof core_kernel_classes_Resource)?tao_helpers_Uri::encode($number->getUri()):intval($number));
 						}
 						
-						$elementActivities->setValue($activity->uriResource);//no need for tao_helpers_Uri::encode
+						$elementActivities->setValue($activity->getUri());//no need for tao_helpers_Uri::encode
 					}
 					
 				}else{
 					
 					foreach($nextActivity as $activity){
-						$elementActivities->setValue($activity->uriResource);//no need for tao_helpers_Uri::encode
+						$elementActivities->setValue($activity->getUri());//no need for tao_helpers_Uri::encode
 					}
 					
 				}
@@ -901,12 +901,12 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 			    
 			    if($aService->isActivity($nextActivity)){
 					if($includeConnectors) $elementChoice->setValue("activity");
-					$elementActivities->setValue($nextActivity->uriResource);//no need for tao_helpers_Uri::encode
+					$elementActivities->setValue($nextActivity->getUri());//no need for tao_helpers_Uri::encode
 				}
 				$conmectorService = wfEngine_models_classes_ConnectorService::singleton();
 				if($conmectorService->isConnector($nextActivity) && $includeConnectors){
 					$elementChoice->setValue("connector");
-					$elementConnectors->setValue($nextActivity->uriResource);
+					$elementConnectors->setValue($nextActivity->getUri());
 				}
 			}
 		}

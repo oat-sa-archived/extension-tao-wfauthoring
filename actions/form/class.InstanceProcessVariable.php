@@ -109,7 +109,7 @@ class wfAuthoring_actions_form_InstanceProcessVariable
 		parent::initElements();
 		$codeElt = $this->form->getElement(tao_helpers_Uri::encode(PROPERTY_PROCESSVARIABLES_CODE));
 		$codeElt->addValidator(tao_helpers_form_FormFactory::getValidator('NotEmpty'));
-		$codeElt->addValidator(new wfAuthoring_actions_form_validators_VariableCode(array('uri'=>$this->getInstance()->uriResource)));
+		$codeElt->addValidator(new wfAuthoring_actions_form_validators_VariableCode(array('uri'=>$this->getInstance()->getUri())));
         // section 127-0-1-1--193aa0be:133cfb90ad2:-8000:000000000000342F end
     }
 

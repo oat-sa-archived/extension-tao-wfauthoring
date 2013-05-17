@@ -205,7 +205,7 @@ class wfAuthoring_models_classes_ProcessChecker
 		foreach($this->authoringService->getActivitiesByProcess($process) as $activity){
 			
 			if($this->activityService->isInitial($activity)){
-				$this->initialActivities[$activity->uriResource] = $activity;
+				$this->initialActivities[$activity->getUri()] = $activity;
 				$count++;
 				if($number && ($count>$number)){
 					// throw new wfEngine_models_classes_QTI_ProcessDefinitionException('too many initial activity');
@@ -247,10 +247,10 @@ class wfAuthoring_models_classes_ProcessChecker
 		foreach($this->authoringService->getActivitiesByProcess($process) as $activity){
 			if(!$this->activityService->isInitial($activity)){
 				//should have a previous activity:
-				$connectors = $connectorsClass->searchInstances(array(PROPERTY_STEP_NEXT => $activity->uriResource), array('like'=>false, 'recursive' => 0));
+				$connectors = $connectorsClass->searchInstances(array(PROPERTY_STEP_NEXT => $activity->getUri()), array('like'=>false, 'recursive' => 0));
 				if(empty($connectors)){
 					$returnValue = false;
-					$this->isolatedActivities[$activity->uriResource] = $activity;
+					$this->isolatedActivities[$activity->getUri()] = $activity;
 				}
 			}
 		}
@@ -376,7 +376,7 @@ class wfAuthoring_models_classes_ProcessChecker
 			}
 		}
 		if($returnValue){
-			$this->isolatedConnectors[$connector->uriResource] = $connector; 
+			$this->isolatedConnectors[$connector->getUri()] = $connector; 
 		}
         // section 10-13-1-39--7378788e:12e4d9bbe63:-8000:0000000000004FBD end
 

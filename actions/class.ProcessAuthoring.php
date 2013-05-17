@@ -190,14 +190,14 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 		if(!is_null($newActivity) && $newActivity instanceof core_kernel_classes_Resource){
 			$class = 'node-activity';
 			$class .= ' node-activity-last';//now that the connector is not build at the same time as a new activity, the default, build activity is a final one:
-			if($newActivity->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISINITIAL))->uriResource == GENERIS_TRUE){
+			if($newActivity->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISINITIAL))->getUri() == GENERIS_TRUE){
 				//just set the first activity as a such
 				$class .= ' node-activity-initial';
 			}
 			
 			echo json_encode(array(
 				'label'	=> $newActivity->getLabel(),
-				'uri' 	=> tao_helpers_Uri::encode($newActivity->uriResource),
+				'uri' 	=> tao_helpers_Uri::encode($newActivity->getUri()),
 				// 'connector' => $this->processTreeService->defaultConnectorNode($newConnector),
 				'clazz' => $class
 			));
@@ -215,8 +215,8 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 			$serviceDefinition = new core_kernel_classes_Resource(tao_helpers_Uri::decode($_POST['serviceDefinitionUri']));
 			if(!is_null($serviceDefinition)){
 				$this->saveCallOfService(array(
-					'callOfServiceUri' => $newService->uriResource,
-					PROPERTY_CALLOFSERVICES_SERVICEDEFINITION => $serviceDefinition->uriResource,
+					'callOfServiceUri' => $newService->getUri(),
+					PROPERTY_CALLOFSERVICES_SERVICEDEFINITION => $serviceDefinition->getUri(),
 					'label' => "service: ".$serviceDefinition->getLabel()
 				));
 			}
@@ -225,7 +225,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 		if(!is_null($newService) && $newService instanceof core_kernel_classes_Resource){
 			echo json_encode(array(
 				'label'	=> $newService->getLabel(),
-				'uri' 	=> tao_helpers_Uri::encode($newService->uriResource)
+				'uri' 	=> tao_helpers_Uri::encode($newService->getUri())
 			));
 		}
 	}	
@@ -442,7 +442,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
         $actsProp 			= new core_kernel_classes_Property(PROPERTY_PROCESS_ACTIVITIES);
 		
 		$processClass = new core_kernel_classes_Class(CLASS_PROCESS);
-		$processes = $processClass->searchInstances(array(PROPERTY_PROCESS_ACTIVITIES => $activity->uriResource), array('like'=>false, 'recursive' => 0));
+		$processes = $processClass->searchInstances(array(PROPERTY_PROCESS_ACTIVITIES => $activity->getUri()), array('like'=>false, 'recursive' => 0));
         foreach($processes as $process){
         	if($process instanceof core_kernel_classes_Resource){
 				foreach ($process->getPropertyValues($actsProp) as $pactivityUri){
@@ -451,11 +451,11 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 					
 					//get an activity with the same mode
 					$mode = $pactivity->getOnePropertyValue($activityModeProp);
-					if($mode->uriResource == INSTANCE_ACL_ROLE_RESTRICTED_USER){
+					if($mode->getUri() == INSTANCE_ACL_ROLE_RESTRICTED_USER){
 						$pRole = $pactivity->getUniquePropertyValue($restrictedRoleProp);
 						if(!is_null($pRole)){
-							if(!array_key_exists($pRole->uriResource, $availableRoles)){
-								$availableRoles[$pRole->uriResource] = $pRole->getLabel();
+							if(!array_key_exists($pRole->getUri(), $availableRoles)){
+								$availableRoles[$pRole->getUri()] = $pRole->getLabel();
 							}
 						}
 					}
@@ -516,7 +516,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 		}
 		$clazz = $this->getCurrentClass();
 		//case when a process variable has been just added:
-		if($clazz->uriResource == CLASS_PROCESSVARIABLES){
+		if($clazz->getUri() == CLASS_PROCESSVARIABLES){
 			$processVariableService = wfEngine_models_classes_VariableService::singleton();
 			$instance =  $processVariableService->createProcessVariable();
 			
@@ -530,7 +530,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 			
 			echo json_encode(array(
 				'label'	=> $instance->getLabel(),
-				'uri' 	=> tao_helpers_Uri::encode($instance->uriResource)
+				'uri' 	=> tao_helpers_Uri::encode($instance->getUri())
 			));
 		}
 	}
@@ -616,7 +616,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 			// $clone->setLabel($instance->getLabel()."'");
 			// echo json_encode(array(
 				// 'label'	=> $clone->getLabel(),
-				// 'uri' 	=> tao_helpers_Uri::encode($clone->uriResource)
+				// 'uri' 	=> tao_helpers_Uri::encode($clone->getUri())
 			// ));
 		// }
 	// }
@@ -653,11 +653,11 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 				$serviceCollection = $activity->getPropertyValuesCollection(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_INTERACTIVESERVICES));
 				
 				foreach($serviceCollection->getIterator() as $service){
-					if( $service->uriResource != $callOfServiceUri ){
+					if( $service->getUri() != $callOfServiceUri ){
 					
 						$serviceStylingData = array();
 						$serviceStylingData['label'] = $service->getLabel();
-						$serviceStylingData['uri'] = tao_helpers_Uri::encode($service->uriResource);
+						$serviceStylingData['uri'] = tao_helpers_Uri::encode($service->getUri());
 						
 						//get the position and size data (in %):
 						$width = $service->getOnePropertyValue(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_WIDTH));
@@ -685,7 +685,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 						if($left != null && $left instanceof core_kernel_classes_Literal){
 							$serviceStylingData['left'] = intval($left->literal);
 						}
-						$servicesData['other'][tao_helpers_Uri::getUniqueId($service->uriResource)] = $serviceStylingData;
+						$servicesData['other'][tao_helpers_Uri::getUniqueId($service->getUri())] = $serviceStylingData;
 					}
 				}
 			}
@@ -736,7 +736,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 			$this->service->setCallOfServiceDefinition($callOfService, $serviceDefinition);
 		}
 		
-		//note: equivalent to $callOfService->editPropertyValues(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_SERVICEDEFINITION), $serviceDefinition->uriResource);
+		//note: equivalent to $callOfService->editPropertyValues(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_SERVICEDEFINITION), $serviceDefinition->getUri());
 		
 		//reset new actual parameters : clear ALL and recreate new values at each save
 		$deleted = $this->service->deleteActualParameters($callOfService);
@@ -785,10 +785,10 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 			//method 1: use the connection relation between the subject serviceDefinition and the object formalParameter: 
 			//issue with the use of the same instance of formal parameter for both parameter in and out of an instance of a service definiton
 			
-			$formalParameterType = core_kernel_impl_ApiModelOO::getPredicate($serviceDefinition->uriResource, $formalParam->uriResource);
-			if(strcasecmp($formalParameterType->uriResource, PROPERTY_SERVICESDEFINITION_FORMALPARAMIN)==0){
+			$formalParameterType = core_kernel_impl_ApiModelOO::getPredicate($serviceDefinition->getUri(), $formalParam->getUri());
+			if(strcasecmp($formalParameterType->getUri(), PROPERTY_SERVICESDEFINITION_FORMALPARAMIN)==0){
 				$parameterInOrOut = PROPERTY_CALLOFSERVICES_ACTUALPARAMETERIN;
-			}elseif(strcasecmp($formalParameterType->uriResource, PROPERTY_SERVICESDEFINITION_FORMALPARAMOUT)==0){
+			}elseif(strcasecmp($formalParameterType->getUri(), PROPERTY_SERVICESDEFINITION_FORMALPARAMOUT)==0){
 				$parameterInOrOut = PROPERTY_CALLOFSERVICES_ACTUALPARAMETEROUT;
 			}else{
 				//unknown actual parameter type to be bind to the current call of service
@@ -851,12 +851,12 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 		$myForm = wfAuthoring_helpers_ProcessFormFactory::connectorEditor($connector, null, $formName, $this->getCurrentActivity());
 		
 		$connectorService = wfEngine_models_classes_ConnectorService::singleton();
-		if($connectorService->getType($connector)->uriResource == INSTANCE_TYPEOFCONNECTORS_PARALLEL){
+		if($connectorService->getType($connector)->getUri() == INSTANCE_TYPEOFCONNECTORS_PARALLEL){
 			$variableService = wfEngine_models_classes_VariableService::singleton();
 			$variableClass = new core_kernel_classes_Class(CLASS_PROCESSVARIABLES);
 			$variables = array();
 			foreach($variableClass->getInstances() as $variable){
-				$variables[tao_helpers_Uri::encode($variable->uriResource)] = $variableService->getCode($variable);
+				$variables[tao_helpers_Uri::encode($variable->getUri())] = $variableService->getCode($variable);
 			}
 			$this->setData('variables', json_encode($variables));
 		}
@@ -883,7 +883,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 	protected function newActivityTransferData(core_kernel_classes_Resource $newActivity, $port=0, $multiplicity=1){
 		return array(
 			'label'	=> $newActivity->getLabel(),
-			'uri' => tao_helpers_Uri::encode($newActivity->uriResource),
+			'uri' => tao_helpers_Uri::encode($newActivity->getUri()),
 			'port' => $port,
 			'clazz' => "node-activity node-activity-last",
 			'multiplicity' => $multiplicity
@@ -893,7 +893,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 	protected function newConnectorTransferData(core_kernel_classes_Resource $newConnector, $port=0, $type='sequence'){
 		return array(
 			'label'	=> $newConnector->getLabel(),
-			'uri' 	=> tao_helpers_Uri::encode($newConnector->uriResource),
+			'uri' 	=> tao_helpers_Uri::encode($newConnector->getUri()),
 			'type' => $type,
 			'port' => $port
 		); 
@@ -936,7 +936,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 			//check if there is a need for update: in case the old type of connector was 'join':
 			$connectorType = $connectorInstance->getOnePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TYPE));
 			if(!is_null($connectorType)){
-				if($connectorType->uriResource == INSTANCE_TYPEOFCONNECTORS_JOIN){
+				if($connectorType->getUri() == INSTANCE_TYPEOFCONNECTORS_JOIN){
 					
 					$oldNextActivity = $connectorInstance->getOnePropertyValue($propNextActivities);
 					if(!is_null($oldNextActivity)){
@@ -946,7 +946,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 						// }
 						
 						//if the current type is still 'join' && target activity has changed || type of connector has changed:
-						if($oldNextActivity->uriResource != $data["join_activityUri"] || $data[PROPERTY_CONNECTORS_TYPE]!= INSTANCE_TYPEOFCONNECTORS_JOIN){
+						if($oldNextActivity->getUri() != $data["join_activityUri"] || $data[PROPERTY_CONNECTORS_TYPE]!= INSTANCE_TYPEOFCONNECTORS_JOIN){
 							
 							throw new common_Exception('Join connectors currently not supported by authoring');
 							
@@ -958,7 +958,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 							$thisCardinalityResource = null;
 							foreach($previousActivities as $previousActivity){
 								if($cardinalityService->isCardinality($previousActivity)){
-									if($cardinalityService->getSource($previousActivity) != $activity->uriResource){
+									if($cardinalityService->getSource($previousActivity) != $activity->getUri()){
 										$anotherPreviousActivity = $previousActivity;
 									}else{
 										$thisCardinalityResource = $previousActivity;
@@ -1231,7 +1231,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 			"saved" => $saved,
 			"newActivities" => $newActivities,
 			"newConnectors" => $newConnectors,
-			'previousConnectorUri' => tao_helpers_Uri::encode($connectorInstance->uriResource)
+			'previousConnectorUri' => tao_helpers_Uri::encode($connectorInstance->getUri())
 		));
 			
 	}
@@ -1247,7 +1247,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 		$variableService = wfEngine_models_classes_VariableService::singleton();
 		$processVar = $variableService->getProcessVariable($code);
 		if(!is_null($processVar)){
-			if($processVarUri != $processVar->uriResource){
+			if($processVarUri != $processVar->getUri()){
 				$returnValue['exist'] = true;
 				$returnValue['label'] = $processVar->getLabel();
 			}
@@ -1285,10 +1285,10 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 				$returnValue['doesNotExist'][] = $code;
 			}else{
 				//check if the variable is set as a process variable of the current process
-				$processes = $processClass->searchInstances(array($processVarProp->uriResource => $processVar->uriResource), array('like'=>false, 'recursive' => 0));
+				$processes = $processClass->searchInstances(array($processVarProp->getUri() => $processVar->getUri()), array('like'=>false, 'recursive' => 0));
 				$ok = false;
 				foreach($processes as $processTemp){
-					if($processTemp->uriResource == $process->uriResource){
+					if($processTemp->getUri() == $process->getUri()){
 						$ok = true;
 						break;
 					}
@@ -1398,9 +1398,9 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 					echo json_encode(array(
 						'created' => $created,
 						'label'	=> $connector->getLabel(),
-						'uri' 	=> tao_helpers_Uri::encode($connector->uriResource),
+						'uri' 	=> tao_helpers_Uri::encode($connector->getUri()),
 						'type' => $typeOfConnector,
-						'previousActivityUri' => tao_helpers_Uri::encode($activityOrConnector->uriResource),
+						'previousActivityUri' => tao_helpers_Uri::encode($activityOrConnector->getUri()),
 						'previousIsActivity' => $this->activityService->isActivity($activityOrConnector)
 					));
 					return $created;

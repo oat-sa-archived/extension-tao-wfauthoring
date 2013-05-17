@@ -392,14 +392,14 @@ class wfAuthoring_models_classes_ConnectorService
         $cardinalityService = wfEngine_models_classes_ActivityCardinalityService::singleton();
 		
 		if(!$this->isConnector($connector)){
-			// throw new Exception("the resource in the parameter is not a connector: {$connector->getLabel()} ({$connector->uriResource})");
+			// throw new Exception("the resource in the parameter is not a connector: {$connector->getLabel()} ({$connector->getUri()})");
 			return $returnValue;
 		}
 		
 		//get the type of connector:
 		$connectorType = $connector->getOnePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TYPE));
 		if(!is_null($connectorType) && $connectorType instanceof core_kernel_classes_Resource){
-			if($connectorType->uriResource == INSTANCE_TYPEOFCONNECTORS_CONDITIONAL){
+			if($connectorType->getUri() == INSTANCE_TYPEOFCONNECTORS_CONDITIONAL){
 				//delete the related rule:
 				$relatedRule = $this->getTransitionRule($connector);
 				if(!is_null($relatedRule)){
@@ -417,7 +417,7 @@ class wfAuthoring_models_classes_ConnectorService
 		}
 		
 		//manage the connection to the following activities
-		$activityRef = $connector->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_ACTIVITYREFERENCE))->uriResource;
+		$activityRef = $connector->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_ACTIVITYREFERENCE))->getUri();
 		foreach($this->getNextActivities($connector) as $nextActivity){
 			
 			$activity = null;
@@ -435,7 +435,7 @@ class wfAuthoring_models_classes_ConnectorService
 			}
 			
 			if(!is_null($activity) && $this->isConnector($activity)){
-				$nextActivityRef = $activity->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_ACTIVITYREFERENCE))->uriResource;
+				$nextActivityRef = $activity->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_ACTIVITYREFERENCE))->getUri();
 				if($nextActivityRef == $activityRef){
 					$this->delete($activity);//delete following connectors only if they have the same activity reference
 				}

@@ -155,12 +155,12 @@
 	foreach ($properties as $property):
 		if (!$empty) echo ','; ?>
 				{
-					id: '<?=md5($property->uriResource)?>',
+					id: '<?=md5($property->getUri())?>',
 					label : '<?=$property->getLabel()?>',
 					url : getUrl,
 					options: {
-						'propertyUri' 	: '<?= $property->uriResource ?>',
-						'classUri' 	: '<?= $clazz->uriResource ?>',
+						'propertyUri' 	: '<?= $property->getUri() ?>',
+						'classUri' 	: '<?= $clazz->getUri() ?>',
 						'filterItself': false
 					}
 				}

@@ -135,12 +135,12 @@ class wfAuthoring_models_classes_wfAuthoringService
         $returnValue = (bool) false;
 
         // section 10-13-1-39-1f91722d:12e9641f6ad:-8000:0000000000002C70 begin
-		if($clazz->uriResource == $this->processClass->uriResource){
+		if($clazz->getUri() == $this->processClass->getUri()){
 			$returnValue = true;	
 		}
 		else{
 			foreach($this->processClass->getSubClasses() as $subclass){
-				if($clazz->uriResource == $subclass->uriResource){
+				if($clazz->getUri() == $subclass->getUri()){
 					$returnValue = true;
 					break;	
 				}

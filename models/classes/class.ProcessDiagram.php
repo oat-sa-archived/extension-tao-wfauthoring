@@ -114,8 +114,8 @@ class wfAuthoring_models_classes_ProcessDiagram
     public function addArrow( core_kernel_classes_Resource $from,  core_kernel_classes_Resource $to, $fromPort = "bottom")
     {
         // section 127-0-1-1-23e337d4:1340f06a5e1:-8000:0000000000003454 begin
-        $fromid = substr($from->uriResource, strpos($from->uriResource, "#")+1);
-        $toid = substr($to->uriResource, strpos($to->uriResource, "#")+1);
+        $fromid = substr($from->getUri(), strpos($from->getUri(), "#")+1);
+        $toid = substr($to->getUri(), strpos($to->getUri(), "#")+1);
         $this->arrow[] = array(
         		'from'	=> $fromid,
         		'to'	=> $toid,
@@ -137,7 +137,7 @@ class wfAuthoring_models_classes_ProcessDiagram
     public function addActivity( core_kernel_classes_Resource $activity, $xOffset, $yOffset)
     {
         // section 127-0-1-1-23e337d4:1340f06a5e1:-8000:0000000000003456 begin
-        $id = substr($activity->uriResource, strpos($activity->uriResource, "#")+1);
+        $id = substr($activity->getUri(), strpos($activity->getUri(), "#")+1);
         $this->activity[$id] = array(
         		'x' => $xOffset,
         		'y' => $yOffset
@@ -158,7 +158,7 @@ class wfAuthoring_models_classes_ProcessDiagram
     public function addConnector( core_kernel_classes_Resource $connector, $xOffset, $yOffset)
     {
         // section 127-0-1-1-23e337d4:1340f06a5e1:-8000:0000000000003458 begin
-    	$id = substr($connector->uriResource, strpos($connector->uriResource, "#")+1);
+    	$id = substr($connector->getUri(), strpos($connector->getUri(), "#")+1);
     	$this->connector[$id] = array(
     			'x' => $xOffset,
     			'y' => $yOffset
