@@ -120,8 +120,11 @@ class wfAuthoring_actions_Monitor extends tao_actions_TaoModule {
 	 * Get JSON monitoring data
 	 */
 	public function monitorProcess()
-	{
+	{   
+		$filters = array();
+		if($this->hasRequestParameter('filter')){
 		$filters = $this->getFilterState('filter');
+		}
 
 		//get the processes uris
 		$processesUri = $this->hasRequestParameter('processesUri') ? $this->getRequestParameter('processesUri') : null;
