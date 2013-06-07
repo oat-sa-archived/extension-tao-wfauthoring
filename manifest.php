@@ -15,7 +15,7 @@ return array(
 	'dependencies' => array('tao', 'wfEngine'),
 	'install' => array(
 		'checks' => array(
-			array('type' => 'CheckFileSystemComponent', 'value' => array('id' => 'fs_wfAuthoring_includes', 'location' => 'wfAuthoring/includes', 'rights' => 'r'))
+			array('type' => 'CheckFileSystemComponent', 'value' => array('id' => 'fs_wfAuthoring_includes', 'location' => 'wfAuthoring/includes', 'rights' => 'rw'))
 		)
 	),
 	'managementRole' => 'http://www.tao.lu/middleware/wfEngine.rdf#WorkflowsManagerRole',
