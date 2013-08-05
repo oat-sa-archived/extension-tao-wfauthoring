@@ -90,7 +90,7 @@ class wfAuthoring_models_classes_ProcessService
      * @author Joel Bout, <joel.bout@tudor.lu>
      * @return mixed
      */
-    public function __construct()
+    protected function __construct()
     {
         // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D56 begin
 

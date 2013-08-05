@@ -573,8 +573,10 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 		}
 		if(empty($_POST["connectorUri"])){
 			$deleted = false;
-		}
-		wfAuthoring_models_classes_ConnectorService::singleton()->delete(new core_kernel_classes_Resource(tao_helpers_Uri::decode($_POST["connectorUri"]))); 
+		} else {
+			$connector = new core_kernel_classes_Resource(tao_helpers_Uri::decode($_POST["connectorUri"]));
+			$deleted = wfAuthoring_models_classes_ConnectorService::singleton()->delete($connector);
+		} 
 //		$this->service->deleteConnector(new core_kernel_classes_Resource(tao_helpers_Uri::decode($_POST["connectorUri"])));
 	
 		echo json_encode(array('deleted' => $deleted));

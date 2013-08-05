@@ -220,7 +220,7 @@ class wfAuthoring_models_classes_ProcessTreeService
 		);
 		
 		//instanciate the processAuthoring service
-		$processAuthoringService = new wfAuthoring_models_classes_ProcessService();
+		$processAuthoringService = wfAuthoring_models_classes_ProcessService::singleton();
 	
 		$activities = array();
 		$activities = $processAuthoringService->getActivitiesByProcess($process);

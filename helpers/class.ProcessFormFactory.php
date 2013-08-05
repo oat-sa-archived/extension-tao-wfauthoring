@@ -815,7 +815,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 					//get list of activities and connectors for the current process:
 					
 					$connectorClass = new core_kernel_classes_Class(CLASS_CONNECTORS);
-					$processAuthoringService = new wfAuthoring_models_classes_ProcessService();
+					$processAuthoringService = wfAuthoring_models_classes_ProcessService::singleton();
 					$activities = $processAuthoringService->getActivitiesByProcess($process);
 					foreach($activities as $activityTemp){
 						

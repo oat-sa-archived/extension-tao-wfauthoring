@@ -43,8 +43,8 @@ class wfAuthoring_actions_Process extends tao_actions_TaoModule {
 		parent::__construct();
 		
 		//the service is initialized by default
-		$this->service = new wfAuthoring_models_classes_wfAuthoringService();
-		$this->authoringService = new wfAuthoring_models_classes_ProcessService();
+		$this->service = wfAuthoring_models_classes_wfAuthoringService::singleton();
+		$this->authoringService = wfAuthoring_models_classes_ProcessService::singleton();
 		$this->defaultData();
 		
 	}
