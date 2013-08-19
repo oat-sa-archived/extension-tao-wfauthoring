@@ -171,7 +171,7 @@
 	$(function(){
 
 		ActivityDiagramClass.canvas = "#process_diagram_container";
-		ActivityDiagramClass.localNameSpace = "<?=tao_helpers_Uri::encode(core_kernel_classes_Session::singleton()->getNameSpace().'#')?>";
+		ActivityDiagramClass.localNameSpace = "<?=tao_helpers_Uri::encode(common_ext_NamespaceManager::singleton()->getLocalNamespace()->getUri())?>";
 
 		//draw diagram:
 		$(ActivityDiagramClass.canvas).scroll(function(){
