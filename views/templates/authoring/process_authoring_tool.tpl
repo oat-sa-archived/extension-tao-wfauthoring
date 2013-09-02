@@ -103,18 +103,6 @@
 		});
 	}
 
-	function loadCompilationForm(){
-		$.ajax({
-			url: authoringControllerPath+'compileView',
-			type: "POST",
-			data: {processUri: processUri},
-			dataType: 'html',
-			success: function(response){
-				$('#compile_info').html(response);
-			}
-		});
-	}
-
 	$(function(){
 		$("#accordion1").accordion({
 			fillSpace: true,
@@ -163,9 +151,6 @@
 		//load process property form
 		processProperty();
 
-		<?if(get_data('extension')=='taoDelivery'):?>
-		loadCompilationForm();
-		<?endif;?>
 	});
 
 	$(function(){
