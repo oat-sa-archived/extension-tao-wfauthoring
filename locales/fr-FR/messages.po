@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TAO v2.4-beta3\n"
-"PO-Revision-Date: 2013-04-05T18:42:13\n"
+"PO-Revision-Date: 2013-09-03 14:49+0000\n"
 "Last-Translator: TAO Translation Team <translation@tao.lu>\n"
 "MIME-Version: 1.0\n"
 "Language: fr-FR\n"
@@ -120,10 +120,10 @@ msgid "Input Parameters"
 msgstr "Paramètres d'entrée"
 
 msgid "interactive service saved"
-msgstr "service intéractif sauvegardé"
+msgstr "service interactif enregistré"
 
 msgid "Label"
-msgstr "Label"
+msgstr "Étiquette"
 
 msgid "Language"
 msgstr "Langue"
@@ -143,7 +143,7 @@ msgstr "méta-données"
 
 #, tao-public
 msgid "Monitor processes"
-msgstr "Monitorer des processus"
+msgstr "Suivi des processus"
 
 msgid "Monitoring processes"
 msgstr "Monitoring des processus"
@@ -175,15 +175,15 @@ msgstr "Veuilez confirmer la suppression"
 msgid "Please confirm deletion.\n"
 " Warning: related resources might be affected."
 msgstr "Veuillez confirmer la suppression.\n"
-"Attention: les ressources liées pourraient être affectées."
+" Attention : les ressources liées pourraient en être affectées."
 
 msgid "Please confirm the deletion of the connector: \n"
 " child connectors will be delete at the same time"
-msgstr "Veuillez confirmer la suppression du connecteur: \n"
-"les connecteurs enfants seront supprimés en même temps"
+msgstr "Veuillez confirmer la suppression du connecteur : \n"
+" les connecteurs enfant seront supprimés en même temps"
 
 msgid "Please select a delivery before authoring it"
-msgstr "Veuillez sélectionner une passation afin de l'éditer"
+msgstr "Veuillez sélectionner une délivrance afin de l'éditer."
 
 msgid "Please select a process before authoring it"
 msgstr "Veuillez sélectionner un processus afin de l'éditer"
@@ -196,7 +196,7 @@ msgstr "Processus"
 
 #, tao-public
 msgid "Process authoring"
-msgstr "Editeur de processus"
+msgstr "Éditeur de processus"
 
 msgid "Process Definition"
 msgstr "Définition de processus"
@@ -211,7 +211,7 @@ msgid "Process Property"
 msgstr "Propriété de processus"
 
 msgid "Process saved"
-msgstr "Processus sauvé"
+msgstr "Processus enregistré"
 
 msgid "Process Tree:"
 msgstr "Arbre des processus:"
@@ -227,7 +227,7 @@ msgid "Processes"
 msgstr "Processus"
 
 msgid "Processes library"
-msgstr "Bibliothèque des processus"
+msgstr "Bibliothèque de processus"
 
 msgid "reload"
 msgstr "rafraichir"
@@ -242,7 +242,7 @@ msgid "Role"
 msgstr "Rôle"
 
 msgid "save"
-msgstr "sauver"
+msgstr "enregistrer"
 
 msgid "search"
 msgstr "recherche"
@@ -271,7 +271,7 @@ msgid "the chosen code has already been used for the process variable"
 msgstr "le code choisi est déjà en cours d'utilisation pour une autre variable"
 
 msgid "The Processes module allows to create Processes."
-msgstr "Le module des processus vous permet de créer des processus organisés sous forme d'activités liées par des connecteurs"
+msgstr "Le module des processus vous permet de créer des processus organisés sous forme d'activités liées par des connecteurs."
 
 msgid "Then"
 msgstr "Alors"
@@ -306,4 +306,3 @@ msgstr "XLIFF"
 
 msgid "XLIFF version"
 msgstr "Version XLIFF"
-
