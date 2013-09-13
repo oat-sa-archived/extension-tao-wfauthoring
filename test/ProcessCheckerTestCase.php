@@ -19,7 +19,7 @@ class ProcessCheckerTestCase extends UnitTestCase {
 		if($processDefinition instanceof core_kernel_classes_Resource){
 			$this->proc = $processDefinition;
 		}
-		$this->authoringService = taoDelivery_models_classes_DeliveryAuthoringService::singleton();
+		$this->authoringService = wfAuthoring_models_classes_ProcessService::singleton();
 	}
 	
 	public function testInitialActivity(){
