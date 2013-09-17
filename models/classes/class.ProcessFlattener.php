@@ -47,18 +47,17 @@ class wfAuthoring_models_classes_ProcessFlattener extends wfAuthoring_models_cla
         foreach($activities as $activity){
             $this->flattenProcessActivity($activity);
         }
-
     }
 
     protected function flattenProcessActivity(core_kernel_classes_Resource $activity){
-        
+
         $services = wfEngine_models_classes_ActivityService::singleton()->getInteractiveServices($activity);
         // only replace single-service activities, with the service process runner
         if(count($services) == 1){
             $serviceCall = current($services);
             $serviceDefinition = $serviceCall->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_SERVICEDEFINITION));
             if($serviceDefinition->getUri() == INSTANCE_SERVICE_PROCESSRUNNER){
-                
+
                 // found a wfEngine call, extract processDefnition
                 $subProcess = $this->getSubProcess($serviceCall);
                 if(empty($subProcess)){
@@ -72,6 +71,12 @@ class wfAuthoring_models_classes_ProcessFlattener extends wfAuthoring_models_cla
                 $segment = $this->cloneProcessSegment($subProcess);
                 $inActivity = $segment['in'];
                 $firstout = current($segment['out']);
+                
+                //allow first acitvity only if the parent is
+                if(!wfAuthoring_models_classes_ActivityService::singleton()->isInitial($activity)){
+                    $inActivity->editPropertyValues(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISINITIAL), GENERIS_FALSE);
+                }
+                
                 $this->addClonedActivity($inActivity, $activity, $firstout);
 
                 $propProcessActivities = new core_kernel_classes_Property(PROPERTY_PROCESS_ACTIVITIES);
@@ -80,18 +85,22 @@ class wfAuthoring_models_classes_ProcessFlattener extends wfAuthoring_models_cla
                 }
 
                 //get the previous connector if exists and clone it
-                $connectors = wfAuthoring_models_classes_ProcessService::singleton()->getConnectorsByActivity($activity);
-                $connectors = array_merge($connectors['next'], $connectors['prev']);
+                $allConnectors = wfAuthoring_models_classes_ProcessService::singleton()->getConnectorsByActivity($activity);
+                $connectors = array_merge($allConnectors['next'], $allConnectors['prev']);
                 foreach($connectors as $connector){
-                    $this->addClonedConnector($connector, $connector);
+                    //trick to reference previous and following connector: connector_prev -> activity_subprocess[activity1, activity2, etc.] -> connector_follow
+                    $this->addClonedConnector($connector, $connector); 
                 }
 
                 //glue segment:
-                $this->linkClonedStep($activity);
+                $glue = array_merge(array($activity), $allConnectors['prev']);
+                foreach($glue as $fragment){
+                    $this->linkClonedStep($fragment);
+                }
 
                 //delete all activity:
                 $activity->delete(true);
-                
+
                 //recursive call:
                 foreach($this->getClonedActivities() as $activityClone){
                     $this->flattenProcessActivity($activityClone);
