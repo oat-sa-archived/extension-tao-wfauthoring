@@ -129,15 +129,11 @@ class wfAuthoring_models_classes_ActivityService
     {
         $returnValue = null;
 
-
-    	$number = $activity->getPropertyValuesCollection(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_INTERACTIVESERVICES))->count();
-		$number += 1;
-
 		//an interactive service of an activity is a call of service:
 		$callOfServiceClass = new core_kernel_classes_Class(CLASS_CALLOFSERVICES);
 
 		//create new resource for the property value of the current call of service PROPERTY_CALLOFSERVICES_ACTUALPARAMETERIN or PROPERTY_CALLOFSERVICES_ACTUALPARAMETEROUT
-		$returnValue = $callOfServiceClass->createInstance($activity->getLabel()."_service_".$number, "created by ProcessAuthoringService.Class");
+		$returnValue = $callOfServiceClass->createInstance($activity->getLabel()."_service");
 
 		if(empty($returnValue)){
 			throw new Exception("the interactive service cannot be created for the activity {$activity->getUri()}");

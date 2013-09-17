@@ -53,7 +53,7 @@ class ConnectorAuthoringTestCase extends wfEngineServiceTest {
 		                +----------------+
 	 */
 	public function testSequential(){
-		$process = wfAuthoring_models_classes_ProcessService::singleton()->createProcess('Scripted Process');
+		$process = wfAuthoring_models_classes_ProcessService::singleton()->createProcess('test process for '.__FUNCTION__);
 	
 		$activityAuthoring = wfAuthoring_models_classes_ActivityService::singleton();
 		
@@ -112,7 +112,7 @@ class ConnectorAuthoringTestCase extends wfEngineServiceTest {
 		*/
 			
 	public function testConditional() {
-		$process = wfAuthoring_models_classes_ProcessService::singleton()->createProcess('Scripted Process');
+		$process = wfAuthoring_models_classes_ProcessService::singleton()->createProcess('test process for '.__FUNCTION__);
 	
 		$activityAuthoring = wfAuthoring_models_classes_ActivityService::singleton();
 		
@@ -164,7 +164,7 @@ class ConnectorAuthoringTestCase extends wfEngineServiceTest {
 	*/
 		                    
 	public function testSplitJoin() {
-		$process = wfAuthoring_models_classes_ProcessService::singleton()->createProcess('Scripted Process');
+		$process = wfAuthoring_models_classes_ProcessService::singleton()->createProcess('test process for '.__FUNCTION__);
 	
 		$activityAuthoring = wfAuthoring_models_classes_ActivityService::singleton();
 		
@@ -209,7 +209,7 @@ class ConnectorAuthoringTestCase extends wfEngineServiceTest {
 		                +---------------+
 	*/
 	public function testSplitJoinVariable() {
-		$process = wfAuthoring_models_classes_ProcessService::singleton()->createProcess('Scripted Process');
+		$process = wfAuthoring_models_classes_ProcessService::singleton()->createProcess('test process for '.__FUNCTION__);
 	
 		$activityAuthoring = wfAuthoring_models_classes_ActivityService::singleton();
 		
@@ -232,7 +232,7 @@ class ConnectorAuthoringTestCase extends wfEngineServiceTest {
 		
 		$this->runProcess($process, 5);
 		
-		//wfAuthoring_models_classes_ProcessService::singleton()->deleteProcess($process);
+		wfAuthoring_models_classes_ProcessService::singleton()->deleteProcess($process);
 		
 	}
 	
