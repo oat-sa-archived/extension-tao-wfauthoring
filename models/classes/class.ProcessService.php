@@ -19,7 +19,8 @@
  *
  *
  */
-
+require_once('wfAuthoring/plugins/CapiXML/models/class.ConditionalTokenizer.php');
+require_once('wfAuthoring/plugins/CapiImport/models/class.DescriptorFactory.php');
 /**
  * Short description of class wfAuthoring_models_classes_ProcessService
  *
