@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; under version 2
@@ -19,51 +19,6 @@
  *
  *
  */
-
-/**
- * TAO - wfAuthoring/models/classes/class.ProcessService.php
- *
- * $Id$
- *
- * This file is part of TAO.
- *
- * Automatically generated on 26.10.2012, 16:01:08 with ArgoUML PHP module 
- * (last revised $Date: 2010-01-12 20:14:42 +0100 (Tue, 12 Jan 2010) $)
- *
- * @author Joel Bout, <joel.bout@tudor.lu>
- * @package wfAuthoring
- * @subpackage models_classes
- */
-
-if (0 > version_compare(PHP_VERSION, '5')) {
-    die('This file was generated for PHP 5');
-}
-
-/**
- * include wfAuthoring_models_classes_ProcessCloner
- *
- * @author Joel Bout, <joel.bout@tudor.lu>
- */
-require_once('wfAuthoring/models/classes/class.ProcessCloner.php');
-
-/**
- * include wfEngine_models_classes_ProcessDefinitionService
- *
- * @author Joel Bout, <joel.bout@tudor.lu>
- */
-require_once('wfEngine/models/classes/class.ProcessDefinitionService.php');
-
-/* user defined includes */
-// section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D52-includes begin
-
-require_once('wfAuthoring/plugins/CapiXML/models/class.ConditionalTokenizer.php');
-require_once('wfAuthoring/plugins/CapiImport/models/class.DescriptorFactory.php');
-
-// section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D52-includes end
-
-/* user defined constants */
-// section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D52-constants begin
-// section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D52-constants end
 
 /**
  * Short description of class wfAuthoring_models_classes_ProcessService
@@ -114,11 +69,12 @@ class wfAuthoring_models_classes_ProcessService
 
         // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D58 begin
 		//place the following bloc in a helper
-		if (!empty($expressionInput))
-			$question = $expressionInput;
-		else
+		if (!empty($expressionInput)){
+			$question = $expressionInput; 
+		}
+		else {
 			$question = "";
-
+		}
 		//question test:
 		//$question = "IF    (11+B_Q01a*3)>=2 AND (B_Q01c=2 OR B_Q01c=7)    	THEN ^variable := 2*(B_Q01a+7)-^variable";
 
@@ -490,7 +446,9 @@ class wfAuthoring_models_classes_ProcessService
 					$this->deleteCondition($oldCondition);
 				}
 				$transitionRule->editPropertyValues(new core_kernel_classes_Property(PROPERTY_RULE_IF), $condition->getUri());
-			} else common_Logger::e('condition is not an instance of ressource : '.$condition);
+			} else {
+			    common_Logger::e('condition is not an instance of ressource : '.$condition);
+			}
 		}
 
 		$returnValue = $transitionRule;
@@ -1453,7 +1411,9 @@ class wfAuthoring_models_classes_ProcessService
 
         // section 10-13-1-39--6cc6036b:12e4807fb4f:-8000:0000000000002BD3 begin
 		$processDefinitionClass = new core_kernel_classes_Class(CLASS_PROCESS);
-		if(empty($comment)) $comment = 'create by the process authoring service on '.date(DATE_ISO8601);
+		if(empty($comment)) {
+		    $comment = 'create by the process authoring service on '.date(DATE_ISO8601);
+		}
 		if(empty($label)){
 			$label = $this->createUniqueLabel($processDefinitionClass);
 		}
@@ -1536,7 +1496,9 @@ class wfAuthoring_models_classes_ProcessService
 				}
 
 
-				if(!is_null($formalParam)) $returnValue->setPropertyValue($propFormalParam, $formalParam->getUri());
+				if(!is_null($formalParam)) {
+				    $returnValue->setPropertyValue($propFormalParam, $formalParam->getUri());
+				}
 			}
 		}
         // section 10-13-1-39--6cc6036b:12e4807fb4f:-8000:0000000000002BE0 end

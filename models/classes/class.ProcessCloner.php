@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; under version 2
@@ -20,39 +20,6 @@
  *
  */
 
-/**
- * TAO - wfAuthoring/models/classes/class.ProcessCloner.php
- *
- * $Id$
- *
- * This file is part of TAO.
- *
- * Automatically generated on 26.10.2012, 11:26:04 with ArgoUML PHP module 
- * (last revised $Date: 2010-01-12 20:14:42 +0100 (Tue, 12 Jan 2010) $)
- *
- * @author Joel Bout, <joel.bout@tudor.lu>
- * @package wfAuthoring
- * @subpackage models_classes
- */
-
-if (0 > version_compare(PHP_VERSION, '5')) {
-    die('This file was generated for PHP 5');
-}
-
-/**
- * include wfAuthoring_models_classes_ProcessService
- *
- * @author Joel Bout, <joel.bout@tudor.lu>
- */
-require_once('wfAuthoring/models/classes/class.ProcessService.php');
-
-/* user defined includes */
-// section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FAB-includes begin
-// section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FAB-includes end
-
-/* user defined constants */
-// section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FAB-constants begin
-// section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FAB-constants end
 
 /**
  * Short description of class wfAuthoring_models_classes_ProcessCloner
@@ -190,7 +157,9 @@ class wfAuthoring_models_classes_ProcessCloner
     public function addClonedActivity( core_kernel_classes_Resource $newActivityIn,  core_kernel_classes_Resource $oldActivity = null, $newActivityOut = null)
     {
         // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FCC begin
-		if(is_null($newActivityOut)) $newActivityOut = $newActivityIn;
+		if(is_null($newActivityOut)) {
+		    $newActivityOut = $newActivityIn;
+		}
 		
 		if(!is_null($oldActivity)){
 			//set the in:
@@ -348,7 +317,9 @@ class wfAuthoring_models_classes_ProcessCloner
 						}
 						if(is_null($transitionRuleClone)){
 							$transitionRuleClone = $this->authoringService->createTransitionRule($connectorClone);
-							if(is_null($transitionRuleClone)) throw new Exception("the transition rule of the cloned connector cannot be created");
+							if(is_null($transitionRuleClone)) {
+							    throw new Exception("the transition rule of the cloned connector cannot be created");
+							}
 						}
 						
 						$transitionRuleActivityProperties = array(
@@ -1005,8 +976,9 @@ class wfAuthoring_models_classes_ProcessCloner
     public function setDebugClonedActivities( core_kernel_classes_Resource $activity)
     {
         // section 10-13-1-39--56440278:12d4c05ae3c:-8000:000000000000715A begin
-		if(!is_null($activity))
+		if(!is_null($activity)){
 			$this->debugClonedActivities[$activity->getUri()] = $activity->getLabel();
+		}
         // section 10-13-1-39--56440278:12d4c05ae3c:-8000:000000000000715A end
     }
 

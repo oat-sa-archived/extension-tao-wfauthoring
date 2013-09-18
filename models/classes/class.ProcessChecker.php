@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; under version 2
@@ -17,46 +17,13 @@
  *
  * Copyright (c) 2013 (original work) Open Assessment Techonologies SA (under the project TAO-PRODUCT);
  *
- *
  */
 
-/**
- * TAO - wfAuthoring/models/classes/class.ProcessChecker.php
- *
- * $Id$
- *
- * This file is part of TAO.
- *
- * Automatically generated on 26.10.2012, 14:53:03 with ArgoUML PHP module 
- * (last revised $Date: 2010-01-12 20:14:42 +0100 (Tue, 12 Jan 2010) $)
- *
- * @author Joel Bout, <joel.bout@tudor.lu>
- * @package wfAuthoring
- * @subpackage models_classes
- */
 
-if (0 > version_compare(PHP_VERSION, '5')) {
-    die('This file was generated for PHP 5');
-}
 
 /**
  * The Service class is an abstraction of each service instance. 
  * Used to centralize the behavior related to every servcie instances.
- *
- * @author Joel Bout, <joel.bout@tudor.lu>
- */
-require_once('tao/models/classes/class.GenerisService.php');
-
-/* user defined includes */
-// section 10-13-1-39--7378788e:12e4d9bbe63:-8000:0000000000004F8F-includes begin
-// section 10-13-1-39--7378788e:12e4d9bbe63:-8000:0000000000004F8F-includes end
-
-/* user defined constants */
-// section 10-13-1-39--7378788e:12e4d9bbe63:-8000:0000000000004F8F-constants begin
-// section 10-13-1-39--7378788e:12e4d9bbe63:-8000:0000000000004F8F-constants end
-
-/**
- * Short description of class wfAuthoring_models_classes_ProcessChecker
  *
  * @access public
  * @author Joel Bout, <joel.bout@tudor.lu>
@@ -176,7 +143,9 @@ class wfAuthoring_models_classes_ProcessChecker
 		foreach($checkFunctions as $function){
 			if(method_exists($this, $function)){
 				$returnValue = $this->$function();
-				if(!$returnValue) break;
+				if(!$returnValue) {
+				    break;
+				}
 			}
 		}
         // section 10-13-1-39--7378788e:12e4d9bbe63:-8000:0000000000004FA2 end
