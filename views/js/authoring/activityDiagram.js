@@ -1348,7 +1348,7 @@ ActivityDiagramClass.setFeedbackMenu = function(mode){
 			break;
 		}
 		case 'ModeActivityMenu':{
-			$("#feedback_message").text('Activity menu: select an action from the context menu.');
+			$("#feedback_message").text(__('Activity menu: select an action from the context menu.'));
 			$("#feedback_menu_save").parent().remove();
 			break;
 		}
