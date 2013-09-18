@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; under version 2
@@ -33,23 +32,6 @@
  * @subpackage helpers_form
  */
 
-if (0 > version_compare(PHP_VERSION, '5')) {
-    die('This file was generated for PHP 5');
-}
-
-/**
- * The GenerisFormFactory enables you to create Forms using rdf data and the
- * api to provide it. You can give any node of your ontology and the factory
- * create the appriopriate form. The Generis ontology (with the Widget Property)
- * required to use it.
- * Now only the xhtml rendering mode is implemented
- *
- * @access public
- * @author Bertrand Chevrier, <bertrand.chevrier@tudor.lu>
- * @package tao
- * @see core_kernel_classes_* packages
- * @subpackage helpers_form
- */
 class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFormFactory
 {
     // --- ASSOCIATIONS ---
@@ -900,8 +882,9 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 				$aService = wfEngine_models_classes_ActivityService::singleton();
 			    
 			    if($aService->isActivity($nextActivity)){
-					if($includeConnectors) $elementChoice->setValue("activity");
-					$elementActivities->setValue($nextActivity->getUri());//no need for tao_helpers_Uri::encode
+					if($includeConnectors) $elementChoice->setValue("activity");{
+					   $elementActivities->setValue($nextActivity->getUri());//no need for tao_helpers_Uri::encode
+					}
 				}
 				$conmectorService = wfEngine_models_classes_ConnectorService::singleton();
 				if($conmectorService->isConnector($nextActivity) && $includeConnectors){
@@ -913,10 +896,16 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 		
 		//put all elements in the return value:
 		$returnValue[$idPrefix.'_description'] = $elementDescription;
-		if($includeConnectors) $returnValue[$idPrefix.'_choice'] = $elementChoice;
+		if($includeConnectors) {
+		    $returnValue[$idPrefix.'_choice'] = $elementChoice;
+		}
 		$returnValue[$idPrefix.'_activities'] = $elementActivities;
-		if($allowCreation) $returnValue[$idPrefix.'_label'] = $elementActivityLabel;
-		if($includeConnectors) $returnValue[$idPrefix.'_connectors'] = $elementConnectors;
+		if($allowCreation) {
+		    $returnValue[$idPrefix.'_label'] = $elementActivityLabel;
+		}
+		if($includeConnectors) {
+		    $returnValue[$idPrefix.'_connectors'] = $elementConnectors;
+		}
 		
 		return $returnValue;
 	}
