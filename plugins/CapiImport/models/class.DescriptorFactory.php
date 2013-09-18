@@ -288,11 +288,12 @@ class DescriptorFactory{
 					case "toggleRead":
 						$class = '';
 						
-						if ($itemDom->tagName == 'question')
+						if ($itemDom->tagName == 'question'){
 							$class = 'dontread';
-						else
+						}
+						else{
 							$class = 'read';
-							
+						}
 						// This code retrieve what is in the <toggleRead> tag but
 						// add a trailing carriage return (I don't know why) so
 						// I remove it.
