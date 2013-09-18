@@ -153,11 +153,12 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 				if($_POST["diagramData"]) {
 					common_Logger::d('loading: '.$currentProcess);
 					$diagramDataResource = $currentProcess->getOnePropertyValue(new core_kernel_classes_Property(PROPERTY_PROCESS_DIAGRAMDATA));//should get a literal
-					if ($diagramDataResource instanceof core_kernel_classes_Literal)
+					if ($diagramDataResource instanceof core_kernel_classes_Literal){
 						$diagramData = $diagramDataResource->literal;
-					else
+					}
+					else{
 						$diagramData = wfAuthoring_helpers_ProcessDiagramFactory::buildDiagramData($currentProcess);
-		
+					}
 					//echo $diagramData;
 					//var_dump($diagramData, json_decode($diagramData));
 					$activityData["diagramData"] = json_decode($diagramData);
