@@ -80,7 +80,9 @@ class wfAuthoring_models_classes_ProcessService
 		//$question = "IF    (11+B_Q01a*3)>=2 AND (B_Q01c=2 OR B_Q01c=7)    	THEN ^variable := 2*(B_Q01a+7)-^variable";
 
 		//analyse the expressionInput string and convert to an XML document:
-		if (get_magic_quotes_gpc()) $question = stripslashes($question);// Magic quotes are deprecated
+		if (get_magic_quotes_gpc()) {
+		    $question = stripslashes($question);// Magic quotes are deprecated
+		}
 		//TODO: check if the variables exists and are associated to the process definition
 
 		$returnValue = null;
