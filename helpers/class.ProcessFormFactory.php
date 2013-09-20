@@ -882,9 +882,11 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 				$aService = wfEngine_models_classes_ActivityService::singleton();
 			    
 			    if($aService->isActivity($nextActivity)){
-					if($includeConnectors) $elementChoice->setValue("activity");{
-					   $elementActivities->setValue($nextActivity->getUri());//no need for tao_helpers_Uri::encode
+					if($includeConnectors) {
+					    $elementChoice->setValue("activity");
 					}
+					$elementActivities->setValue($nextActivity->getUri());//no need for tao_helpers_Uri::encode
+					
 				}
 				$conmectorService = wfEngine_models_classes_ConnectorService::singleton();
 				if($conmectorService->isConnector($nextActivity) && $includeConnectors){
