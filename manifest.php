@@ -8,7 +8,7 @@ $extpath = dirname(__FILE__).DIRECTORY_SEPARATOR;
 $taopath = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'tao'.DIRECTORY_SEPARATOR;
 
 return array(
-	'name' => 'wfAuthoring ',
+	'name' => 'wfAuthoring',
 	'description' => 'Workflow Authoring extension',
 	'version' => '2.4',
 	'author' => 'Open Assessment Technologies',
