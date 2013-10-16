@@ -18,7 +18,7 @@ msgid "Activity"
 msgstr "Activité"
 
 msgid "Activity Editor"
-msgstr "Editeur d'activités"
+msgstr "Éditeur d'activités"
 
 msgid "Activity or Connector"
 msgstr "Activité"
@@ -46,7 +46,7 @@ msgid "checking the code..."
 msgstr "vérification du code..."
 
 msgid "Close all"
-msgstr "Tout fermer"
+msgstr "Fermer tout"
 
 msgid "Code"
 msgstr "Code"
@@ -76,10 +76,10 @@ msgid "create new connector"
 msgstr "créer un nouveau connecteur"
 
 msgid "Current Activities"
-msgstr "Activités courantes"
+msgstr "Activités en cours"
 
 msgid "Current activities"
-msgstr "Activités courantes"
+msgstr "Activités en cours"
 
 msgid "Current User"
 msgstr "Utilisateur courant"
@@ -123,7 +123,7 @@ msgid "interactive service saved"
 msgstr "service interactif enregistré"
 
 msgid "Label"
-msgstr "Étiquette"
+msgstr "Libellé"
 
 msgid "Language"
 msgstr "Langue"
@@ -146,7 +146,7 @@ msgid "Monitor processes"
 msgstr "Suivi des processus"
 
 msgid "Monitoring processes"
-msgstr "Monitoring des processus"
+msgstr "Surveillance des processus"
 
 msgid "More detailed description here."
 msgstr "Description plus détaillée ici."
@@ -161,7 +161,7 @@ msgid "ok"
 msgstr "ok"
 
 msgid "Open all"
-msgstr "Tout ouvrir"
+msgstr "Ouvrir tout"
 
 msgid "Output Parameters"
 msgstr "Paramètres de sortie"
@@ -220,7 +220,7 @@ msgid "Process Variable"
 msgstr "Variable de processus"
 
 msgid "Process Variables"
-msgstr "Variables de processus"
+msgstr "Variables du processus"
 
 #, tao-public
 msgid "Processes"
@@ -251,7 +251,7 @@ msgid "Select a test"
 msgstr ""
 
 msgid "Service Definition"
-msgstr "Définition de service"
+msgstr "Définition du service"
 
 msgid "Set the activity as a final one will delete its following connector. \n"
 " Are you sure?"
@@ -271,7 +271,7 @@ msgid "the chosen code has already been used for the process variable"
 msgstr "le code choisi est déjà en cours d'utilisation pour une autre variable"
 
 msgid "The Processes module allows to create Processes."
-msgstr "Le module des processus vous permet de créer des processus organisés sous forme d'activités liées par des connecteurs."
+msgstr "Le module Processus vous permet de créer des processus organisés sous forme d'activités liées par des connecteurs."
 
 msgid "Then"
 msgstr "Alors"
@@ -306,3 +306,54 @@ msgstr "XLIFF"
 
 msgid "XLIFF version"
 msgstr "Version XLIFF"
+
+msgid "Manage services"
+msgstr "Gestion des services"
+
+msgid "Process Diagram"
+msgstr "Diagrammes du processus"
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "Add Activity"
+msgstr "Ajouter activité"
+
+msgid "Edit the activity label then press \"enter\" or \"save\"."
+msgstr "Modifiez l'étiquette de l'activité puis faîtes \"Entrée\" ou \"Enregistrer\"."
+
+msgid "Activity menu: select an action from the context menu."
+msgstr "Menu activité : sélectionnez une action depuis le menu contextuel."
+
+msgid "Drag the arrow tip and connect it to an activity or a connector."
+msgstr "Glissez la pointe de flèche et reliez-la à une activité ou un connecteur."
+
+msgid "Drag and drop the selected activity."
+msgstr "Glissez-déposez l'activité sélectionnée."
+
+msgid "Drag and drop the selected connector."
+msgstr "Glissez-déposez le connecteur sélectionné."
+
+msgid "Move flex points or arrow tip."
+msgstr "Déplacez les points de flexion ou la pointe de flèche."
+
+msgid "Add a connector"
+msgstr "Ajouter un connecteur"
+
+msgid "Logged in as:"
+msgstr "Connecté en tant que : "
+
+msgid "Monitoring processes"
+msgstr "Gestion des processus"
+
+msgid "Execution of"
+msgstr "Exécution de"
+
+msgid "Add a variable"
+msgstr "Ajouter une variable"
+
+msgid "Service library"
+msgstr "Bibliothèque de services"
+
+msgid "url"
+msgstr "URL"
