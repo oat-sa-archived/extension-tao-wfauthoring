@@ -37,13 +37,13 @@ TaoGridActivityVariablesAdapter.postCellFormat = function(grid, cell, rowId, col
 
 		var dialogHtml = '<div id="activity-variables-popup" style="margin-top:5px;"> \
 			<div style="height:30px;"> \
-				<a href="#" class="activity-variable-action activity-variable-add"><img src="'+root_url+'tao/views/img/add.png"/> Add a variable</a> \
+				<a href="#" class="activity-variable-action activity-variable-add"><img src="'+root_url+'tao/views/img/add.png"/> '+__('Add a variable')+'</a> \
 			</div> \
 			<div style="height:405px;"> \
 				<table id="activity-variables-grid"></table> \
 			</div> \
 			<div style="height:30px; margin-top:10px;"> \
-				<a href="#" class="activity-variable-action activity-variable-add"><img src="'+root_url+'tao/views/img/add.png"/> Add a variable</a> \
+				<a href="#" class="activity-variable-action activity-variable-add"><img src="'+root_url+'tao/views/img/add.png"/> '+__('Add a variable')+'</a> \
 			</div> \
 		</div>';
 
