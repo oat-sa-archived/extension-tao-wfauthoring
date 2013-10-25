@@ -62,6 +62,8 @@ class ProcessFlattenerTestCase extends UnitTestCase {
 	    $super1 = $this->createLinearSuperProcess(array($process1));
 	    $flattener = new wfAuthoring_models_classes_ProcessFlattener($super1);
 	    $flattener->flatten();
+	    $activities = $super1->getPropertyValues(new core_kernel_classes_Property(PROPERTY_PROCESS_ACTIVITIES));
+	    $this->assertEqual(count($activities), 3);
 	    $arr = wfAuthoring_models_classes_ProcessService::singleton()->getInitialSteps($super1);
 	    $this->assertEqual(count($arr), 1);
 	    $start = current($arr);
@@ -77,6 +79,9 @@ class ProcessFlattenerTestCase extends UnitTestCase {
 	    $super2 = $this->createLinearSuperProcess(array($super1));
 	    $flattener = new wfAuthoring_models_classes_ProcessFlattener($super2);
 	    $flattener->flatten();
+	    $activities = $super2->getPropertyValues(new core_kernel_classes_Property(PROPERTY_PROCESS_ACTIVITIES));
+	    $this->assertEqual(count($activities), 3);
+	     
 	    $arr = wfAuthoring_models_classes_ProcessService::singleton()->getInitialSteps($super2);
 	    $this->assertEqual(count($arr), 1);
 	    $start = current($arr);
@@ -102,6 +107,8 @@ class ProcessFlattenerTestCase extends UnitTestCase {
 	    $flattener = new wfAuthoring_models_classes_ProcessFlattener($super3);
 	    $flattener->flatten();
 	     
+	    $activities = $super3->getPropertyValues(new core_kernel_classes_Property(PROPERTY_PROCESS_ACTIVITIES));
+	    $this->assertEqual(count($activities), 9);
 	    $arr = wfAuthoring_models_classes_ProcessService::singleton()->getInitialSteps($super3);
 	    $this->assertEqual(count($arr), 1);
 	    $start = current($arr);

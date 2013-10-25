@@ -51,6 +51,7 @@ class wfAuthoring_models_classes_ProcessFlattener extends wfAuthoring_models_cla
 
     protected function flattenProcessActivity(core_kernel_classes_Resource $activity){
 
+        $this->initCloningVariables();
         $services = wfEngine_models_classes_ActivityService::singleton()->getInteractiveServices($activity);
         // only replace single-service activities, with the service process runner
         if(count($services) == 1){
