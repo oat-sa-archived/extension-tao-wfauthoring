@@ -948,7 +948,7 @@ class wfAuthoring_models_classes_ProcessService
 		if(!is_null($term)){
 			//determine the class:
 
-			foreach($term->getType() as $class){
+			foreach($term->getTypes() as $class){
 				if($class->getUri() == CLASS_OPERATION){
 
 					$this->deleteOperation($term);//an operation is a term
