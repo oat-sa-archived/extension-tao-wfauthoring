@@ -21,26 +21,10 @@ class ListOfToken implements IteratorAggregate
         return $this->get(0)->getXml();
     }
 
-    function getXmlString($reformat = false)
+    function getXmlString()
     {
         $xml = $this->getXml();
-        
         $xml = $xml->saveXML();
-        if ($reformat) {
-            if (class_exists("tidy", false)) {
-                $xml = tidy_parse_string($xml, array(
-                    'indent' => true,
-                    'output-xml' => true,
-                    'input-xml' => true,
-                    'show-body-only' => true,
-                    'wrap' => '1000'
-                ));
-                // How to remove the header without doing such things?
-                $xml = preg_replace("/<\?xml version=\"[^\"]*\"\?>\n/", "", $xml);
-            } else {
-                // throw new Exception("getXmlString needs 'tidy' php module");
-            }
-        }
         return $xml;
     }
 
