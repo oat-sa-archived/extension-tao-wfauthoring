@@ -18,7 +18,10 @@ return array(
 			array('type' => 'CheckFileSystemComponent', 'value' => array('id' => 'fs_wfAuthoring_includes', 'location' => 'wfAuthoring/includes', 'rights' => 'rw'))
 		)
 	),
-	'managementRole' => 'http://www.tao.lu/middleware/wfEngine.rdf#WorkflowsManagerRole',
+	'managementRole' => 'http://www.tao.lu/middleware/wfEngine.rdf#WfAuthoringManagerRole',
+    'acl' => array(
+        array('grant', 'http://www.tao.lu/middleware/wfEngine.rdf#WfAuthoringManagerRole', array('ext'=>'wfAuthoring'))
+    ),
 	'constants' => array(
 		# actions directory
 		"DIR_ACTIONS"			=> $extpath."actions".DIRECTORY_SEPARATOR,
