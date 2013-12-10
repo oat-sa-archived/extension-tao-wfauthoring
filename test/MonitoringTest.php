@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/../../tao/test/TaoTestRunner.php';
+
 include_once dirname(__FILE__) . '/../includes/raw_start.php';
 
 require_once dirname(__FILE__) . '/../../wfEngine/test/wfEngineServiceTest.php';
@@ -11,7 +11,7 @@ require_once dirname(__FILE__) . '/../../wfEngine/test/wfEngineServiceTest.php';
  * @package wfEngine
  * @subpackage test
  */
-class MonitoringTestCase extends wfEngineServiceTest {
+class MonitoringTest extends wfEngineServiceTest {
 	
 	public function testCreateProcessMonitoringGrid(){
 		

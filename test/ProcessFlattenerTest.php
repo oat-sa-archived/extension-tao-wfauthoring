@@ -1,8 +1,8 @@
 <?php
-require_once dirname(__FILE__) . '/../../tao/test/TaoTestRunner.php';
+require_once dirname(__FILE__) . '/../../tao/test/TaoPhpUnitTestRunner.php';
 include_once dirname(__FILE__) . '/../includes/raw_start.php';
 
-class ProcessFlattenerTestCase extends UnitTestCase {
+class ProcessFlattenerTest extends TaoPhpUnitTestRunner {
 	
 	
 	protected $authoringService = null;
@@ -14,20 +14,20 @@ class ProcessFlattenerTestCase extends UnitTestCase {
 	 */
 	public function setUp(){
 	    parent::setUp();
-		TaoTestRunner::initTest();
+		TaoPhpUnitTestRunner::initTest();
 	}
 
 	public function testTheTester(){
 	    $process1 = $this->createLinearProcess();
 	    
 	    $arr = wfAuthoring_models_classes_ProcessService::singleton()->getInitialSteps($process1);
-	    $this->assertEqual(count($arr), 1);
+	    $this->assertEquals(count($arr), 1);
 	    $startP1 = current($arr);
 	    $arr = wfAuthoring_models_classes_ProcessService::singleton()->getFinalSteps($process1);
-	    $this->assertEqual(count($arr), 1);
+	    $this->assertEquals(count($arr), 1);
 	    $endP1 = current($arr);
 	     
-	    $this->assertEqual($startP1, $startP1);
+	    $this->assertEquals($startP1, $startP1);
 	    $final = $this->assertProcessPartCorresponds($startP1, $startP1);
 	    $arr = wfEngine_models_classes_StepService::singleton()->getNextSteps($final);
 	    $this->assertTrue(empty($arr));
@@ -36,9 +36,9 @@ class ProcessFlattenerTestCase extends UnitTestCase {
 	    $cloner = new wfAuthoring_models_classes_ProcessCloner();
 	    $clone = $cloner->cloneProcess($process1);
 	    $arr = wfAuthoring_models_classes_ProcessService::singleton()->getInitialSteps($clone);
-	    $this->assertEqual(count($arr), 1);
+	    $this->assertEquals(count($arr), 1);
 	    $startClone = current($arr);
-	    $this->assertNotEqual($startP1, $startClone);
+	    $this->assertNotEquals($startP1, $startClone);
 	    $this->assertCorresponds($startP1, $startClone);
 	    
 	    $final = $this->assertProcessPartCorresponds($startP1, $startClone);
@@ -53,19 +53,19 @@ class ProcessFlattenerTestCase extends UnitTestCase {
 	    // single
 	    $process1 = $this->createLinearProcess();
 	    $arr = wfAuthoring_models_classes_ProcessService::singleton()->getInitialSteps($process1);
-	    $this->assertEqual(count($arr), 1);
+	    $this->assertEquals(count($arr), 1);
 	    $startP1 = current($arr);
 	    $arr = wfAuthoring_models_classes_ProcessService::singleton()->getFinalSteps($process1);
-	    $this->assertEqual(count($arr), 1);
+	    $this->assertEquals(count($arr), 1);
 	    $endP1 = current($arr);
 	    
 	    $super1 = $this->createLinearSuperProcess(array($process1));
 	    $flattener = new wfAuthoring_models_classes_ProcessFlattener($super1);
 	    $flattener->flatten();
 	    $activities = $super1->getPropertyValues(new core_kernel_classes_Property(PROPERTY_PROCESS_ACTIVITIES));
-	    $this->assertEqual(count($activities), 3);
+	    $this->assertEquals(count($activities), 3);
 	    $arr = wfAuthoring_models_classes_ProcessService::singleton()->getInitialSteps($super1);
-	    $this->assertEqual(count($arr), 1);
+	    $this->assertEquals(count($arr), 1);
 	    $start = current($arr);
 
 	    $final = $this->assertProcessPartCorresponds($start, $startP1);
@@ -80,10 +80,10 @@ class ProcessFlattenerTestCase extends UnitTestCase {
 	    $flattener = new wfAuthoring_models_classes_ProcessFlattener($super2);
 	    $flattener->flatten();
 	    $activities = $super2->getPropertyValues(new core_kernel_classes_Property(PROPERTY_PROCESS_ACTIVITIES));
-	    $this->assertEqual(count($activities), 3);
+	    $this->assertEquals(count($activities), 3);
 	     
 	    $arr = wfAuthoring_models_classes_ProcessService::singleton()->getInitialSteps($super2);
-	    $this->assertEqual(count($arr), 1);
+	    $this->assertEquals(count($arr), 1);
 	    $start = current($arr);
 	    
 	    $final = $this->assertProcessPartCorresponds($start, $startP1);
@@ -96,11 +96,11 @@ class ProcessFlattenerTestCase extends UnitTestCase {
 	    // multiple
 	    $process2 = $this->createLinearProcess();
 	    $arr = wfAuthoring_models_classes_ProcessService::singleton()->getInitialSteps($process2);
-	    $this->assertEqual(count($arr), 1);
+	    $this->assertEquals(count($arr), 1);
 	    $startP2 = current($arr);
 	    $process3 = $this->createLinearProcess();
 	    $arr = wfAuthoring_models_classes_ProcessService::singleton()->getInitialSteps($process3);
-	    $this->assertEqual(count($arr), 1);
+	    $this->assertEquals(count($arr), 1);
 	    $startP3 = current($arr);
 	     
 	    $super3 = $this->createLinearSuperProcess(array($process1, $process2, $process3));
@@ -108,9 +108,9 @@ class ProcessFlattenerTestCase extends UnitTestCase {
 	    $flattener->flatten();
 	     
 	    $activities = $super3->getPropertyValues(new core_kernel_classes_Property(PROPERTY_PROCESS_ACTIVITIES));
-	    $this->assertEqual(count($activities), 9);
+	    $this->assertEquals(count($activities), 9);
 	    $arr = wfAuthoring_models_classes_ProcessService::singleton()->getInitialSteps($super3);
-	    $this->assertEqual(count($arr), 1);
+	    $this->assertEquals(count($arr), 1);
 	    $start = current($arr);
 	    
 	    $last = $this->assertProcessPartCorresponds($start, $startP1);
@@ -157,10 +157,10 @@ class ProcessFlattenerTestCase extends UnitTestCase {
 	
 	protected function advanceTwo($processes) {
 	    $arr = wfEngine_models_classes_StepService::singleton()->getNextSteps($processes);
-	    $this->assertEqual(count($arr), 1);
+	    $this->assertEquals(count($arr), 1);
 	    $next = current($arr);
 	    $arr = wfEngine_models_classes_StepService::singleton()->getNextSteps($next);
-	    $this->assertEqual(count($arr), 1);
+	    $this->assertEquals(count($arr), 1);
 	    return current($arr);
 	}
 	
@@ -227,13 +227,13 @@ class ProcessFlattenerTestCase extends UnitTestCase {
 	    //echo 'Compare '.$step1->getLabel().' and '.$step2->getLabel().'<br />';
 	    $services1 = wfEngine_models_classes_ActivityService::singleton()->getInteractiveServices($step1);
 	    $services2 = wfEngine_models_classes_ActivityService::singleton()->getInteractiveServices($step2);
-	    $this->assertEqual(count($services1),count($services2));
+	    $this->assertEquals(count($services1),count($services2));
 	    if (count($services1) == count($services2)) {
     	    foreach ($services1 as $service1) {
     	        $service2 = array_shift($services2);
     	        $call1 = tao_models_classes_service_ServiceCall::fromResource($service1);
     	        $call2 = tao_models_classes_service_ServiceCall::fromResource($service2);
-    	        $this->assertEqual($call1->serializeToString(), $call2->serializeToString());
+    	        $this->assertEquals($call1->serializeToString(), $call2->serializeToString());
     	    }
 	    }
 	}

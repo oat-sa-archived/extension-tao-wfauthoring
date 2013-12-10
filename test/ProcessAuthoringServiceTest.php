@@ -1,8 +1,8 @@
 <?php
-require_once dirname(__FILE__) . '/../../tao/test/TaoTestRunner.php';
+require_once dirname(__FILE__) . '/../../tao/test/TaoPhpUnitTestRunner.php';
 include_once dirname(__FILE__) . '/../includes/raw_start.php';
 
-class ProcessAuthoringServiceTestCase extends UnitTestCase {
+class ProcessAuthoringServiceTestCase extends TaoPhpUnitTestRunner {
 	
 	
 	protected $authoringService = null;
@@ -13,7 +13,7 @@ class ProcessAuthoringServiceTestCase extends UnitTestCase {
 	 * tests initialization
 	 */
 	public function setUp(){
-		TaoTestRunner::initTest();
+		TaoPhpUnitTestRunner::initTest();
 		
 		$processDefinitionClass = new core_kernel_classes_Class(CLASS_PROCESS);
 		$processDefinition = $processDefinitionClass->createInstance('processForUnitTest','created for the unit test of process authoring service');
@@ -24,6 +24,8 @@ class ProcessAuthoringServiceTestCase extends UnitTestCase {
 		}
 		$this->apiModel = core_kernel_impl_ApiModelOO::singleton();
 		$this->variableService = wfEngine_models_classes_VariableService::singleton();
+		
+		$this->authoringService = wfAuthoring_models_classes_ProcessService::singleton();
 	}
 	
 	/**
@@ -31,12 +33,8 @@ class ProcessAuthoringServiceTestCase extends UnitTestCase {
 	 */
 	public function testService(){
 		
-		$authoringService = wfAuthoring_models_classes_ProcessService::singleton();
-		
-		$this->assertIsA($authoringService, 'tao_models_classes_Service');
-		$this->assertIsA($authoringService, 'wfAuthoring_models_classes_ProcessService');
-
-		$this->authoringService = $authoringService;
+		$this->assertIsA($this->authoringService, 'tao_models_classes_Service');
+		$this->assertIsA($this->authoringService, 'wfAuthoring_models_classes_ProcessService');
 		
 	}
 	
@@ -56,12 +54,12 @@ class ProcessAuthoringServiceTestCase extends UnitTestCase {
 	public function testCreateActivity(){
 		
 		$activity1 = $this->authoringService->createActivity($this->proc);
-		$this->assertEqual($activity1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISINITIAL))->getUri(), GENERIS_TRUE);
-		$this->assertEqual($activity1->getLabel(), 'Activity_1');
-		$this->assertEqual($activity1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISHIDDEN))->getUri(), GENERIS_FALSE);
+		$this->assertEquals($activity1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISINITIAL))->getUri(), GENERIS_TRUE);
+		$this->assertEquals($activity1->getLabel(), 'Activity_1');
+		$this->assertEquals($activity1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISHIDDEN))->getUri(), GENERIS_FALSE);
 		
 		$activity2 = $this->authoringService->createActivity($this->proc, 'myActivity');
-		$this->assertEqual($activity2->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISINITIAL))->getUri(), GENERIS_FALSE);
+		$this->assertEquals($activity2->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISINITIAL))->getUri(), GENERIS_FALSE);
 	}
 	
 	public function testIsActivity(){
@@ -82,12 +80,12 @@ class ProcessAuthoringServiceTestCase extends UnitTestCase {
 		$activity1 = $this->authoringService->createActivity($this->proc, 'myActivity');
 		$connector1 = $this->authoringService->createConnector($activity1);
 		$next = $activity1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_STEP_NEXT));
-		$this->assertEqual($next->getUri(), $connector1->getUri());
-		$this->assertEqual($connector1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_ACTIVITYREFERENCE))->getUri(), $activity1->getUri());
+		$this->assertEquals($next->getUri(), $connector1->getUri());
+		$this->assertEquals($connector1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_ACTIVITYREFERENCE))->getUri(), $activity1->getUri());
 		
 		//create a connector of a connector:
 		$connector2 = $this->authoringService->createConnector($connector1);
-		$this->assertEqual($connector2->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_ACTIVITYREFERENCE))->getUri(), $activity1->getUri());
+		$this->assertEquals($connector2->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_ACTIVITYREFERENCE))->getUri(), $activity1->getUri());
 	}
 	
 	public function testAnalyseExpression(){
@@ -126,19 +124,19 @@ class ProcessAuthoringServiceTestCase extends UnitTestCase {
 		
 		$followingActivity1 = $this->authoringService->createSequenceActivity($connector1);
 		$this->assertIsA($followingActivity1, 'core_kernel_classes_Resource');
-		$this->assertEqual($followingActivity1->getLabel(), 'Activity_2');
-		$this->assertEqual($connector1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TYPE))->getUri(), INSTANCE_TYPEOFCONNECTORS_SEQUENCE);
+		$this->assertEquals($followingActivity1->getLabel(), 'Activity_2');
+		$this->assertEquals($connector1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TYPE))->getUri(), INSTANCE_TYPEOFCONNECTORS_SEQUENCE);
 		
 		$followingConnector1 = $this->authoringService->createConnector($followingActivity1);
 		$this->assertIsA($followingConnector1, 'core_kernel_classes_Resource');
 
 		$shouldBeActivity1 = null;
 		$shouldBeActivity1 = $this->authoringService->createSequenceActivity($followingConnector1, $activity1);
-		$this->assertEqual($activity1->getUri(), $shouldBeActivity1->getUri());
+		$this->assertEquals($activity1->getUri(), $shouldBeActivity1->getUri());
 		
 		$shouldBeActivity1 = null;
 		$shouldBeActivity1 = $followingConnector1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_STEP_NEXT));
-		$this->assertEqual($activity1->getUri(),$shouldBeActivity1->getUri());
+		$this->assertEquals($activity1->getUri(),$shouldBeActivity1->getUri());
 	}
 	
 	public function testCreateConditionalActivity(){
@@ -147,23 +145,23 @@ class ProcessAuthoringServiceTestCase extends UnitTestCase {
 		
 		$then = $this->authoringService->createConditionalActivity($connector1, 'then');//create "Activity_2"
 		$else = $this->authoringService->createConditionalActivity($connector1, 'else', null, '', true);//create another connector
-		$this->assertEqual($connector1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TYPE))->getUri(), INSTANCE_TYPEOFCONNECTORS_CONDITIONAL);
+		$this->assertEquals($connector1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TYPE))->getUri(), INSTANCE_TYPEOFCONNECTORS_CONDITIONAL);
 		$activityService = wfEngine_models_classes_ActivityService::singleton();
 		$this->assertTrue($activityService->isActivity($then));
 		$connectorService =  wfEngine_models_classes_ConnectorService::singleton();
 		$this->assertTrue($connectorService->isConnector($else));
 		
 		$activity3 = $this->authoringService->createSequenceActivity($else, null, 'Act3');
-		$this->assertEqual($activity3->getLabel(), 'Act3');
+		$this->assertEquals($activity3->getLabel(), 'Act3');
 		
 		$transitionRule = $connector1->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TRANSITIONRULE));
-		$this->assertEqual($then->getUri(), $transitionRule->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_TRANSITIONRULES_THEN))->getUri());
-		$this->assertEqual($else->getUri(), $transitionRule->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_TRANSITIONRULES_ELSE))->getUri());
+		$this->assertEquals($then->getUri(), $transitionRule->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_TRANSITIONRULES_THEN))->getUri());
+		$this->assertEquals($else->getUri(), $transitionRule->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_TRANSITIONRULES_ELSE))->getUri());
 		
 		$myProcessVar1 = null;
 		$myProcessVar1 = $this->variableService->getProcessVariable('myProcessVarCode1', true);
 		$transitionRuleBis = $this->authoringService->createTransitionRule($connector1, '^myProcessVarCode1 == 1');
-		$this->assertEqual($transitionRule->getUri(), $transitionRuleBis->getUri());
+		$this->assertEquals($transitionRule->getUri(), $transitionRuleBis->getUri());
 		
 		
 		$this->assertTrue($this->variableService->deleteProcessVariable('myProcessVarCode1'));
@@ -233,13 +231,13 @@ class ProcessAuthoringServiceTestCase extends UnitTestCase {
 		
 		$this->assertTrue($this->authoringService->setParallelActivities($connectorB, $newActivitiesArray));
 		$nextActivitiesCollection = $connectorB->getPropertyValuesCollection(new core_kernel_classes_Property(PROPERTY_STEP_NEXT));
-		$this->assertEqual($nextActivitiesCollection->count(), 2);
+		$this->assertEquals($nextActivitiesCollection->count(), 2);
 
 		//merge all activity D instance to F:
 		$this->authoringService->createJoinActivity($connectorD, $activityF, '', $activityD);
 		$activitiyClass = new core_kernel_classes_Class(CLASS_ACTIVITIES);
 		$nexts = wfEngine_models_classes_ConnectorService::singleton()->getPreviousActivities($connectorD);
-		$this->assertEqual(count($nexts), 2);//2 cardinality resources
+		$this->assertEquals(count($nexts), 2);//2 cardinality resources
 	}
 	
 	public function testCreateServiceDefinition(){
@@ -272,7 +270,7 @@ class ProcessAuthoringServiceTestCase extends UnitTestCase {
 		$propCode = new core_kernel_classes_Property(PROPERTY_PROCESSVARIABLES_CODE);
 		
 		$createdFormalParamCollection = $serviceDefinition->getPropertyValuesCollection($propServiceParam);
-		$this->assertEqual($createdFormalParamCollection->count(), 4);
+		$this->assertEquals($createdFormalParamCollection->count(), 4);
 		foreach($createdFormalParamCollection->getIterator() as $formalParam){
 			$propName = (string)$formalParam->getUniquePropertyValue($propParameterName);
 			if(in_array($propName, array('param1', 'param2', 'param3'))){
@@ -280,19 +278,19 @@ class ProcessAuthoringServiceTestCase extends UnitTestCase {
 					case 'param1':{
 						$procVar = $formalParam->getUniquePropertyValue($propParameterProcessVar);
 						$this->assertNotNull($procVar);
-						$this->assertEqual($procVar->getUniquePropertyValue($propCode), 'myProcessVarCode1');
+						$this->assertEquals($procVar->getUniquePropertyValue($propCode), 'myProcessVarCode1');
 						break;
 					}
 					case 'param2':{
 						$procVar = $formalParam->getUniquePropertyValue($propParameterProcessVar);
 						$this->assertNotNull($procVar);
-						$this->assertEqual($procVar->getUniquePropertyValue($propCode), 'myProcessVarCode2');
+						$this->assertEquals($procVar->getUniquePropertyValue($propCode), 'myProcessVarCode2');
 						break;
 					}
 					case 'param3':{
 						$procVar = $formalParam->getUniquePropertyValue($propParameterConstantVal);
 						$this->assertNotNull($procVar);
-						$this->assertEqual((string) $procVar, 'myConstantValue');
+						$this->assertEquals((string) $procVar, 'myConstantValue');
 						break;
 					}
 					case 'param4':{

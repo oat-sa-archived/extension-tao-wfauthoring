@@ -4,7 +4,7 @@ require_once dirname(__FILE__) . '/../../wfEngine/test/wfEngineServiceTest.php';
 require_once dirname(__FILE__) . '/../../tao/test/TaoTestRunner.php';
 include_once dirname(__FILE__) . '/../includes/raw_start.php';
 */
-class ConnectorAuthoringTestCase extends wfEngineServiceTest {
+class ConnectorAuthoringTest extends wfEngineServiceTest {
 	
 	/**
 	 * @var wfAuthoring_models_classes_ConnectorService
@@ -16,7 +16,7 @@ class ConnectorAuthoringTestCase extends wfEngineServiceTest {
 	 */
 	public function setUp(){
 		parent::setUp();
-		TaoTestRunner::initTest();
+
 		
 		$this->service = wfAuthoring_models_classes_ConnectorService::singleton();
 	}
@@ -261,7 +261,7 @@ class ConnectorAuthoringTestCase extends wfEngineServiceTest {
 				}
 			}
 		}
-		$this->assertEqual($steps, $expectedSteps);
+		$this->assertEquals($steps, $expectedSteps);
 		$processExecutionService->deleteProcessExecution($processInstance);
 		$user->delete();
 		$this->logoutUser();
