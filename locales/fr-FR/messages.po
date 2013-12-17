@@ -248,7 +248,7 @@ msgid "search"
 msgstr "recherche"
 
 msgid "Select a test"
-msgstr ""
+msgstr "Choisissez un test."
 
 msgid "Service Definition"
 msgstr "Définition du service"
