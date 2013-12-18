@@ -132,9 +132,10 @@
 			/*
 			 * Instantiate the tabs
 			 */
-			var filterTabs = new TaoTabsClass('#filter-container', {'position':'bottom'});
-			var processDetailsTabs = new TaoTabsClass('#process-details-tabs', {'position':'bottom'});
-
+			var filterTabs = $('#filter-container').tabs()
+                                            .removeClass("ui-corner-all ui-corner-top").addClass("ui-corner-bottom");
+			var processDetailsTabs = $('#filter-container').tabs()
+                                            .removeClass("ui-corner-all ui-corner-top").addClass("ui-corner-bottom");
 			/*
 			 * instantiate the facet based filter widget
 			 */

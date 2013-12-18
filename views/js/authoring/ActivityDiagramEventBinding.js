@@ -1,6 +1,6 @@
-if(eventMgr && ActivityDiagramClass && ArrowClass){
+if(ActivityDiagramClass && ArrowClass){
 
-	eventMgr.bind('activityAdded', function(event, response){
+	$(document).on('activityAdded', function(event, response){
 
 		try{
 			var activity = ActivityDiagramClass.feedActivity({
@@ -38,11 +38,11 @@ if(eventMgr && ActivityDiagramClass && ArrowClass){
 				ActivityDiagramClass.saveDiagram();
 			}
 		}catch(ex){
-			CL('activityAdded exception:', ex);
+			$.error('activityAdded exception:' + ex);
 		}
 	});
 
-	eventMgr.bind('connectorAdded', function(event, response){
+	$(document).on('connectorAdded', function(event, response){
 		try{
 			//a connector is always added throught the "linked mode"
 			var previousObjectId = ActivityDiagramClass.getIdFromUri(response.previousActivityUri);
@@ -98,22 +98,18 @@ if(eventMgr && ActivityDiagramClass && ArrowClass){
 			//save diagram:
 			ActivityDiagramClass.saveDiagram();
 		}catch(ex){
-			CL('connectorAdded exception:', ex);
-			// CL('connector', connector);
-			// CL('originEltId', originEltId);
-			// CL('connectorId', connectorId);
-			// CL('arrowId', arrowId);
+			$.error('connectorAdded exception: ' + ex);
 		}
 
 	});
 
-	eventMgr.bind('connectorSaved', function(event, response){
+	$(document).on('connectorSaved', function(event, response){
 		var added = false
 		if(response.newActivities && response.previousConnectorUri){
 			if(response.newActivities.length > 0){
 				var activityAddedResponse = response.newActivities[0];//currently, the first one is enough
 				activityAddedResponse.previousConnectorUri = response.previousConnectorUri;
-				eventMgr.trigger('activityAdded', activityAddedResponse);
+				$(document).trigger('activityAdded', activityAddedResponse);
 				added = true;
 			}
 		}
@@ -123,7 +119,7 @@ if(eventMgr && ActivityDiagramClass && ArrowClass){
 				var connectorAddedResponse = response.newConnectors[0];//currently, the first one is enough
 				connectorAddedResponse.previousActivityUri = response.previousConnectorUri;
 				connectorAddedResponse.previousIsActivity = false;//the previous activity is obviously a connector here
-				eventMgr.trigger('connectorAdded', connectorAddedResponse);
+				$(document).trigger('connectorAdded', connectorAddedResponse);
 				added = true;
 			}
 		}
@@ -137,24 +133,23 @@ if(eventMgr && ActivityDiagramClass && ArrowClass){
 	});
 
 
-	eventMgr.bind('activityPropertiesSaved', function(event, response){
+	$(document).on('activityPropertiesSaved', function(event, response){
 		//simply reload the tree:
 		ActivityDiagramClass.refreshRelatedTree();
 	});
 
-	eventMgr.bind('activityDeleted', function(event, response){
+	$(document).on('activityDeleted', function(event, response){
 		ActivityDiagramClass.reloadDiagram();
 	});
 
-	eventMgr.bind('connectorDeleted', function(event, response){
+	$(document).on('connectorDeleted', function(event, response){
 		ActivityDiagramClass.reloadDiagram();
 	});
 
-	eventMgr.bind('diagramLoaded', function(event, response){
+	$(document).on('diagramLoaded', function(event, response){
 		setTimeout(function(){
 			$('#processAuthoring_loading').hide();
 			$('#authoring-container').show();
 		}, 1000);
 	});
-
 }

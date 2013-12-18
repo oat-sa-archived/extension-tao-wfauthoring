@@ -83,7 +83,6 @@ ArrowClass.calculateArrow = function(point1, point2, type, flex, temp){
 	}else{
 		flexPointNumber = 2;
 	}
-	//CL("flexPointNb: "+flexPointNumber+ ", Dx: "+ Dx+ ", Dy: "+ Dy);
 	
 	
 	var arrow = new Array();
@@ -334,13 +333,6 @@ ArrowClass.drawArrowPart = function(border,left,top,width,height,container,name,
 		element.css('width', Math.round(width)+'px');
 		element.css('height', Math.round(height)+'px');
 		
-		//CL('left:',element.css('left'));
-		//CL('top:',element.css('top'));
-		//CL('w:',element.css('width'));
-		//CL('h:',element.css('height'));
-		// CL('x2',p2.x);
-		// CL('y2',p2.y);
-	
 		element.appendTo(container);
 	}
 }
@@ -405,12 +397,6 @@ ArrowClass.getDraggableFlexPoints = function(tempArrowName){
 				opacity: 0.7,
 				helper: 'clone',
 				handle: "#"+dragHandleId,
-				start: function(event, ui){
-					// CL($(this).draggable('option', 'handle'));
-				},
-				drag: function(event, ui){
-										
-				},
 				containment: ActivityDiagramClass.canvas,
 				stop: function(event, ui){
 					
@@ -467,13 +453,6 @@ ArrowClass.getCenterCoordinate = function(element){
 	
 	x = (position.left-canvasOffset.left+ActivityDiagramClass.scrollLeft) + element.width()/2;
 	y = (position.top-canvasOffset.top+ActivityDiagramClass.scrollTop) + element.height()/2;
-	// CL('ActivityDiagramClass.scrollLeft', ActivityDiagramClass.scrollLeft);
-	// CL('ActivityDiagramClass.scrollTop', ActivityDiagramClass.scrollTop);
-	
-	// CL('Cx',element.width());
-	// CL('Cy',element.height());
-	// CL('x', x);
-	// CL('y', y);
 	
 	return {x:x, y:y};
 }

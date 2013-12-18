@@ -235,10 +235,10 @@ ActivityDiagramClass.loadDiagram = function(){
 				ModeController.setMode('ModeInitial');
 
 				//trigger the loaded event:
-				eventMgr.trigger('diagramLoaded', {});
+				$(document).trigger('diagramLoaded', {});
 			}
 			catch(err){
-				CL('loading diagram exception : ', err);
+				$.error('loading diagram exception : ' + err);
 			}
 		}
 	});
@@ -741,7 +741,6 @@ ActivityDiagramClass.drawDiagram = function(){
 				ActivityDiagramClass.setConnectorMenuHandler(connectorId);
 			}
 		}catch(err){
-			// CL('error drawing connector '+connectorId+': '+err);
 		}
 
 	}
@@ -1138,14 +1137,6 @@ ActivityDiagramClass.drawConnector = function(connectorId, position, connectorTy
 		offsetStep = width/(connectorTypeDescription.portNumber+1);
 		offsetStart = offsetStep;
 	}
-
-	//debug:
-
-	// CL('width', width);
-	// CL('portNumber', portNumber);
-	// CL('offsetStart', offsetStart);
-	// CL('offsetStep', offsetStep);
-
 
 	//set the border points:
 	for(i=0; i<connectorTypeDescription.portNumber; i++){

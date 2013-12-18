@@ -46,7 +46,7 @@
 		INSTANCE_TYPEOFCONNECTORS_JOIN = "<?=tao_helpers_Uri::encode(INSTANCE_TYPEOFCONNECTORS_JOIN)?>";
 
 		//unbind events:
-		eventMgr.unbind();
+		$(document).off();
 
 		//init values:
 		var processUri = "<?=get_data("processUri")?>";

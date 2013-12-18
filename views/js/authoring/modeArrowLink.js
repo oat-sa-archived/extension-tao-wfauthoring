@@ -288,7 +288,6 @@ ModeArrowLink.save = function(){
 		// save the temporay arrow data into the actual arrows array:
 		if(ArrowClass.tempArrows[connectorId]){
 			if(!processUtil.isset(ModeArrowLink.targetObject) || !ModeArrowLink.dropped){
-				//CL('no arrow dropped');
 				// throw 'no arrow dropped';
 				ModeArrowLink.cancel();
 				return false;

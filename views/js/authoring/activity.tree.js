@@ -107,7 +107,6 @@ function ActivityTreeClass(selector, dataUrl, options){
 						);
 
 					}else if( $(NODE).hasClass('node-connector') && instance.options.editConnectorAction){
-						//CL(TREE_OBJ.parent(NODE).attr('id'));
 						var activityUri = false;
 						var currentNode = TREE_OBJ.parent(NODE);
 						do{
@@ -380,7 +379,7 @@ function ActivityTreeClass(selector, dataUrl, options){
 
 	}
 	catch(exp){
-		CL('ActivityTreeClass exception : ', exp);
+		$.error('ActivityTreeClass exception : ' + exp);
 	}
 }
 
@@ -390,35 +389,34 @@ ActivityTreeClass.prototype.bindListeners = function(){
 	//TODO: put treeId in evnt data object: data = {treeId: treeId}
 	var _this = this;
 
-	eventMgr.bind('activityAdded', function(event, response){
+	$(document).on('activityAdded', function(event, response){
 		var response = _this.feedCurrentNode(response);
 		if(response.NODE && response.TREE_OBJ){
 			_this.addActivity(response);
 		}
-		// CD(eventMgr);
 	});
 
-	eventMgr.bind('interactiveServiceAdded', function(event, response){
+	$(document).on('interactiveServiceAdded', function(event, response){
 		var response = _this.feedCurrentNode(response);
 		if(response.NODE && response.TREE_OBJ){
 			_this.addInteractiveService(response);
 		}
 	});
 
-	eventMgr.bind('connectorAdded', function(event, response){
+	$(document).on('connectorAdded', function(event, response){
 		var response = _this.feedCurrentNode(response);
 		if(response.NODE && response.TREE_OBJ){
 			_this.addConnector(response);
 		}
 	});
 
-	eventMgr.bind('activityDeleted', function(event, response){
+	$(document).on('activityDeleted', function(event, response){
 		if(_this.treeObj){
 			_this.treeObj.refresh();
 		}
 	});
 
-	eventMgr.bind('connectorDeleted', function(event, response){
+	$(document).on('connectorDeleted', function(event, response){
 		if(_this.treeObj){
 			_this.treeObj.refresh();
 		}
