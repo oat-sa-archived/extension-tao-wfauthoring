@@ -22,6 +22,16 @@ return array(
     'acl' => array(
         array('grant', 'http://www.tao.lu/middleware/wfEngine.rdf#WfAuthoringManagerRole', array('ext'=>'wfAuthoring'))
     ),
+    'entryPoints' => array(
+        array(
+            'ext' => 'wfEngine',
+            'mod' => 'WfHome',
+            'act' => 'index',
+            'title' => __('Test Developers and Administrators'),
+            'desc' => __('Execute workflows for assessment preparation.'),
+            'label' => __('TAO WorkFlow Assistant')
+        )
+    ),
 	'constants' => array(
 		# actions directory
 		"DIR_ACTIONS"			=> $extpath."actions".DIRECTORY_SEPARATOR,
