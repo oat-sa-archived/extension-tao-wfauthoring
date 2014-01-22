@@ -10,7 +10,8 @@ $taopath = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'tao'.DIRECTORY_SEPARA
 return array(
 	'name' => 'wfAuthoring',
 	'description' => 'Workflow Authoring extension',
-	'version' => '2.4',
+    'license' => 'GPL-2.0',
+    'version' => '2.4',
 	'author' => 'Open Assessment Technologies',
 	'dependencies' => array('tao', 'wfEngine'),
 	'install' => array(
