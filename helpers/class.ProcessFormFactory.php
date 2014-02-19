@@ -759,14 +759,8 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 				break;
 			}
 			case 'join':
-				// $transitionRule = $connector->getOnePropertyValue($propTransitionRule);
-				// if(!is_null($transitionRule) && $transitionRule instanceof core_kernel_classes_Resource){
-					// $then = $transitionRule->getOnePropertyValue(new core_kernel_classes_Property(PROPERTY_TRANSITIONRULES_THEN));//note: 'else' doesn't matter
-					// if($then instanceof core_kernel_classes_Resource){
-						// $nextActivity = $then;
-					// }
-				// }
-				$nextActivity = $connector->getOnePropertyValue($propNextActivities, true);
+                // should only have one following activity
+				$nextActivity = $connector->getOnePropertyValue($propNextActivities);
 				$idPrefix = $type;
 				break;
 			default:

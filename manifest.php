@@ -8,12 +8,16 @@ $extpath = dirname(__FILE__).DIRECTORY_SEPARATOR;
 $taopath = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'tao'.DIRECTORY_SEPARATOR;
 
 return array(
-	'name' => 'wfAuthoring',
+    'id' => 'wfAuthoring',
+	'name' => 'workflow authoring',
 	'description' => 'Workflow Authoring extension',
     'license' => 'GPL-2.0',
-    'version' => '2.4',
+    'version' => '2.6',
 	'author' => 'Open Assessment Technologies',
-	'dependencies' => array('tao', 'wfEngine'),
+	'requires' => array(
+	    'tao' => '2.6.*',
+	    'wfEngine' => '2.6.*'
+	),
 	'install' => array(
 		'checks' => array(
 			array('type' => 'CheckFileSystemComponent', 'value' => array('id' => 'fs_wfAuthoring_includes', 'location' => 'wfAuthoring/includes', 'rights' => 'rw'))
@@ -22,16 +26,6 @@ return array(
 	'managementRole' => 'http://www.tao.lu/middleware/wfEngine.rdf#WfAuthoringManagerRole',
     'acl' => array(
         array('grant', 'http://www.tao.lu/middleware/wfEngine.rdf#WfAuthoringManagerRole', array('ext'=>'wfAuthoring'))
-    ),
-    'entryPoints' => array(
-        array(
-            'ext' => 'wfEngine',
-            'mod' => 'WfHome',
-            'act' => 'index',
-            'title' => __('Test Developers and Administrators'),
-            'desc' => __('Execute workflows for assessment preparation.'),
-            'label' => __('TAO WorkFlow Assistant')
-        )
     ),
 	'constants' => array(
 		# actions directory

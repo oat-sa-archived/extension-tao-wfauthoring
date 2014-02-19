@@ -45,4 +45,7 @@
 			</section>
 		</sections>
 	</structure>
+    <entrypoint id="wfRunner" title="Test Developers and Administrators" label="TAO WorkFlow Assistant" url="wfEngine/WfHome/index">
+        <description><![CDATA[Execute workflows for assessment preparation.]]></description>
+    </entrypoint>
 </structures>
