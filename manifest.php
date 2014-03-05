@@ -19,9 +19,6 @@ return array(
 	    'wfEngine' => '2.6.*'
 	),
 	'install' => array(
-		'checks' => array(
-			array('type' => 'CheckFileSystemComponent', 'value' => array('id' => 'fs_wfAuthoring_includes', 'location' => 'wfAuthoring/includes', 'rights' => 'rw'))
-		)
 	),
 	'managementRole' => 'http://www.tao.lu/middleware/wfEngine.rdf#WfAuthoringManagerRole',
     'acl' => array(
