@@ -1,6 +1,6 @@
 if(ActivityDiagramClass && ArrowClass){
 
-	$(document).on('activityAdded', function(event, response){
+	$(document).on('activityAdded.wfAuthoring', function(event, response){
 
 		try{
 			var activity = ActivityDiagramClass.feedActivity({
@@ -42,7 +42,7 @@ if(ActivityDiagramClass && ArrowClass){
 		}
 	});
 
-	$(document).on('connectorAdded', function(event, response){
+	$(document).on('connectorAdded.wfAuthoring', function(event, response){
 		try{
 			//a connector is always added throught the "linked mode"
 			var previousObjectId = ActivityDiagramClass.getIdFromUri(response.previousActivityUri);
@@ -103,13 +103,13 @@ if(ActivityDiagramClass && ArrowClass){
 
 	});
 
-	$(document).on('connectorSaved', function(event, response){
+	$(document).on('connectorSaved.wfAuthoring', function(event, response){
 		var added = false
 		if(response.newActivities && response.previousConnectorUri){
 			if(response.newActivities.length > 0){
 				var activityAddedResponse = response.newActivities[0];//currently, the first one is enough
 				activityAddedResponse.previousConnectorUri = response.previousConnectorUri;
-				$(document).trigger('activityAdded', activityAddedResponse);
+				$(document).trigger('activityAdded.wfAuthoring', activityAddedResponse);
 				added = true;
 			}
 		}
@@ -119,7 +119,7 @@ if(ActivityDiagramClass && ArrowClass){
 				var connectorAddedResponse = response.newConnectors[0];//currently, the first one is enough
 				connectorAddedResponse.previousActivityUri = response.previousConnectorUri;
 				connectorAddedResponse.previousIsActivity = false;//the previous activity is obviously a connector here
-				$(document).trigger('connectorAdded', connectorAddedResponse);
+				$(document).trigger('connectorAdded.wfAuthoring', connectorAddedResponse);
 				added = true;
 			}
 		}
@@ -133,20 +133,20 @@ if(ActivityDiagramClass && ArrowClass){
 	});
 
 
-	$(document).on('activityPropertiesSaved', function(event, response){
+	$(document).on('activityPropertiesSaved.wfAuthoring', function(event, response){
 		//simply reload the tree:
 		ActivityDiagramClass.refreshRelatedTree();
 	});
 
-	$(document).on('activityDeleted', function(event, response){
+	$(document).on('activityDeleted.wfAuthoring', function(event, response){
 		ActivityDiagramClass.reloadDiagram();
 	});
 
-	$(document).on('connectorDeleted', function(event, response){
+	$(document).on('connectorDeleted.wfAuthoring', function(event, response){
 		ActivityDiagramClass.reloadDiagram();
 	});
 
-	$(document).on('diagramLoaded', function(event, response){
+	$(document).on('diagramLoaded.wfAuthoring', function(event, response){
 		setTimeout(function(){
 			$('#processAuthoring_loading').hide();
 			$('#authoring-container').show();

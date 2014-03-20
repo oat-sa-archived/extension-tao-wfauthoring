@@ -389,34 +389,34 @@ ActivityTreeClass.prototype.bindListeners = function(){
 	//TODO: put treeId in evnt data object: data = {treeId: treeId}
 	var _this = this;
 
-	$(document).on('activityAdded', function(event, response){
+	$(document).on('activityAdded.wfAuthoring', function(event, response){
 		var response = _this.feedCurrentNode(response);
 		if(response.NODE && response.TREE_OBJ){
 			_this.addActivity(response);
 		}
 	});
 
-	$(document).on('interactiveServiceAdded', function(event, response){
+	$(document).on('interactiveServiceAdded.wfAuthoring', function(event, response){
 		var response = _this.feedCurrentNode(response);
 		if(response.NODE && response.TREE_OBJ){
 			_this.addInteractiveService(response);
 		}
 	});
 
-	$(document).on('connectorAdded', function(event, response){
+	$(document).on('connectorAdded.wfAuthoring', function(event, response){
 		var response = _this.feedCurrentNode(response);
 		if(response.NODE && response.TREE_OBJ){
 			_this.addConnector(response);
 		}
 	});
 
-	$(document).on('activityDeleted', function(event, response){
+	$(document).on('activityDeleted.wfAuthoring', function(event, response){
 		if(_this.treeObj){
 			_this.treeObj.refresh();
 		}
 	});
 
-	$(document).on('connectorDeleted', function(event, response){
+	$(document).on('connectorDeleted.wfAuthoring', function(event, response){
 		if(_this.treeObj){
 			_this.treeObj.refresh();
 		}

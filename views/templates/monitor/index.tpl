@@ -121,8 +121,7 @@
 		);
 	}
 
-	$(function(){
-		require(['require', 'jquery', 'generis.facetFilter', 'grid/tao.grid'], function(req, $, GenerisFacetFilterClass) {
+		require(['jquery', 'i18n', 'generis.facetFilter', 'grid/tao.grid'], function($, __, GenerisFacetFilterClass) {
 			//the grid model
 			model = <?=$model?>;
 
@@ -297,7 +296,6 @@
 			//instantiate the grid widget
 			historyProcessGrid = new TaoGridClass('#history-process-grid', historyProcessModel, '', historyProcessOptions);
 		});
-	});
 </script>
 
 <?include(BASE_PATH.'/views/templates/footer.tpl');?>

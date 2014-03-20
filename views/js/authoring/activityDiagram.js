@@ -235,7 +235,7 @@ ActivityDiagramClass.loadDiagram = function(){
 				ModeController.setMode('ModeInitial');
 
 				//trigger the loaded event:
-				$(document).trigger('diagramLoaded', {});
+				$(document).trigger('diagramLoaded.wfAuthoring', {});
 			}
 			catch(err){
 				$.error('loading diagram exception : ' + err);

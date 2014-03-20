@@ -46,15 +46,17 @@
 		INSTANCE_TYPEOFCONNECTORS_JOIN = "<?=tao_helpers_Uri::encode(INSTANCE_TYPEOFCONNECTORS_JOIN)?>";
 
 		//unbind events:
-		$(document).off();
+		$(document).off('*.wfAuthoring');
 
 		//init values:
 		var processUri = "<?=get_data("processUri")?>";
+        var authoringControllerPath = '<?=ROOT_URL?>wfAuthoring/ProcessAuthoring/';
+        var img_url = "<?=ROOT_URL?>wfAuthoring/views/img/authoring/";
 	</script>
 
 	<!--<script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>-->
 	<script type="text/javascript" src="<?=WFAUTHORING_SCRIPTS_URL?>util.js"></script>
-	<script type="text/javascript" src="<?=BASE_WWW.'js/authoring/'?>authoringConfig.js"></script>
+	<!--<script type="text/javascript" src="<?=BASE_WWW.'js/authoring/'?>authoringConfig.js"></script>-->
 	<script type="text/javascript" src="<?=PROCESS_BASE_WWW?>js/gateway/ProcessAuthoring.js"></script>
 	<script type="text/javascript" src="<?=WFAUTHORING_SCRIPTS_URL?>activity.tree.js"></script>
 	<script type="text/javascript" src="<?=WFAUTHORING_SCRIPTS_URL?>arrows.js"></script>
@@ -101,8 +103,13 @@
 			}
 		});
 	}
+require(['jquery', 'i18n', 'helpers'], function($, __, helpers){
 
-	$(function(){
+        window.__ = __;
+        window.helpers = helpers;
+ 
+
+
 		$("#accordion1").accordion({
 			fillSpace: true,
 			autoHeight: false,
@@ -150,38 +157,33 @@
 		//load process property form
 		processProperty();
 
-	});
+    ActivityDiagramClass.canvas = "#process_diagram_container";
+    ActivityDiagramClass.localNameSpace = "<?=tao_helpers_Uri::encode(common_ext_NamespaceManager::singleton()->getLocalNamespace()->getUri())?>";
 
-	$(function(){
+    //draw diagram:
+    $(ActivityDiagramClass.canvas).scroll(function(){
+        // TODO: set a more cross-browser way to retrieve scroll left and top values:
+        ActivityDiagramClass.scrollLeft = this.scrollLeft;
+        ActivityDiagramClass.scrollTop = this.scrollTop;
+    });
 
-		ActivityDiagramClass.canvas = "#process_diagram_container";
-		ActivityDiagramClass.localNameSpace = "<?=tao_helpers_Uri::encode(common_ext_NamespaceManager::singleton()->getLocalNamespace()->getUri())?>";
+    //bind events to activity diagram:
+    $.getScript('<?=WFAUTHORING_SCRIPTS_URL?>ActivityDiagramEventBinding.js', function(){
+            $(ActivityDiagramClass.canvas).click(function(evt){
+                    if (evt.target == evt.currentTarget) {
+                            ModeController.setMode('ModeInitial');
+                    }
+            });
 
-		//draw diagram:
-		$(ActivityDiagramClass.canvas).scroll(function(){
-			// TODO: set a more cross-browser way to retrieve scroll left and top values:
-			ActivityDiagramClass.scrollLeft = this.scrollLeft;
-			ActivityDiagramClass.scrollTop = this.scrollTop;
-		});
-
-		//bind events to activity diagram:
-		$.getScript('<?=WFAUTHORING_SCRIPTS_URL?>ActivityDiagramEventBinding.js', function(){
-				$(ActivityDiagramClass.canvas).click(function(evt){
-						if (evt.target == evt.currentTarget) {
-								ModeController.setMode('ModeInitial');
-						}
-				});
-
-				//load activity diagram:
-				try{
-						ActivityDiagramClass.loadDiagram();
-				}
-				catch(err){
-						console.log('feed&draw diagram exception', err);
-				}
-		});
-
-	});
+            //load activity diagram:
+            try{
+                    ActivityDiagramClass.loadDiagram();
+            }
+            catch(err){
+                    console.log('feed&draw diagram exception', err);
+            }
+    });
+});
 
 	</script>
 
