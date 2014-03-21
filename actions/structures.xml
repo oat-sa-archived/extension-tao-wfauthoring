@@ -20,7 +20,7 @@
 					<action name="new process" js="instanciate" url="/wfAuthoring/Process/addInstance" context="class" />
 					<action name="delete" js="removeNode" url="/wfAuthoring/Process/delete" context="resource" />
 					<action name="meta data" js="loadMetaData" url="/tao/MetaData/getMetaData"  context="resource" />
-					<action name="export" url="/tao/Export/index"  context="*" />
+					<action name="export" url="/tao/Export/index"  context="resource" />
 				</actions>
 			</section>
 
