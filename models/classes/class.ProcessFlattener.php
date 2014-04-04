@@ -26,7 +26,7 @@
  *
  * @access public
  * @package wfEngine
- * @subpackage models_classes
+ 
  */
 class wfAuthoring_models_classes_ProcessFlattener extends wfAuthoring_models_classes_ProcessCloner
 {

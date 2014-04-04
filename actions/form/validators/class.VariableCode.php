@@ -1,41 +1,23 @@
 <?php
-
-error_reporting(E_ALL);
-
 /**
- * TAO - wfAuthoring/actions/form/validators/class.VariableCode.php
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; under version 2
+ * of the License (non-upgradable).
  *
- * $Id$
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * This file is part of TAO.
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * Automatically generated on 29.10.2012, 09:57:37 with ArgoUML PHP module 
- * (last revised $Date: 2010-01-12 20:14:42 +0100 (Tue, 12 Jan 2010) $)
+ * Copyright (c) 2014 (original work) Open Assessment Technologies SA (under the project TAO-PRODUCT);
  *
- * @author Joel Bout, <joel.bout@tudor.lu>
- * @package wfAuthoring
- * @subpackage actions_form_validators
+ *
  */
-
-if (0 > version_compare(PHP_VERSION, '5')) {
-    die('This file was generated for PHP 5');
-}
-
-/**
- * The validators enable you to perform a validation callback on a form element.
- * It's provide a model of validation and must be overriden.
- *
- * @author Joel Bout, <joel.bout@tudor.lu>
- */
-require_once('tao/helpers/form/class.Validator.php');
-
-/* user defined includes */
-// section 127-0-1-1--193aa0be:133cfb90ad2:-8000:0000000000003426-includes begin
-// section 127-0-1-1--193aa0be:133cfb90ad2:-8000:0000000000003426-includes end
-
-/* user defined constants */
-// section 127-0-1-1--193aa0be:133cfb90ad2:-8000:0000000000003426-constants begin
-// section 127-0-1-1--193aa0be:133cfb90ad2:-8000:0000000000003426-constants end
 
 /**
  * Short description of class wfAuthoring_actions_form_validators_VariableCode
@@ -43,7 +25,7 @@ require_once('tao/helpers/form/class.Validator.php');
  * @access public
  * @author Joel Bout, <joel.bout@tudor.lu>
  * @package wfAuthoring
- * @subpackage actions_form_validators
+ 
  */
 class wfAuthoring_actions_form_validators_VariableCode
     extends tao_helpers_form_Validator

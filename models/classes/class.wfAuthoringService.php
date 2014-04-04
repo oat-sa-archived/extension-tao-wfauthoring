@@ -1,6 +1,7 @@
 <?php
 
-/*
+/**
+ * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; under version 2
@@ -15,44 +16,12 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * Copyright (c) 2013 (original work) Open Assessment Techonologies SA (under the project TAO-PRODUCT);
+ * Copyright (c) 2013 (original work) Open Assessment Technologies SA (under the project TAO-PRODUCT);
  *
  *
  */
 
-/**
- * TAO - wfAuthoring/models/classes/class.wfAuthoringService.php
- *
- * $Id$
- *
- * This file is part of TAO.
- *
- * Automatically generated on 30.10.2012, 17:55:07 with ArgoUML PHP module 
- * (last revised $Date: 2010-01-12 20:14:42 +0100 (Tue, 12 Jan 2010) $)
- *
- * @author Joel Bout, <joel.bout@tudor.lu>
- * @package wfAuthoring
- * @subpackage models_classes
- */
 
-if (0 > version_compare(PHP_VERSION, '5')) {
-    die('This file was generated for PHP 5');
-}
-
-/**
- * This class provide the services for the Tao extension
- *
- * @author Joel Bout, <joel.bout@tudor.lu>
- */
-require_once('tao/models/classes/class.TaoService.php');
-
-/* user defined includes */
-// section 10-13-1-39-1f91722d:12e9641f6ad:-8000:0000000000002C56-includes begin
-// section 10-13-1-39-1f91722d:12e9641f6ad:-8000:0000000000002C56-includes end
-
-/* user defined constants */
-// section 10-13-1-39-1f91722d:12e9641f6ad:-8000:0000000000002C56-constants begin
-// section 10-13-1-39-1f91722d:12e9641f6ad:-8000:0000000000002C56-constants end
 
 /**
  * Short description of class wfAuthoring_models_classes_wfAuthoringService
@@ -60,7 +29,7 @@ require_once('tao/models/classes/class.TaoService.php');
  * @access public
  * @author Joel Bout, <joel.bout@tudor.lu>
  * @package wfAuthoring
- * @subpackage models_classes
+ 
  */
 class wfAuthoring_models_classes_wfAuthoringService
     extends tao_models_classes_GenerisService

@@ -1,6 +1,7 @@
 <?php
 
-/*
+/**
+ * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; under version 2
@@ -15,37 +16,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * Copyright (c) 2013 (original work) Open Assessment Techonologies SA (under the project TAO-PRODUCT);
+ * Copyright (c) 2013 (original work) Open Assessment Technologies SA (under the project TAO-PRODUCT);
  *
  *
  */
-
-/**
- * TAO - wfAuthoring/models/classes/class.ProcessTreeService.php
- *
- * $Id$
- *
- * This file is part of TAO.
- *
- * Automatically generated on 30.10.2012, 11:50:16 with ArgoUML PHP module 
- * (last revised $Date: 2010-01-12 20:14:42 +0100 (Tue, 12 Jan 2010) $)
- *
- * @author Joel Bout, <joel.bout@tudor.lu>
- * @package wfAuthoring
- * @subpackage models_classes
- */
-
-if (0 > version_compare(PHP_VERSION, '5')) {
-    die('This file was generated for PHP 5');
-}
-
-/* user defined includes */
-// section 10-13-1-39-5129ca57:1276133a327:-8000:000000000000201F-includes begin
-// section 10-13-1-39-5129ca57:1276133a327:-8000:000000000000201F-includes end
-
-/* user defined constants */
-// section 10-13-1-39-5129ca57:1276133a327:-8000:000000000000201F-constants begin
-// section 10-13-1-39-5129ca57:1276133a327:-8000:000000000000201F-constants end
 
 /**
  * Short description of class wfAuthoring_models_classes_ProcessTreeService
@@ -53,7 +27,7 @@ if (0 > version_compare(PHP_VERSION, '5')) {
  * @access public
  * @author Joel Bout, <joel.bout@tudor.lu>
  * @package wfAuthoring
- * @subpackage models_classes
+ 
  */
 class wfAuthoring_models_classes_ProcessTreeService
 {

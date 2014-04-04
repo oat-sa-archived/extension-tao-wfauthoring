@@ -15,7 +15,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * Copyright (c) 2013 (original work) Open Assessment Techonologies SA (under the project TAO-PRODUCT);
+ * Copyright (c) 2013 (original work) Open Assessment Technologies SA (under the project TAO-PRODUCT);
  *
  *
  */
@@ -26,7 +26,7 @@ require_once('wfEngine/test/TranslationProcess/TranslationProcessHelper.php');
  * @access public
  * @author Somsack Sipasseuth, <somsack.sipasseuth@tudor.lu>
  * @package wfEngine
- * @subpackage helpers_Monitoring
+ 
  */
 class wfAuthoring_helpers_Monitoring_TranslationMetaAdapter
     extends tao_helpers_grid_Cell_Adapter

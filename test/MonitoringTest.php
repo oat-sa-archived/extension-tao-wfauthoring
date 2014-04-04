@@ -9,7 +9,7 @@ require_once dirname(__FILE__) . '/../../wfEngine/test/wfEngineServiceTest.php';
  * 
  * @author Somsack Sipasseuth, <taosupport@tudor.lu>
  * @package wfEngine
- * @subpackage test
+ 
  */
 class MonitoringTest extends wfEngineServiceTest {
 	

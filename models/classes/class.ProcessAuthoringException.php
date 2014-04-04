@@ -25,7 +25,7 @@
  *
  * @author Joel Bout, <joel.bout@tudor.lu>
  * @package wfAuthoring
- * @subpackage models_classes
+ 
  */
 
 /**
@@ -34,7 +34,7 @@
  * @access public
  * @author Joel Bout, <joel.bout@tudor.lu>
  * @package wfEngine
- * @subpackage models_classes
+ 
  */
 class wfAuthoring_models_classes_ProcessAuthoringException
     extends common_exception_Error

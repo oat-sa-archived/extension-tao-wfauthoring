@@ -1,6 +1,7 @@
 <?php
 
-/*
+/**
+ * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; under version 2
@@ -15,30 +16,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * Copyright (c) 2013 (original work) Open Assessment Techonologies SA (under the project TAO-PRODUCT);
+ * Copyright (c) 2013 (original work) Open Assessment Technologies SA (under the project TAO-PRODUCT);
  *
  *
  */
-
-/**
- * Factory for creating Process Disagrams
- *
- * @author Joel Bout
- * @package wfAuthoring
- * @subpackage helpers
- */
-
-if (0 > version_compare(PHP_VERSION, '5')) {
-    die('This file was generated for PHP 5');
-}
-
-/* user defined includes */
-// section 127-0-1-1-5c9f7130:133f3eb6549:-8000:0000000000006000-includes begin
-// section 127-0-1-1-5c9f7130:133f3eb6549:-8000:0000000000006000-includes end
-
-/* user defined constants */
-// section 127-0-1-1-5c9f7130:133f3eb6549:-8000:0000000000006000-constants begin
-// section 127-0-1-1-5c9f7130:133f3eb6549:-8000:0000000000006000-constants end
 
 /**
  * Factory for creating Process Disagrams
@@ -46,7 +27,7 @@ if (0 > version_compare(PHP_VERSION, '5')) {
  * @access public
  * @author Joel Bout
  * @package wfAuthoring
- * @subpackage helpers
+ 
  */
 class wfAuthoring_helpers_ProcessDiagramFactory
 {

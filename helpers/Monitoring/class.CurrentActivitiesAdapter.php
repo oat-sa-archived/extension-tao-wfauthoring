@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; under version 2
@@ -15,37 +15,11 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * Copyright (c) 2013 (original work) Open Assessment Techonologies SA (under the project TAO-PRODUCT);
+ * Copyright (c) 2013 (original work) Open Assessment Technologies SA (under the project TAO-PRODUCT);
  *
  *
  */
 
-/**
- * Gives the activity monitoring Grid
- *
- * @author Joel Bout, <joel.bout@tudor.lu>
- * @package wfAuthoring
- * @subpackage helpers_Monitoring
- */
-
-if (0 > version_compare(PHP_VERSION, '5')) {
-    die('This file was generated for PHP 5');
-}
-
-/**
- * include tao_helpers_grid_Cell_SubgridAdapter
- *
- * @author Joel Bout, <joel.bout@tudor.lu>
- */
-require_once('tao/helpers/grid/Cell/class.SubgridAdapter.php');
-
-/* user defined includes */
-// section 127-0-1-1--715d45eb:13387d0ab1e:-8000:0000000000003355-includes begin
-// section 127-0-1-1--715d45eb:13387d0ab1e:-8000:0000000000003355-includes end
-
-/* user defined constants */
-// section 127-0-1-1--715d45eb:13387d0ab1e:-8000:0000000000003355-constants begin
-// section 127-0-1-1--715d45eb:13387d0ab1e:-8000:0000000000003355-constants end
 
 /**
  * Gives the activity monitoring Grid
@@ -53,7 +27,7 @@ require_once('tao/helpers/grid/Cell/class.SubgridAdapter.php');
  * @access public
  * @author Joel Bout, <joel.bout@tudor.lu>
  * @package wfAuthoring
- * @subpackage helpers_Monitoring
+ 
  */
 class wfAuthoring_helpers_Monitoring_CurrentActivitiesAdapter
     extends tao_helpers_grid_Cell_SubgridAdapter
