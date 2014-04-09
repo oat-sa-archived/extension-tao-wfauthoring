@@ -20,7 +20,9 @@ return array(
 	),
 	'install' => array(
 	),
-	'managementRole' => 'http://www.tao.lu/middleware/wfEngine.rdf#WfAuthoringManagerRole',
+	'uninstall' => array(
+	),
+    'managementRole' => 'http://www.tao.lu/middleware/wfEngine.rdf#WfAuthoringManagerRole',
     'acl' => array(
         array('grant', 'http://www.tao.lu/middleware/wfEngine.rdf#WfAuthoringManagerRole', array('ext'=>'wfAuthoring'))
     ),
