@@ -1,12 +1,15 @@
-<?$sectionName=get_data("section");?>
+<?php
+use oat\tao\helpers\Template;
+?>
 
+<?$sectionName=get_data("section");?>
 
 <div id="<?=$sectionName?>-form">
 	<?=get_data("formPlus")?>
 	<input type="button" name="submit-<?=$sectionName?>" id="submit-<?=$sectionName?>" value="save" />
 </div>
 
-<script type="text/javascript" src="<?=WFAUTHORING_SCRIPTS_URL?>../processResourceSelector.js"></script>
+<script type="text/javascript" src="<?=Template::js('processResourceSelector.js', 'wfAuthoring')?>"></script>
 <script type="text/javascript">
 $(function(){
 	//bloc specific to delivery authoring tool:

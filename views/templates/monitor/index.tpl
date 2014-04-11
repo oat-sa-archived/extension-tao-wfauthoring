@@ -1,3 +1,6 @@
+<?php
+use oat\tao\helpers\Template;
+?>
 <script type="text/javascript" src="<?=BASE_URL?>views/js/grid/wfengine.grid.cancelProcess.js"></script>
 <script type="text/javascript" src="<?=BASE_URL?>views/js/grid/wfengine.grid.deleteProcess.js"></script>
 <script type="text/javascript" src="<?=BASE_URL?>views/js/grid/wfengine.grid.resumeProcess.js"></script>
@@ -14,7 +17,7 @@
 <script type="text/javascript" src="<?=BASE_URL?>views/js/grid/wfengine.grid.activityPreviousActivity.js"></script>
 <script type="text/javascript" src="<?=BASE_URL?>views/js/grid/wfengine.grid.activityNextActivity.js"></script>
 
-<script type="text/javascript" src="<?=ROOT_URL?>wfEngine/views/js/wfApi/wfApi.min.js"></script>
+<script type="text/javascript" src="<?=Template::js('wfApi/wfApi.min.js', 'wfEngine')?>"></script>
 
 <style>
 	#filter-container { width:19%;  height:561px; }
@@ -297,5 +300,4 @@
 			historyProcessGrid = new TaoGridClass('#history-process-grid', historyProcessModel, '', historyProcessOptions);
 		});
 </script>
-
-<?include(BASE_PATH.'/views/templates/footer.tpl');?>
+<?php Template::inc('footer.tpl'); ?>

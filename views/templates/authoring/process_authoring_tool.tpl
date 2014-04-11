@@ -1,3 +1,6 @@
+<?php
+use oat\tao\helpers\Template;
+?>
 <?if(get_data('error')):?>
 
 	<div class="main-container">
@@ -28,7 +31,7 @@
 		#processAuthoring_loading{position:absolute; width:99%; height:99%; z-index:1000; background-color:#FFFFFF;}
 		#processAuthoring_loading_message{position:relative; top:45%; left:45%; width:150px;}
 	</style>
-	<link rel="stylesheet" type="text/css" href="<?=WFAUTHORING_CSS_URL?>process_authoring_tool.css" />
+	<link rel="stylesheet" type="text/css" href="<?=Template::css('process_authoring_tool.css', 'wfAuthoring')?>" />
 
 	<div id="processAuthoring_loading">
 		<div id="processAuthoring_loading_message">
@@ -55,20 +58,20 @@
 	</script>
 
 	<!--<script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>-->
-	<script type="text/javascript" src="<?=WFAUTHORING_SCRIPTS_URL?>util.js"></script>
+	<script type="text/javascript" src="<?=Template::js('authoring/util.js', 'wfAuthoring')?>"></script>
 	<!--<script type="text/javascript" src="<?=BASE_WWW.'js/authoring/'?>authoringConfig.js"></script>-->
-	<script type="text/javascript" src="<?=PROCESS_BASE_WWW?>js/gateway/ProcessAuthoring.js"></script>
-	<script type="text/javascript" src="<?=WFAUTHORING_SCRIPTS_URL?>activity.tree.js"></script>
-	<script type="text/javascript" src="<?=WFAUTHORING_SCRIPTS_URL?>arrows.js"></script>
-	<script type="text/javascript" src="<?=WFAUTHORING_SCRIPTS_URL?>activityDiagram.js"></script>
-	<script type="text/javascript" src="<?=WFAUTHORING_SCRIPTS_URL?>modeController.js"></script>
-	<script type="text/javascript" src="<?=WFAUTHORING_SCRIPTS_URL?>modeInitial.js"></script>
-	<script type="text/javascript" src="<?=WFAUTHORING_SCRIPTS_URL?>modeActivityLabel.js"></script>
-	<script type="text/javascript" src="<?=WFAUTHORING_SCRIPTS_URL?>modeActivityMenu.js"></script>
-	<script type="text/javascript" src="<?=WFAUTHORING_SCRIPTS_URL?>modeArrowLink.js"></script>
-	<script type="text/javascript" src="<?=WFAUTHORING_SCRIPTS_URL?>modeActivityMove.js"></script>
-	<script type="text/javascript" src="<?=WFAUTHORING_SCRIPTS_URL?>modeConnectorMove.js"></script>
-	<script type="text/javascript" src="<?=WFAUTHORING_SCRIPTS_URL?>modeArrowEdit.js"></script><!---->
+	<script type="text/javascript" src="<?=Template::js('gateway/ProcessAuthoring.js', 'wfEngine')?>"></script>
+	<script type="text/javascript" src="<?=Template::js('authoring/activity.tree.js', 'wfAuthoring')?>"></script>
+	<script type="text/javascript" src="<?=Template::js('authoring/arrows.js', 'wfAuthoring')?>"></script>
+	<script type="text/javascript" src="<?=Template::js('authoring/activityDiagram.js', 'wfAuthoring')?>"></script>
+	<script type="text/javascript" src="<?=Template::js('authoring/modeController.js', 'wfAuthoring')?>"></script>
+	<script type="text/javascript" src="<?=Template::js('authoring/modeInitial.js', 'wfAuthoring')?>"></script>
+	<script type="text/javascript" src="<?=Template::js('authoring/modeActivityLabel.js', 'wfAuthoring')?>"></script>
+	<script type="text/javascript" src="<?=Template::js('authoring/modeActivityMenu.js', 'wfAuthoring')?>"></script>
+	<script type="text/javascript" src="<?=Template::js('authoring/modeArrowLink.js', 'wfAuthoring')?>"></script>
+	<script type="text/javascript" src="<?=Template::js('authoring/modeActivityMove.js', 'wfAuthoring')?>"></script>
+	<script type="text/javascript" src="<?=Template::js('authoring/modeConnectorMove.js', 'wfAuthoring')?>"></script>
+	<script type="text/javascript" src="<?=Template::js('authoring/modeArrowEdit.js', 'wfAuthoring')?>"></script><!---->
 
 	<script type="text/javascript">
 	function processProperty(){
@@ -168,7 +171,7 @@ require(['jquery', 'i18n', 'helpers'], function($, __, helpers){
     });
 
     //bind events to activity diagram:
-    $.getScript('<?=WFAUTHORING_SCRIPTS_URL?>ActivityDiagramEventBinding.js', function(){
+    $.getScript('<?=Template::js('authoring/ActivityDiagramEventBinding.js', 'wfAuthoring')?>', function(){
             $(ActivityDiagramClass.canvas).click(function(evt){
                     if (evt.target == evt.currentTarget) {
                             ModeController.setMode('ModeInitial');
@@ -248,4 +251,6 @@ require(['jquery', 'i18n', 'helpers'], function($, __, helpers){
 
 <?endif;?>
 
-<?include(DIR_VIEWS.'templates'.DIRECTORY_SEPARATOR.'footer.tpl')?>
+<?php
+Template::inc('footer.tpl');
+?>
