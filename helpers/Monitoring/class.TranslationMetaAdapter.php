@@ -19,8 +19,6 @@
  *
  *
  */
-require_once('tao/helpers/grid/class.GridContainer.php');
-require_once('wfEngine/test/TranslationProcess/TranslationProcessHelper.php');
 
 /**
  * @access public
