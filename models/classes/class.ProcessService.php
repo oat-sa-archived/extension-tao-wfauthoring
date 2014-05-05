@@ -600,35 +600,19 @@ class wfAuthoring_models_classes_ProcessService
      */
     public function deleteActualParameters( core_kernel_classes_Resource $callOfService)
     {
-        $returnValue = (bool) false;
-
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004DE0 begin
-
-		//remove the property values in the call of service instance
-		$callOfService->removePropertyValues(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_ACTUALPARAMETERIN));
-		$callOfService->removePropertyValues(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_ACTUALPARAMETEROUT));
-
-		//get all actual param of the current call of service
-		$actualParamCollection = $callOfService->getPropertyValuesCollection(new core_kernel_classes_Property(PROPERTY_SERVICESDEFINITION_FORMALPARAMIN));
-		$actualParamCollection = $actualParamCollection->union($callOfService->getPropertyValuesCollection(new core_kernel_classes_Property(PROPERTY_SERVICESDEFINITION_FORMALPARAMOUT)));
-		if($actualParamCollection->count()<=0){
-			return true;//no need to delete anything
-		}
-
-		//delete all of them:
-		foreach($actualParamCollection->getIterator() as $actualParam){
-
-			if($actualParam instanceof core_kernel_classes_Resource){
-				$returnValue = $actualParam->delete(true);
-				if(!$returnValue) {
-					break;
-				}
-			}
-		}
-
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004DE0 end
-
-        return (bool) $returnValue;
+        $propActualParamIn = new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_ACTUALPARAMETERIN);
+        $propActualParamOut = new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_ACTUALPARAMETEROUT);
+        
+        foreach($callOfService->getPropertyValuesCollection($propActualParamIn)->getIterator() as $actualParam){
+            $actualParam->delete();
+            $callOfService->removePropertyValue($propActualParamIn, $actualParam);
+        }
+        foreach($callOfService->getPropertyValuesCollection($propActualParamOut)->getIterator() as $actualParam){
+            $actualParam->delete();
+            $callOfService->removePropertyValue($propActualParamOut, $actualParam);
+        }
+        
+        return true;
     }
 
     /**
@@ -641,16 +625,10 @@ class wfAuthoring_models_classes_ProcessService
      */
     public function deleteCallOfService( core_kernel_classes_Resource $service)
     {
-        $returnValue = (bool) false;
-
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004DF5 begin
 
 		$interactiveServiceService = wfEngine_models_classes_InteractiveServiceService::singleton();
-		$returnValue = $interactiveServiceService->deleteInteractiveService($service);
+		return $interactiveServiceService->deleteInteractiveService($service);
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004DF5 end
-
-        return (bool) $returnValue;
     }
 
     /**

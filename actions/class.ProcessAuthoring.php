@@ -559,11 +559,7 @@ class wfAuthoring_actions_ProcessAuthoring extends tao_actions_TaoModule {
 	public function deleteCallOfService(){
 		$callOfService = new core_kernel_classes_Resource(tao_helpers_Uri::decode($_POST["serviceUri"]));
 		
-		//delete its related properties
-		$deleted = $this->service->deleteActualParameters($callOfService);
-		
-		//delete call of service itself
-		$deleted = $callOfService->delete(true);
+		$deleted = $this->service->deleteCallOfService($callOfService);
 	
 		echo json_encode(array('deleted' => $deleted));
 	}
