@@ -8,8 +8,8 @@ $extpath = dirname(__FILE__).DIRECTORY_SEPARATOR;
 $taopath = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'tao'.DIRECTORY_SEPARATOR;
 
 return array(
-    'id' => 'wfAuthoring',
-	'name' => 'workflow authoring',
+    'name' => 'wfAuthoring',
+	'label' => 'Workflow authoring tool',
 	'description' => 'Workflow Authoring extension',
     'license' => 'GPL-2.0',
     'version' => '2.6',
