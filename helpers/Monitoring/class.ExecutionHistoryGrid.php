@@ -51,11 +51,11 @@ class wfAuthoring_helpers_Monitoring_ExecutionHistoryGrid
     {
         $returnValue = (bool) false;
 
-        // section 127-0-1-1-41d91020:13392d7ae4a:-8000:00000000000033A5 begin
+        
 		$processExecutionService = wfEngine_models_classes_ProcessExecutionService::singleton();
 		$this->activityExecutions = $processExecutionService->getExecutionHistory($processExecution);
 		parent::__construct($this->activityExecutions, $options);
-        // section 127-0-1-1-41d91020:13392d7ae4a:-8000:00000000000033A5 end
+        
 
         return (bool) $returnValue;
     }

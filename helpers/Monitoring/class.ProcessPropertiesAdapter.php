@@ -52,7 +52,7 @@ class wfAuthoring_helpers_Monitoring_ProcessPropertiesAdapter
     {
         $returnValue = null;
 
-        // section 127-0-1-1-6c609706:1337d294662:-8000:000000000000333D begin
+        
 		
 		if(isset($this->data[$rowId])){
 			
@@ -100,7 +100,7 @@ class wfAuthoring_helpers_Monitoring_ProcessPropertiesAdapter
 			}
 			
 		}
-        // section 127-0-1-1-6c609706:1337d294662:-8000:000000000000333D end
+        
 
         return $returnValue;
     }

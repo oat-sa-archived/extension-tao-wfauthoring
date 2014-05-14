@@ -135,13 +135,13 @@ class wfAuthoring_models_classes_ProcessCloner
      */
     public function __construct($cloneLabel = '')
     {
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FB5 begin
+        
 		$this->cloneLabel = $cloneLabel;
 		$this->authoringService = wfAuthoring_models_classes_ProcessService::singleton();
 		$this->activityService = wfEngine_models_classes_ActivityService::singleton();
 		$this->connectorService = wfEngine_models_classes_ConnectorService::singleton();		
 		$this->initCloningVariables();
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FB5 end
+        
     }
 
     /**
@@ -156,7 +156,7 @@ class wfAuthoring_models_classes_ProcessCloner
      */
     public function addClonedActivity( core_kernel_classes_Resource $newActivityIn,  core_kernel_classes_Resource $oldActivity = null, $newActivityOut = null)
     {
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FCC begin
+        
 		if(is_null($newActivityOut)) {
 		    $newActivityOut = $newActivityIn;
 		}
@@ -190,7 +190,7 @@ class wfAuthoring_models_classes_ProcessCloner
 		}
 		
 		$this->setDebugClonedActivities($newActivityIn);
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FCC end
+        
     }
 
     /**
@@ -204,9 +204,9 @@ class wfAuthoring_models_classes_ProcessCloner
      */
     public function addClonedConnector( core_kernel_classes_Resource $oldConnector,  core_kernel_classes_Resource $newConnector)
     {
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FDC begin
+        
 		$this->clonedConnectors[$oldConnector->getUri()] = $newConnector->getUri();
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FDC end
+        
     }
 
     /**
@@ -221,7 +221,7 @@ class wfAuthoring_models_classes_ProcessCloner
     {
         $returnValue = null;
 
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FE3 begin
+        
 		if($this->activityService->isActivity($activity)){
 			$activityClone = $this->cloneWfResource(
 				$activity, 
@@ -250,7 +250,7 @@ class wfAuthoring_models_classes_ProcessCloner
 			}
 			
 		}
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FE3 end
+        
 
         return $returnValue;
     }
@@ -267,7 +267,7 @@ class wfAuthoring_models_classes_ProcessCloner
     {
         $returnValue = null;
 
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FE6 begin
+        
 		if($this->connectorService->isConnector($connector)){
 			$connectorClone = $this->cloneWfResource(
 				$connector, 
@@ -420,7 +420,7 @@ class wfAuthoring_models_classes_ProcessCloner
 			$this->addClonedConnector($connector, $connectorClone);
 			$returnValue = $connectorClone;
 		}
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FE6 end
+        
 
         return $returnValue;
     }
@@ -437,7 +437,7 @@ class wfAuthoring_models_classes_ProcessCloner
     {
         $returnValue = null;
 
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FE9 begin
+        
 		$classCallOfServices = new core_kernel_classes_Class(CLASS_CALLOFSERVICES);
 		$classActualParam = new core_kernel_classes_Class(CLASS_ACTUALPARAMETER);
 		$propActualParamIn = new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_ACTUALPARAMETERIN);
@@ -458,7 +458,7 @@ class wfAuthoring_models_classes_ProcessCloner
 			
 			$returnValue = $serviceClone;
 		}
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FE9 end
+        
 
         return $returnValue;
     }
@@ -475,7 +475,7 @@ class wfAuthoring_models_classes_ProcessCloner
     {
         $returnValue = null;
 
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FEC begin
+        
         common_Logger::i('Cloning '.$process->getUri());
 		$processClone = $this->cloneWfResource($process, new core_kernel_classes_Class(CLASS_PROCESS), array(PROPERTY_PROCESS_ACTIVITIES, PROPERTY_PROCESS_DIAGRAMDATA));
 		
@@ -491,7 +491,7 @@ class wfAuthoring_models_classes_ProcessCloner
 		}
 		
 		$returnValue = $processClone;
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FEC end
+        
 
         return $returnValue;
     }
@@ -509,7 +509,7 @@ class wfAuthoring_models_classes_ProcessCloner
     {
         $returnValue = null;
 
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FEF begin
+        
 		$steps = $this->cloneProcessContent($process);
 		
 		$in = array();
@@ -585,7 +585,7 @@ class wfAuthoring_models_classes_ProcessCloner
 			'in' => $newInitialActivity,
 			'out' => $newFinalActivities
 		);
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000004FEF end
+        
 
         return $returnValue;
     }
@@ -605,7 +605,7 @@ class wfAuthoring_models_classes_ProcessCloner
     {
         $returnValue = null;
 
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000005004 begin
+        
 		
 		$returnValue = $instance->duplicate($forbiddenProperties);
 	   
@@ -614,7 +614,7 @@ class wfAuthoring_models_classes_ProcessCloner
 			$returnValue->setLabel($cloneLabel);
 		}
 		
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000005004 end
+        
 
         return $returnValue;
     }
@@ -631,7 +631,7 @@ class wfAuthoring_models_classes_ProcessCloner
     {
         $returnValue = array();
 
-        // section 10-30-1--78-58f2439c:13a876aa1d8:-8000:000000000000A212 begin
+        
     	
         // first pass: clone activities and connectors
         
@@ -678,7 +678,7 @@ class wfAuthoring_models_classes_ProcessCloner
 				$this->linkClonedStep($connector);
 			}
 		}
-        // section 10-30-1--78-58f2439c:13a876aa1d8:-8000:000000000000A212 end
+        
 
         return (array) $returnValue;
     }
@@ -694,7 +694,7 @@ class wfAuthoring_models_classes_ProcessCloner
     {
         $returnValue = array();
 
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000005015 begin
+        
 		foreach($this->clonedActivities as $newActivityIO){
 			if(is_array($newActivityIO)){
 				foreach(array('in', 'out') as $interface){
@@ -722,7 +722,7 @@ class wfAuthoring_models_classes_ProcessCloner
 			}
 			
 		}
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000005015 end
+        
 
         return (array) $returnValue;
     }
@@ -740,7 +740,7 @@ class wfAuthoring_models_classes_ProcessCloner
     {
         $returnValue = null;
 
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000005018 begin
+        
 		$InOut = strtolower($InOut);
 		if(in_array($InOut, array('in', 'out')) && isset($this->clonedActivities[$oldActivity->getUri()])){
 			if(isset($this->clonedActivities[$oldActivity->getUri()][$InOut])){
@@ -759,7 +759,7 @@ class wfAuthoring_models_classes_ProcessCloner
 				
 			}
 		}
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000005018 end
+        
 
         return $returnValue;
     }
@@ -776,11 +776,11 @@ class wfAuthoring_models_classes_ProcessCloner
     {
         $returnValue = null;
 
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000005020 begin
+        
 		if(isset($this->clonedConnectors[$oldConnector->getUri()])){
 			$returnValue = new core_kernel_classes_Resource($this->clonedConnectors[$oldConnector->getUri()]);
 		}
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000005020 end
+        
 
         return $returnValue;
     }
@@ -796,14 +796,14 @@ class wfAuthoring_models_classes_ProcessCloner
     {
         $returnValue = array();
 
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000005024 begin
+        
 		foreach($this->clonedConnectors as $connectorUri){
 			$connector = new core_kernel_classes_Resource($connectorUri);
 			if($this->connectorService->isConnector($connector)){
 				$returnValue[$connector->getUri()] = $connector;
 			}
 		}
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000005024 end
+        
 
         return (array) $returnValue;
     }
@@ -819,9 +819,9 @@ class wfAuthoring_models_classes_ProcessCloner
     {
         $returnValue = (string) '';
 
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000005026 begin
+        
 		$returnValue = $this->cloneLabel;
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000005026 end
+        
 
         return (string) $returnValue;
     }
@@ -841,7 +841,7 @@ class wfAuthoring_models_classes_ProcessCloner
     {
         $returnValue = null;
 
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000005028 begin
+        
 		$activity = $oldActivity;
 		$activityIO = '';
 		switch($connectionType){
@@ -906,7 +906,7 @@ class wfAuthoring_models_classes_ProcessCloner
 				}
 			}
 		}
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000005028 end
+        
 
         return $returnValue;
     }
@@ -920,13 +920,13 @@ class wfAuthoring_models_classes_ProcessCloner
      */
     public function initCloningVariables()
     {
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:000000000000714F begin
+        
 		$this->currentActivity = null;
 		$this->clonedProcess = null;
 		$this->clonedActivities = array();
 		$this->clonedConnectors = array();
 		$this->waitingConnectors = array();
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:000000000000714F end
+        
     }
 
     /**
@@ -938,7 +938,7 @@ class wfAuthoring_models_classes_ProcessCloner
      */
     public function revertCloning()
     {
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000007151 begin
+        
 		if(!is_null($this->clonedProcess) && $this->clonedProcess instanceof core_kernel_classes_Resource){
 			$this->authoringService->deleteProcess($this->clonedProcess);
 		}
@@ -948,7 +948,7 @@ class wfAuthoring_models_classes_ProcessCloner
 		}
 		
 		$this->initCloningVariables();
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000007151 end
+        
     }
 
     /**
@@ -960,9 +960,9 @@ class wfAuthoring_models_classes_ProcessCloner
      */
     public function setCloneLabel($cloneLabel = '')
     {
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000007153 begin
+        
 		$this->cloneLabel = $cloneLabel;
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000007153 end
+        
     }
 
     /**
@@ -975,11 +975,11 @@ class wfAuthoring_models_classes_ProcessCloner
      */
     public function setDebugClonedActivities( core_kernel_classes_Resource $activity)
     {
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:000000000000715A begin
+        
 		if(!is_null($activity)){
 			$this->debugClonedActivities[$activity->getUri()] = $activity->getLabel();
 		}
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:000000000000715A end
+        
     }
 
     /**
@@ -994,7 +994,7 @@ class wfAuthoring_models_classes_ProcessCloner
      */
     protected function setWaitingConnector( core_kernel_classes_Resource $waitingOldConnectorToBeCloned, $connectionType,  core_kernel_classes_Resource $clonedConnectorToUpdate)
     {
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:000000000000715D begin
+        
 		
 		$authorizedConnectionTypes = array('next', 'then', 'else');
 		
@@ -1009,7 +1009,7 @@ class wfAuthoring_models_classes_ProcessCloner
 		}
 		$this->waitingConnectors[$waitingOldConnectorToBeCloned->getUri()][$connectionType][] = $clonedConnectorToUpdate;
 		
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:000000000000715D end
+        
     }
 
     /**
@@ -1025,7 +1025,7 @@ class wfAuthoring_models_classes_ProcessCloner
     {
         $returnValue = (bool) false;
 
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000007162 begin
+        
 		
 		//check if it is in the waiting expectedConnector list:
 		$activityPropertiesMap = array(
@@ -1072,7 +1072,7 @@ class wfAuthoring_models_classes_ProcessCloner
 			
 		}
 		
-        // section 10-13-1-39--56440278:12d4c05ae3c:-8000:0000000000007162 end
+        
 
         return (bool) $returnValue;
     }
@@ -1090,7 +1090,7 @@ class wfAuthoring_models_classes_ProcessCloner
     {
         $returnValue = array();
 
-        // section 10-30-1--78-705ba397:13a745f6c43:-8000:0000000000003B8D begin
+        
         foreach ($resources as $res) {
         	$clone = $this->getClonedConnector($res);
         	if (!is_null($clone)) {
@@ -1105,7 +1105,7 @@ class wfAuthoring_models_classes_ProcessCloner
         	var_dump($this->clonedActivities);
         	throw new common_exception_Error('Could not find clone of '.$res->getUri().($in ? ' in' : ' out'));
         }
-        // section 10-30-1--78-705ba397:13a745f6c43:-8000:0000000000003B8D end
+        
 
         return (array) $returnValue;
     }
@@ -1120,7 +1120,7 @@ class wfAuthoring_models_classes_ProcessCloner
      */
     protected function linkClonedStep( core_kernel_classes_Resource $original)
     {
-        // section 10-30-1--78-705ba397:13a745f6c43:-8000:0000000000003B89 begin
+        
         $nextProp = new core_kernel_classes_Property(PROPERTY_STEP_NEXT);
 		$arr = $this->mapClonedResources(array($original), false);
 		$clone = current($arr);
@@ -1130,7 +1130,7 @@ class wfAuthoring_models_classes_ProcessCloner
 		}
 		$mappedValues = $this->mapClonedResources($resources, true);
 		$clone->editPropertyValues($nextProp, $mappedValues);
-        // section 10-30-1--78-705ba397:13a745f6c43:-8000:0000000000003B89 end
+        
     }
 
 } /* end of class wfAuthoring_models_classes_ProcessCloner */

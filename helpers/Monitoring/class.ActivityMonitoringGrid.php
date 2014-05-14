@@ -58,7 +58,7 @@ class wfAuthoring_helpers_Monitoring_ActivityMonitoringGrid
     {
         $returnValue = (bool) false;
 
-        // section 127-0-1-1--521607b6:1338265e839:-8000:000000000000335E begin
+        
 		$excludedProperties = (is_array($this->options) && isset($this->options['excludedProperties']))?$this->options['excludedProperties']:array();
 		$columnNames = (is_array($this->options) && isset($this->options['columnNames']))?$this->options['columnNames']:array();
 		
@@ -94,7 +94,7 @@ class wfAuthoring_helpers_Monitoring_ActivityMonitoringGrid
 		$this->grid->addColumn('variables', __('Variables'));
 		$returnValue = $this->grid->setColumnsAdapter('variables', new wfAuthoring_helpers_Monitoring_VariablesAdapter());
 		
-        // section 127-0-1-1--521607b6:1338265e839:-8000:000000000000335E end
+        
 
         return (bool) $returnValue;
     }

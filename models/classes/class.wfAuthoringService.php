@@ -58,10 +58,10 @@ class wfAuthoring_models_classes_wfAuthoringService
      */
     public function __construct()
     {
-        // section 10-13-1-39-1f91722d:12e9641f6ad:-8000:0000000000002C5A begin
+        
 		parent::__construct();
 		$this->processClass = new core_kernel_classes_Class(CLASS_PROCESS);
-        // section 10-13-1-39-1f91722d:12e9641f6ad:-8000:0000000000002C5A end
+        
     }
 
     /**
@@ -76,7 +76,7 @@ class wfAuthoring_models_classes_wfAuthoringService
     {
         $returnValue = null;
 
-        // section 10-13-1-39-1f91722d:12e9641f6ad:-8000:0000000000002C6B begin
+        
 		if(empty($uri) && !is_null($this->processClass)){
 			$returnValue = $this->processClass;
 		}
@@ -86,7 +86,7 @@ class wfAuthoring_models_classes_wfAuthoringService
 				$returnValue = $clazz;
 			}
 		}
-        // section 10-13-1-39-1f91722d:12e9641f6ad:-8000:0000000000002C6B end
+        
 
         return $returnValue;
     }
@@ -103,7 +103,7 @@ class wfAuthoring_models_classes_wfAuthoringService
     {
         $returnValue = (bool) false;
 
-        // section 10-13-1-39-1f91722d:12e9641f6ad:-8000:0000000000002C70 begin
+        
 		if($clazz->getUri() == $this->processClass->getUri()){
 			$returnValue = true;	
 		}
@@ -115,7 +115,7 @@ class wfAuthoring_models_classes_wfAuthoringService
 				}
 			}
 		}
-        // section 10-13-1-39-1f91722d:12e9641f6ad:-8000:0000000000002C70 end
+        
 
         return (bool) $returnValue;
     }
@@ -133,12 +133,12 @@ class wfAuthoring_models_classes_wfAuthoringService
     {
         $returnValue = null;
 
-        // section 10-13-1-39-1f91722d:12e9641f6ad:-8000:0000000000002C73 begin
+        
 		if(!is_null($instance) && !is_null($clazz)){
 			$processCloner = new wfAuthoring_models_classes_ProcessCloner();
 			$returnValue = $processCloner->cloneProcess($instance);
 		}				
-        // section 10-13-1-39-1f91722d:12e9641f6ad:-8000:0000000000002C73 end
+        
 
         return $returnValue;
     }

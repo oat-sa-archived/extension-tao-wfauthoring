@@ -871,7 +871,7 @@ class DescriptorFactory{
 	{
 		$returnValue = (bool) false;
 
-		// section 10-13-1--99--220c702e:11df82e7d86:-8000:0000000000000F16 begin
+		
 
 		$myDocument = new DomDocument();
 		if (!$myDocument->load($this->filepath)) {
@@ -895,7 +895,7 @@ class DescriptorFactory{
 		}
 
 
-		// section 10-13-1--99--220c702e:11df82e7d86:-8000:0000000000000F16 end
+		
 
 		return (bool) $returnValue;
 	}
@@ -911,9 +911,9 @@ class DescriptorFactory{
 	{
 		$returnValue = (string) '';
 
-		// section 10-13-1--99--220c702e:11df82e7d86:-8000:0000000000000F42 begin
+		
 		$returnValue = $this->validationError;
-		// section 10-13-1--99--220c702e:11df82e7d86:-8000:0000000000000F42 end
+		
 
 		return (string) $returnValue;
 	}

@@ -50,7 +50,7 @@ class wfAuthoring_helpers_ProcessDiagramFactory
     {
         $returnValue = (string) '';
 
-        // section 127-0-1-1-5c9f7130:133f3eb6549:-8000:0000000000006001 begin
+        
 		
 		common_Logger::i("Building diagram for ".$process->getLabel());
 		
@@ -113,7 +113,7 @@ class wfAuthoring_helpers_ProcessDiagramFactory
 			$currentLevel++;
 		}
 		$returnValue = $diagram->toJSON();
-        // section 127-0-1-1-5c9f7130:133f3eb6549:-8000:0000000000006001 end
+        
 
         return (string) $returnValue;
     }

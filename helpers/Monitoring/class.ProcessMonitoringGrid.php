@@ -57,7 +57,7 @@ class wfAuthoring_helpers_Monitoring_ProcessMonitoringGrid
     {
         $returnValue = (bool) false;
 
-        // section 127-0-1-1--521607b6:1338265e839:-8000:000000000000335C begin
+        
 		
 		$excludedProperties = (is_array($this->options) && isset($this->options['excludedProperties']))?$this->options['excludedProperties']:array();
 		$columnNames = (is_array($this->options) && isset($this->options['columnNames']))?$this->options['columnNames']:array();
@@ -84,7 +84,7 @@ class wfAuthoring_helpers_Monitoring_ProcessMonitoringGrid
 		);
 		
 		$this->initCurrentActivityColumn();
-        // section 127-0-1-1--521607b6:1338265e839:-8000:000000000000335C end
+        
 
         return (bool) $returnValue;
     }
@@ -100,7 +100,7 @@ class wfAuthoring_helpers_Monitoring_ProcessMonitoringGrid
     {
         $returnValue = (bool) false;
 
-        // section 127-0-1-1--715d45eb:13387d0ab1e:-8000:0000000000003364 begin
+        
 
         /*$subGridAdapterOptions = array('excludedProperties' => $this->excludedProperties);
         if(isset($this->options['columns']) 
@@ -115,7 +115,7 @@ class wfAuthoring_helpers_Monitoring_ProcessMonitoringGrid
 			PROPERTY_PROCESSINSTANCES_CURRENTACTIVITYEXECUTIONS,
 			new wfAuthoring_helpers_Monitoring_CurrentActivitiesAdapter()
 		);	
-        // section 127-0-1-1--715d45eb:13387d0ab1e:-8000:0000000000003364 end
+        
 
         return (bool) $returnValue;
     }

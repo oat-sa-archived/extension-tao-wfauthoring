@@ -82,9 +82,9 @@ class wfAuthoring_models_classes_ProcessTreeService
     {
         $returnValue = null;
 
-        // section 10-13-1-39-5129ca57:1276133a327:-8000:0000000000002149 begin
+        
         $this->currentProcess = $currentProcess;
-        // section 10-13-1-39-5129ca57:1276133a327:-8000:0000000000002149 end
+        
 
         return $returnValue;
     }
@@ -105,7 +105,7 @@ class wfAuthoring_models_classes_ProcessTreeService
     {
         $returnValue = array();
 
-        // section 10-13-1-39-5129ca57:1276133a327:-8000:000000000000214B begin
+        
 		$class = '';
 		$linkAttribute = 'id';
 		          
@@ -154,7 +154,7 @@ class wfAuthoring_models_classes_ProcessTreeService
 		);
 		
 		$returnValue = self::addNodePrefix($returnValue, $nodeClass);
-        // section 10-13-1-39-5129ca57:1276133a327:-8000:000000000000214B end
+        
 
         return (array) $returnValue;
     }
@@ -171,7 +171,7 @@ class wfAuthoring_models_classes_ProcessTreeService
     {
         $returnValue = array();
 
-        // section 10-13-1-39-5129ca57:1276133a327:-8000:000000000000214D begin
+        
         $this->currentActivity = null;
 		
 		if(empty($process) && !empty($this->currentProcess)){
@@ -274,7 +274,7 @@ class wfAuthoring_models_classes_ProcessTreeService
 		}
 		
 		$returnValue = $data;
-        // section 10-13-1-39-5129ca57:1276133a327:-8000:000000000000214D end
+        
 
         return (array) $returnValue;
     }
@@ -292,7 +292,7 @@ class wfAuthoring_models_classes_ProcessTreeService
     {
         $returnValue = array();
 
-        // section 10-13-1-39-5129ca57:1276133a327:-8000:000000000000214F begin
+        
         if(isset($nodeData['attributes']['class']) && !empty($newClass)){
 			$nodeData['attributes']['class'] .= " ".$newClass;
 			
@@ -305,7 +305,7 @@ class wfAuthoring_models_classes_ProcessTreeService
 			}
 		}
 		$returnValue = $nodeData;
-        // section 10-13-1-39-5129ca57:1276133a327:-8000:000000000000214F end
+        
 
         return (array) $returnValue;
     }
@@ -323,7 +323,7 @@ class wfAuthoring_models_classes_ProcessTreeService
     {
         $returnValue = array();
 
-        // section 10-13-1-39-5129ca57:1276133a327:-8000:0000000000002151 begin
+        
         $newNode = $node;
 		$labelPrefix = '';
 		switch(strtolower($prefix)){
@@ -345,7 +345,7 @@ class wfAuthoring_models_classes_ProcessTreeService
 			$newNode['data'] = $labelPrefix.$node['data'];
 		}
 		$returnValue = $newNode;
-        // section 10-13-1-39-5129ca57:1276133a327:-8000:0000000000002151 end
+        
 
         return (array) $returnValue;
     }
@@ -364,7 +364,7 @@ class wfAuthoring_models_classes_ProcessTreeService
     {
         $returnValue = array();
 
-        // section 10-13-1-39-5129ca57:1276133a327:-8000:0000000000002153 begin
+        
 		$connectorData = array();
 		$connectorService = wfEngine_models_classes_ConnectorService::singleton();			
 //		$activityService = wfEngine_models_classes_ActivityService::singleton();
@@ -518,7 +518,7 @@ class wfAuthoring_models_classes_ProcessTreeService
 			
 			$this->addedConnectors[] = $connector->getUri();
 		}
-        // section 10-13-1-39-5129ca57:1276133a327:-8000:0000000000002153 end
+        
 
         return (array) $returnValue;
     }
@@ -536,7 +536,7 @@ class wfAuthoring_models_classes_ProcessTreeService
     {
         $returnValue = array();
 
-        // section 10-13-1-39-5129ca57:1276133a327:-8000:0000000000002155 begin
+        
         $returnValue = array(
 			'data' => __("type??").":".$connector->getLabel()
 		);
@@ -551,7 +551,7 @@ class wfAuthoring_models_classes_ProcessTreeService
 				'class' => 'node-connector-prev'
 			);
 		}
-        // section 10-13-1-39-5129ca57:1276133a327:-8000:0000000000002155 end
+        
 
         return (array) $returnValue;
     }
@@ -570,7 +570,7 @@ class wfAuthoring_models_classes_ProcessTreeService
     {
         $returnValue = array();
 
-        // section 10-13-1-39-5129ca57:1276133a327:-8000:0000000000002157 begin
+        
         $nodeData = array();
 		
 		if(!is_null($rule)) {
@@ -591,7 +591,7 @@ class wfAuthoring_models_classes_ProcessTreeService
 			
 			$returnValue = self::addNodePrefix($nodeData, 'if');
 		}
-        // section 10-13-1-39-5129ca57:1276133a327:-8000:0000000000002157 end
+        
 
         return (array) $returnValue;
     }

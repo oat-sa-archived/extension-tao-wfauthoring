@@ -69,7 +69,7 @@ class wfAuthoring_helpers_Monitoring_TranslationProcessMonitoringGrid
     {
         $returnValue = (bool) false;
 
-        // section 127-0-1-1--715d45eb:13387d0ab1e:-8000:0000000000003364 begin
+        
 		$this->grid->addColumn(PROPERTY_PROCESSINSTANCES_CURRENTACTIVITYEXECUTIONS, __('Current Activities'));
 		$returnValue = $this->grid->setColumnsAdapter(
 			PROPERTY_PROCESSINSTANCES_CURRENTACTIVITYEXECUTIONS,
@@ -78,7 +78,7 @@ class wfAuthoring_helpers_Monitoring_TranslationProcessMonitoringGrid
 				'wfAuthoring_helpers_Monitoring_TranslationActivityMonitoringGrid'
 			)
 		);	
-        // section 127-0-1-1--715d45eb:13387d0ab1e:-8000:0000000000003364 end
+        
 
         return (bool) $returnValue;
     }

@@ -53,7 +53,7 @@ class wfAuthoring_helpers_Monitoring_ActivityPropertiesAdapter
     {
         $returnValue = null;
 
-        // section 127-0-1-1-6c609706:1337d294662:-8000:000000000000334F begin
+        
 		if (isset($this->data[$rowId])) {
 
 			//return values:
@@ -142,7 +142,7 @@ class wfAuthoring_helpers_Monitoring_ActivityPropertiesAdapter
 				}
 			}
 		}
-        // section 127-0-1-1-6c609706:1337d294662:-8000:000000000000334F end
+        
 
         return $returnValue;
     }

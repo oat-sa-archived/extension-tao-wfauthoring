@@ -53,7 +53,7 @@ class wfAuthoring_models_classes_RuleService
     {
         $returnValue = null;
 
-        // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BC9 begin
+        
     	foreach ($xml->childNodes as $childNode) {
 			foreach ($childNode->childNodes as $childOfChildNode) {
 				if ($childOfChildNode->nodeName == "condition"){
@@ -65,7 +65,7 @@ class wfAuthoring_models_classes_RuleService
 				}
 			}
 		}
-        // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BC9 end
+        
 
         return $returnValue;
     }
@@ -82,7 +82,7 @@ class wfAuthoring_models_classes_RuleService
     {
         $returnValue = null;
 
-        // section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BCC begin
+        
 		//test: "IF    (11+B_Q01a*3)>=2 AND (B_Q01c=2 OR B_Q01c=7)    	THEN ^variable := 2*(B_Q01a+7)-^variable";
 
 		$question = "if ".$string;
@@ -99,7 +99,7 @@ class wfAuthoring_models_classes_RuleService
 			throw new common_Exception("CapiXML error: {$e->getMessage()}");
 		}
 		$returnValue = $this->createConditionExpressionFromXML($tokens->getXml());
-		// section 10-30-1--78-7cfbed5f:13a9c4b075b:-8000:0000000000003BCC end
+		
 
         return $returnValue;
     }

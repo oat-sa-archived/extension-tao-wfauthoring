@@ -51,7 +51,7 @@ class wfAuthoring_helpers_Monitoring_VariablesAdapter
     {
         $returnValue = array();
 
-        // section 127-0-1-1--5e069f0e:133a7dcfc6a:-8000:00000000000033F8 begin
+        
 		
 		$activityExecution = new core_kernel_classes_Resource($rowId);
 		$activityExecutionService = wfEngine_models_classes_ActivityExecutionService::singleton();
@@ -60,7 +60,7 @@ class wfAuthoring_helpers_Monitoring_VariablesAdapter
 			$returnValue[$variableData['propertyUri']] = $variableData;
 		}
 		
-        // section 127-0-1-1--5e069f0e:133a7dcfc6a:-8000:00000000000033F8 end
+        
 
         return (array) $returnValue;
     }
@@ -74,9 +74,9 @@ class wfAuthoring_helpers_Monitoring_VariablesAdapter
      */
     public function initSubgridOptions()
     {
-        // section 127-0-1-1--5e069f0e:133a7dcfc6a:-8000:00000000000033FB begin
+        
 		$this->subgridOptions = array('excludedProperties' => $this->excludedProperties);
-        // section 127-0-1-1--5e069f0e:133a7dcfc6a:-8000:00000000000033FB end
+        
     }
 
     /**
@@ -89,9 +89,9 @@ class wfAuthoring_helpers_Monitoring_VariablesAdapter
      */
     public function initSubgridClass($subgridClass = '')
     {
-        // section 127-0-1-1--5e069f0e:133a7dcfc6a:-8000:00000000000033FE begin
+        
 		$this->subgridClass = 'wfAuthoring_helpers_Monitoring_ActivityVariablesGrid';
-        // section 127-0-1-1--5e069f0e:133a7dcfc6a:-8000:00000000000033FE end
+        
     }
 
 } /* end of class wfAuthoring_helpers_Monitoring_VariablesAdapter */

@@ -50,14 +50,14 @@ class wfAuthoring_actions_form_InstanceServiceDefinition
     {
         $returnValue = null;
 
-        // section 127-0-1-1--1c42fdef:133c68cec06:-8000:000000000000341A begin
+        
 		if(!is_null($this->topClazz)){
         	$returnValue = $this->topClazz;
         }
         else{
         	$returnValue = new core_kernel_classes_Class(CLASS_SERVICESDEFINITION);
         }
-        // section 127-0-1-1--1c42fdef:133c68cec06:-8000:000000000000341A end
+        
 
         return $returnValue;
     }

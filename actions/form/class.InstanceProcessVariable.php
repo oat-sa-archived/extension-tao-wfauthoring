@@ -49,14 +49,14 @@ class wfAuthoring_actions_form_InstanceProcessVariable
     {
         $returnValue = null;
 
-        // section 127-0-1-1--1c42fdef:133c68cec06:-8000:000000000000341D begin
+        
 		if(!is_null($this->topClazz)){
         	$returnValue = $this->topClazz;
         }
         else{
         	$returnValue = new core_kernel_classes_Class(CLASS_PROCESSVARIABLES);
         }
-        // section 127-0-1-1--1c42fdef:133c68cec06:-8000:000000000000341D end
+        
 
         return $returnValue;
     }
@@ -70,12 +70,12 @@ class wfAuthoring_actions_form_InstanceProcessVariable
      */
     public function initElements()
     {
-        // section 127-0-1-1--193aa0be:133cfb90ad2:-8000:000000000000342F begin
+        
 		parent::initElements();
 		$codeElt = $this->form->getElement(tao_helpers_Uri::encode(PROPERTY_PROCESSVARIABLES_CODE));
 		$codeElt->addValidator(tao_helpers_form_FormFactory::getValidator('NotEmpty'));
 		$codeElt->addValidator(new wfAuthoring_actions_form_validators_VariableCode(array('uri'=>$this->getInstance()->getUri())));
-        // section 127-0-1-1--193aa0be:133cfb90ad2:-8000:000000000000342F end
+        
     }
 
 } /* end of class wfAuthoring_actions_form_InstanceProcessVariable */

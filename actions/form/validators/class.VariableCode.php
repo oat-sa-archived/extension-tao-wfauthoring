@@ -47,7 +47,7 @@ class wfAuthoring_actions_form_validators_VariableCode
      */
     public function __construct($options = array())
     {
-        // section 127-0-1-1--193aa0be:133cfb90ad2:-8000:0000000000003429 begin
+        
 		
 		parent::__construct($options);
 		
@@ -55,7 +55,7 @@ class wfAuthoring_actions_form_validators_VariableCode
     		$this->message = __("Code already used");
     	}
 		
-        // section 127-0-1-1--193aa0be:133cfb90ad2:-8000:0000000000003429 end
+        
     }
 
     /**
@@ -70,7 +70,7 @@ class wfAuthoring_actions_form_validators_VariableCode
     {
         $returnValue = (bool) false;
 
-        // section 127-0-1-1--193aa0be:133cfb90ad2:-8000:000000000000342D begin
+        
 		$returnValue = true;
 		if(isset($this->options['uri'])){
 			$variableService = wfEngine_models_classes_VariableService::singleton();
@@ -82,7 +82,7 @@ class wfAuthoring_actions_form_validators_VariableCode
 			}
 		}
 		
-        // section 127-0-1-1--193aa0be:133cfb90ad2:-8000:000000000000342D end
+        
 
         return (bool) $returnValue;
     }

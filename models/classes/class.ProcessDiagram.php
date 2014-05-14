@@ -71,8 +71,8 @@ class wfAuthoring_models_classes_ProcessDiagram
      */
     public function __construct()
     {
-        // section 127-0-1-1-23e337d4:1340f06a5e1:-8000:0000000000003449 begin
-        // section 127-0-1-1-23e337d4:1340f06a5e1:-8000:0000000000003449 end
+        
+        
     }
 
     /**
@@ -87,7 +87,7 @@ class wfAuthoring_models_classes_ProcessDiagram
      */
     public function addArrow( core_kernel_classes_Resource $from,  core_kernel_classes_Resource $to, $fromPort = "bottom")
     {
-        // section 127-0-1-1-23e337d4:1340f06a5e1:-8000:0000000000003454 begin
+        
         $fromid = substr($from->getUri(), strpos($from->getUri(), "#")+1);
         $toid = substr($to->getUri(), strpos($to->getUri(), "#")+1);
         $this->arrow[] = array(
@@ -95,7 +95,7 @@ class wfAuthoring_models_classes_ProcessDiagram
         		'to'	=> $toid,
         		'port'	=> $fromPort
         );
-        // section 127-0-1-1-23e337d4:1340f06a5e1:-8000:0000000000003454 end
+        
     }
 
     /**
@@ -110,13 +110,13 @@ class wfAuthoring_models_classes_ProcessDiagram
      */
     public function addActivity( core_kernel_classes_Resource $activity, $xOffset, $yOffset)
     {
-        // section 127-0-1-1-23e337d4:1340f06a5e1:-8000:0000000000003456 begin
+        
         $id = substr($activity->getUri(), strpos($activity->getUri(), "#")+1);
         $this->activity[$id] = array(
         		'x' => $xOffset,
         		'y' => $yOffset
         		);
-        // section 127-0-1-1-23e337d4:1340f06a5e1:-8000:0000000000003456 end
+        
     }
 
     /**
@@ -131,13 +131,13 @@ class wfAuthoring_models_classes_ProcessDiagram
      */
     public function addConnector( core_kernel_classes_Resource $connector, $xOffset, $yOffset)
     {
-        // section 127-0-1-1-23e337d4:1340f06a5e1:-8000:0000000000003458 begin
+        
     	$id = substr($connector->getUri(), strpos($connector->getUri(), "#")+1);
     	$this->connector[$id] = array(
     			'x' => $xOffset,
     			'y' => $yOffset
     	);
-        // section 127-0-1-1-23e337d4:1340f06a5e1:-8000:0000000000003458 end
+        
     }
 
     /**
@@ -151,7 +151,7 @@ class wfAuthoring_models_classes_ProcessDiagram
     {
         $returnValue = (string) '';
 
-        // section 127-0-1-1-23e337d4:1340f06a5e1:-8000:0000000000003464 begin
+        
         $arrowData = array();
         $positionData = array();
         
@@ -192,7 +192,7 @@ class wfAuthoring_models_classes_ProcessDiagram
         				"positionData" => $positionData
         		)
         );
-        // section 127-0-1-1-23e337d4:1340f06a5e1:-8000:0000000000003464 end
+        
 
         return (string) $returnValue;
     }

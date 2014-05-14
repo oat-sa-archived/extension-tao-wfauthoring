@@ -51,12 +51,12 @@ class wfAuthoring_helpers_Monitoring_CurrentActivitiesAdapter
     {
         $returnValue = array();
 
-        // section 127-0-1-1-72bb438:1338cba5f73:-8000:000000000000339D begin
+        
 		$processExecutionService = wfEngine_models_classes_ProcessExecutionService::singleton();
 		$processInstance = new core_kernel_classes_Resource($rowId);
 		$currentActivityExecutions = $processExecutionService->getCurrentActivityExecutions($processInstance);
 		$returnValue = array_keys($currentActivityExecutions);
-        // section 127-0-1-1-72bb438:1338cba5f73:-8000:000000000000339D end
+        
 
         return (array) $returnValue;
     }
@@ -70,9 +70,9 @@ class wfAuthoring_helpers_Monitoring_CurrentActivitiesAdapter
      */
     public function initSubgridOptions()
     {
-        // section 127-0-1-1-72bb438:1338cba5f73:-8000:000000000000339F begin
+        
 		$this->subgridOptions = array('excludedProperties' => $this->excludedProperties);
-        // section 127-0-1-1-72bb438:1338cba5f73:-8000:000000000000339F end
+        
     }
 
     /**
@@ -85,7 +85,7 @@ class wfAuthoring_helpers_Monitoring_CurrentActivitiesAdapter
      */
     public function initSubgridClass($subgridClass = '')
     {
-        // section 127-0-1-1-72bb438:1338cba5f73:-8000:00000000000033A1 begin
+        
 		$this->subgridClass = 'wfAuthoring_helpers_Monitoring_ActivityMonitoringGrid';
 		if(!empty($subgridClass)){
 			if(class_exists($subgridClass)){
@@ -94,7 +94,7 @@ class wfAuthoring_helpers_Monitoring_CurrentActivitiesAdapter
 				throw new common_Exception('The given subgrid class in argument is not valid : '.$subgridClass);
 			}
 		}
-        // section 127-0-1-1-72bb438:1338cba5f73:-8000:00000000000033A1 end
+        
     }
 
 } /* end of class wfAuthoring_helpers_Monitoring_CurrentActivitiesAdapter */

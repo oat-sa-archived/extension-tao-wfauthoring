@@ -52,7 +52,7 @@ class wfAuthoring_helpers_Monitoring_VersionedFileAdapter
     {
         $returnValue = null;
 
-        // section 127-0-1-1-6c609706:1337d294662:-8000:0000000000003337 begin
+        
 		
 		if (isset($this->data[$rowId])) {
 
@@ -134,7 +134,7 @@ class wfAuthoring_helpers_Monitoring_VersionedFileAdapter
 			}
 			
 		}
-        // section 127-0-1-1-6c609706:1337d294662:-8000:0000000000003337 end
+        
 
         return $returnValue;
     }

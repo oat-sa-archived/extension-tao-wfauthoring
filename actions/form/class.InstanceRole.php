@@ -50,8 +50,8 @@ class wfAuthoring_actions_form_InstanceRole
     {
         $returnValue = null;
 
-        // section 127-0-1-1--1c42fdef:133c68cec06:-8000:0000000000003417 begin
-        // section 127-0-1-1--1c42fdef:133c68cec06:-8000:0000000000003417 end
+        
+        
 
         return $returnValue;
     }

@@ -50,7 +50,7 @@ class wfAuthoring_helpers_Monitoring_ActivityVariablesGrid
     {
         $returnValue = (bool) false;
 
-        // section 127-0-1-1--5e069f0e:133a7dcfc6a:-8000:0000000000003406 begin
+        
 		
 		if(is_array($this->data)){
 			
@@ -68,7 +68,7 @@ class wfAuthoring_helpers_Monitoring_ActivityVariablesGrid
 			throw new common_Exception('the data is not an array of variables, nor an activity execution resource');
 		}
 		
-        // section 127-0-1-1--5e069f0e:133a7dcfc6a:-8000:0000000000003406 end
+        
 
         return (bool) $returnValue;
     }
@@ -84,12 +84,12 @@ class wfAuthoring_helpers_Monitoring_ActivityVariablesGrid
     {
         $returnValue = (bool) false;
 
-        // section 127-0-1-1--5e069f0e:133a7dcfc6a:-8000:000000000000340C begin
+        
 		
 		$this->grid->addColumn('code', __('Code'));
 		$this->grid->addColumn('value', __('Value'));
 		
-        // section 127-0-1-1--5e069f0e:133a7dcfc6a:-8000:000000000000340C end
+        
 
         return (bool) $returnValue;
     }

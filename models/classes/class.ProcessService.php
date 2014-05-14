@@ -48,11 +48,11 @@ class wfAuthoring_models_classes_ProcessService
      */
     protected function __construct()
     {
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D56 begin
+        
 
 		parent::__construct();
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D56 end
+        
     }
 
     /**
@@ -68,7 +68,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = null;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D58 begin
+        
 		//place the following bloc in a helper
 		if (!empty($expressionInput)){
 			$question = $expressionInput; 
@@ -109,7 +109,7 @@ class wfAuthoring_models_classes_ProcessService
 				throw new common_Exception("CapiXML error: {$e->getMessage()}");
 			}
 		}
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D58 end
+        
 
         return $returnValue;
     }
@@ -127,9 +127,9 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = null;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D62 begin
+        
         $returnValue = wfAuthoring_models_classes_ActivityService::singleton()->createActivity($process, $label);
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D62 end
+        
 
         return $returnValue;
     }
@@ -147,7 +147,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = null;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D69 begin
+        
 
 		//get the process associate to the connector to create a new instance of activity
 		$relatedActivity = $connector->getUniquePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_ACTIVITYREFERENCE));
@@ -159,7 +159,7 @@ class wfAuthoring_models_classes_ProcessService
 			throw new common_exception_Error("No process instance found for activity ".$relatedActivity." to create an activity from");
 		}
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D69 end
+        
 
         return $returnValue;
     }
@@ -176,7 +176,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = null;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D70 begin
+        
 
 		//create the expression instance:
 		foreach ($xmlDom->childNodes as $childNode) {
@@ -191,7 +191,7 @@ class wfAuthoring_models_classes_ProcessService
 			}
 		}
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D70 end
+        
 
         return $returnValue;
     }
@@ -209,9 +209,9 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = null;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D73 begin
+        
 		$returnValue = wfAuthoring_models_classes_ConnectorService::singleton()->createConnector($activity, $label);
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D73 end
+        
 
         return $returnValue;
     }
@@ -231,7 +231,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = null;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D80 begin
+        
 		$defaultValueProp = null;
 		if(strtolower($type) == 'constant'){
 			$defaultValueProp = new core_kernel_classes_Property(PROPERTY_FORMALPARAMETER_DEFAULTCONSTANTVALUE);
@@ -249,7 +249,7 @@ class wfAuthoring_models_classes_ProcessService
 		$returnValue->setPropertyValue(new core_kernel_classes_Property(PROPERTY_FORMALPARAMETER_NAME), $name);
 		$returnValue->setPropertyValue($defaultValueProp, $defaultValue);
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D80 end
+        
 
         return $returnValue;
     }
@@ -266,7 +266,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = null;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D91 begin
+        
 		$number = $activity->getPropertyValuesCollection(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_INTERACTIVESERVICES))->count();
 		$number += 1;
 
@@ -288,7 +288,7 @@ class wfAuthoring_models_classes_ProcessService
 		}else{
 			throw new Exception("the interactive service cannot be created for the activity {$activity->getUri()}");
 		}
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D91 end
+        
 
         return $returnValue;
     }
@@ -308,7 +308,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = null;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D9E begin
+        
 
 		$this->setConnectorType($connectorInstance, new core_kernel_classes_Resource(INSTANCE_TYPEOFCONNECTORS_JOIN));
 
@@ -406,7 +406,7 @@ class wfAuthoring_models_classes_ProcessService
 
 		$returnValue = $followingActivity;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004D9E end
+        
 
         return $returnValue;
     }
@@ -425,7 +425,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = null;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004DB0 begin
+        
 
 		//associate the newly create expression with the transition rule of the connector
 		$transitionRule = $connector->getOnePropertyValue(new core_kernel_classes_Property(PROPERTY_CONNECTORS_TRANSITIONRULE));
@@ -456,7 +456,7 @@ class wfAuthoring_models_classes_ProcessService
 
 		$returnValue = $transitionRule;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004DB0 end
+        
 
         return $returnValue;
     }
@@ -475,7 +475,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = null;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004DB6 begin
+        
 		//TODO: should be renamed to setSequenceActivity
 		//TODO: should add a check, see if a connector merge is attached to the connector, if so, do not allow it!! display a warning
 		$this->setConnectorType($connector, new core_kernel_classes_Resource(INSTANCE_TYPEOFCONNECTORS_SEQUENCE));
@@ -496,7 +496,7 @@ class wfAuthoring_models_classes_ProcessService
 			$followingActivity->editPropertyValues(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_ISINITIAL), GENERIS_FALSE);
 			$returnValue = $followingActivity;
 		}
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004DB6 end
+        
 
         return $returnValue;
     }
@@ -517,7 +517,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = null;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004DC3 begin
+        
 		//rename it to conditional:
 		$this->setConnectorType($connector, new core_kernel_classes_Resource(INSTANCE_TYPEOFCONNECTORS_CONDITIONAL));
 
@@ -563,7 +563,7 @@ class wfAuthoring_models_classes_ProcessService
 
 		$returnValue = $followingActivity;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004DC3 end
+        
 
         return $returnValue;
     }
@@ -580,12 +580,12 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = (bool) false;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004DDC begin
+        
 
 		$activityService = wfAuthoring_models_classes_ActivityService::singleton();
 		$returnValue = $activityService->delete($activity);
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004DDC end
+        
 
         return (bool) $returnValue;
     }
@@ -643,7 +643,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = (bool) false;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004DF9 begin
+        
 
 		//get the rule type:
 		if(!is_null($rule)){
@@ -659,7 +659,7 @@ class wfAuthoring_models_classes_ProcessService
 			$returnValue = true;
 		}
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004DF9 end
+        
 
         return (bool) $returnValue;
     }
@@ -676,7 +676,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = (bool) false;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E0D begin
+        
 
 		//delete related expressions
 		$firstExpressionCollection = $expression->getPropertyValuesCollection(new core_kernel_classes_Property(PROPERTY_FIRST_EXPRESSION));
@@ -694,7 +694,7 @@ class wfAuthoring_models_classes_ProcessService
 		//delete the expression itself:
 		$returnValue = $expression->delete(true);
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E0D end
+        
 
         return (bool) $returnValue;
     }
@@ -710,7 +710,7 @@ class wfAuthoring_models_classes_ProcessService
      */
     public function deleteConnectorNextActivity( core_kernel_classes_Resource $connector, $connectionType = 'next')
     {
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004DFF begin
+        
 
 		$nextActivitiesProp = new core_kernel_classes_Property(PROPERTY_STEP_NEXT);
 		$connectorService = wfEngine_models_classes_ConnectorService::singleton();
@@ -768,7 +768,7 @@ class wfAuthoring_models_classes_ProcessService
 			}
 		}
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004DFF end
+        
     }
 
     /**
@@ -783,11 +783,11 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = (bool) false;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E13 begin
+        
 		if(!is_null($instance)){
 			$returnValue = $instance->delete(true);//delete references!
 		}
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E13 end
+        
 
         return (bool) $returnValue;
     }
@@ -804,7 +804,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = (bool) false;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E19 begin
+        
 
 		if(!is_null($process)){
 			$activities = $this->getActivitiesByProcess($process);
@@ -817,7 +817,7 @@ class wfAuthoring_models_classes_ProcessService
 			$returnValue = $process->delete(true);
 		}
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E19 end
+        
 
         return (bool) $returnValue;
     }
@@ -834,7 +834,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = (bool) false;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E16 begin
+        
 		$firstOperand = $operation->getOnePropertyValue(new core_kernel_classes_Property(PROPERTY_OPERATION_FIRST_OP));
 		if(!is_null($firstOperand) && ($firstOperand instanceof core_kernel_classes_Resource)){
 			$this->deleteTerm($firstOperand);
@@ -846,7 +846,7 @@ class wfAuthoring_models_classes_ProcessService
 		}
 
 		$returnValue = $operation->delete(true);
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E16 end
+        
 
         return (bool) $returnValue;
     }
@@ -863,7 +863,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = (bool) false;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E26 begin
+        
 
 		//get the rule type:
 		if(!is_null($rule)){
@@ -873,7 +873,7 @@ class wfAuthoring_models_classes_ProcessService
 			$returnValue = $rule->delete($rule);
 		}
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E26 end
+        
 
         return (bool) $returnValue;
     }
@@ -890,10 +890,10 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = array();
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E32 begin
+        
 		//connect ro new process def service:
 		$returnValue = $this->getAllActivities($process);
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E32 end
+        
 
         return (array) $returnValue;
     }
@@ -910,7 +910,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = (bool) false;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E2B begin
+        
 
 		$termClasses = array(
 			CLASS_TERM_SUJET_PREDICATE_X,
@@ -944,7 +944,7 @@ class wfAuthoring_models_classes_ProcessService
 			$returnValue = true;
 		}
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E2B end
+        
 
         return (bool) $returnValue;
     }
@@ -963,7 +963,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = array();
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E35 begin
+        
 
 		//prev: the connectors that links to the current activity
 		//next: the connector (should be unique for an activiy that is not a connector itself) that follows the current activity
@@ -1000,7 +1000,7 @@ class wfAuthoring_models_classes_ProcessService
 			};
 		}
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E35 end
+        
 
         return (array) $returnValue;
     }
@@ -1018,7 +1018,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = (bool) false;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E2E begin
+        
 
 		if(!empty($conditionString)){
 			$conditionDom =  $this->analyseExpression($conditionString, true);
@@ -1034,7 +1034,7 @@ class wfAuthoring_models_classes_ProcessService
 			}
 		}
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E2E end
+        
 
         return (bool) $returnValue;
     }
@@ -1052,7 +1052,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = null;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E47 begin
+        
 
 		$classFormalParam = new core_kernel_classes_Class(CLASS_FORMALPARAMETER);
 
@@ -1110,7 +1110,7 @@ class wfAuthoring_models_classes_ProcessService
 			}
 		}
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E47 end
+        
 
         return $returnValue;
     }
@@ -1127,7 +1127,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = array();
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E6A begin
+        
 
 		$services = $activity->getPropertyValuesCollection(new core_kernel_classes_Property(PROPERTY_ACTIVITIES_INTERACTIVESERVICES));
 		foreach($services->getIterator() as $service){
@@ -1136,7 +1136,7 @@ class wfAuthoring_models_classes_ProcessService
 			}
 		}
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E6A end
+        
 
         return (array) $returnValue;
     }
@@ -1153,12 +1153,12 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = (bool) false;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E6D begin
+        
 
         //all classes are authorized
 	$returnValue = true;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E6D end
+        
 
         return (bool) $returnValue;
     }
@@ -1179,7 +1179,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = (bool) false;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E79 begin
+        
 
 		//must exist:
 		if($formalParam->hasType(new core_kernel_classes_Class(CLASS_FORMALPARAMETER))){
@@ -1200,7 +1200,7 @@ class wfAuthoring_models_classes_ProcessService
 			throw new Exception('the formal parameter '.$formalParam->getUri().' does not exist');
 		}
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E79 end
+        
 
         return (bool) $returnValue;
     }
@@ -1218,9 +1218,9 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = (bool) false;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E89 begin
+        
 		$returnValue = $callOfService->editPropertyValues(new core_kernel_classes_Property(PROPERTY_CALLOFSERVICES_SERVICEDEFINITION), $serviceDefinition->getUri());
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E89 end
+        
 
         return (bool) $returnValue;
     }
@@ -1238,7 +1238,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = (bool) false;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E9D begin
+        
 
 		//@TODO: to be moved to actiivty service:
 
@@ -1250,7 +1250,7 @@ class wfAuthoring_models_classes_ProcessService
 
 		$returnValue = $activity->editPropertyValues($propActivityInitial, GENERIS_TRUE);
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004E9D end
+        
 
         return (bool) $returnValue;
     }
@@ -1268,7 +1268,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = (bool) false;
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004EA1 begin
+        
 
 		$this->setConnectorType($connectorInstance, new core_kernel_classes_Resource(INSTANCE_TYPEOFCONNECTORS_PARALLEL));
 
@@ -1372,7 +1372,7 @@ class wfAuthoring_models_classes_ProcessService
 			$i++;
 		}
 
-        // section 10-13-1-39-2ae24d29:12d124aa1a7:-8000:0000000000004EA1 end
+        
 
         return (bool) $returnValue;
     }
@@ -1390,7 +1390,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = null;
 
-        // section 10-13-1-39--6cc6036b:12e4807fb4f:-8000:0000000000002BD3 begin
+        
 		$processDefinitionClass = new core_kernel_classes_Class(CLASS_PROCESS);
 		if(empty($comment)) {
 		    $comment = 'create by the process authoring service on '.date(DATE_ISO8601);
@@ -1400,7 +1400,7 @@ class wfAuthoring_models_classes_ProcessService
 		}
 		$returnValue = $processDefinitionClass->createInstance($label, 'created for the unit test of process execution');
 
-        // section 10-13-1-39--6cc6036b:12e4807fb4f:-8000:0000000000002BD3 end
+        
 
         return $returnValue;
     }
@@ -1419,7 +1419,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = null;
 
-        // section 10-13-1-39--6cc6036b:12e4807fb4f:-8000:0000000000002BE0 begin
+        
 		if(!empty($serviceUrl)){
 			$supportServiceClass = new core_kernel_classes_Class(CLASS_SUPPORTSERVICES);
 			if(empty($label)){
@@ -1482,7 +1482,7 @@ class wfAuthoring_models_classes_ProcessService
 				}
 			}
 		}
-        // section 10-13-1-39--6cc6036b:12e4807fb4f:-8000:0000000000002BE0 end
+        
 
         return $returnValue;
     }
@@ -1499,7 +1499,7 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = (bool) false;
 
-        // section 10-13-1-39--6cc6036b:12e4807fb4f:-8000:0000000000002BF9 begin
+        
 		$urlProperties = array(PROPERTY_SUPPORTSERVICES_URL);//could add the wsdl url here when wsdl service implemented
 
 		foreach($urlProperties as $urlProperty){
@@ -1510,7 +1510,7 @@ class wfAuthoring_models_classes_ProcessService
 			}
 		}
 
-        // section 10-13-1-39--6cc6036b:12e4807fb4f:-8000:0000000000002BF9 end
+        
 
         return (bool) $returnValue;
     }
@@ -1528,10 +1528,10 @@ class wfAuthoring_models_classes_ProcessService
     {
         $returnValue = (bool) false;
 
-        // section 127-0-1-1--1e09aee3:133358e11e1:-8000:0000000000003251 begin
+        
 		$connectorService = wfAuthoring_models_classes_ConnectorService::singleton();
 		$returnValue = $connectorService->setConnectorType($connector, $type);
-        // section 127-0-1-1--1e09aee3:133358e11e1:-8000:0000000000003251 end
+        
 
         return (bool) $returnValue;
     }
