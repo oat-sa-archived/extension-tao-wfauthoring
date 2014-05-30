@@ -1,8 +1,8 @@
 /* auto generated content */
-/* lang: se-SV */
+/* lang: sk-SK */
 define(function(){
  return {
-   langCode : 'se-SV',
+   langCode : 'sk-SK',
    i18n_tr : []
  };
 });

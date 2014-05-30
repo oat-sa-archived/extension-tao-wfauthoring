@@ -1,15 +1,12 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: TAO v2.5-alpha\n"
-"PO-Revision-Date: 2013-11-12 10:05-0000\n"
-"Last-Translator: Paulo Amorim <paulo@amorims.com>\n"
+"Project-Id-Version: TAO v2.6-beta2\n"
+"PO-Revision-Date: 2014-05-30T15:55:31\n"
+"Last-Translator: TAO Translation Team <translation@tao.lu>\n"
 "MIME-Version: 1.0\n"
 "Language: pt-PT\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: \n"
-"Language-Team: \n"
-"X-Generator: Poedit 1.5.7\n"
 
 msgid "(still undefined)"
 msgstr "(Ainda não definido)"
@@ -23,11 +20,17 @@ msgstr "Actividade"
 msgid "Activity Editor"
 msgstr "Editor de actividade"
 
+msgid "Activity menu: select an action from the context menu."
+msgstr ""
+
 msgid "Activity or Connector"
 msgstr "Actividade ou conectado"
 
 msgid "Activity Variables"
 msgstr "Variáveis de actividade"
+
+msgid "Add a variable"
+msgstr ""
 
 msgid "Back"
 msgstr "Voltar"
@@ -35,9 +38,9 @@ msgstr "Voltar"
 msgid "Browse Tests"
 msgstr "Navegar nos testes"
 
+#, tao-public
 msgid "Build processes to drive activities into a workflow."
-msgstr ""
-"Construir processos para conduzir as actividades em um fluxo de trabalho."
+msgstr "Construir processos para conduzir as actividades em um fluxo de trabalho."
 
 msgid "cancel"
 msgstr "cancelar"
@@ -90,12 +93,9 @@ msgstr "Utilizador actual"
 msgid "delete"
 msgstr "eliminar"
 
-msgid ""
-"Do you want to change the connector type? \n"
+msgid "Do you want to change the connector type? \n"
 " THe child connectors will be deleted."
-msgstr ""
-"Quer mudar o tipo de conector? / n  Os conectores dependentes serão "
-"excluídos."
+msgstr "Quer mudar o tipo de conector? / n  Os conectores dependentes serão excluídos."
 
 msgid "Edit"
 msgstr "Editar"
@@ -105,6 +105,10 @@ msgstr "Editar instância"
 
 msgid "Else"
 msgstr "Outro"
+
+#, tao-public
+msgid "Execute workflows for assessment preparation."
+msgstr ""
 
 msgid "export"
 msgstr "exportar"
@@ -142,9 +146,11 @@ msgstr "Idioma"
 msgid "loading..."
 msgstr "A carregar..."
 
+#, tao-public
 msgid "Manage processes"
 msgstr "Gerir processos"
 
+#, tao-public
 msgid "Manage services"
 msgstr "Gerir serviços"
 
@@ -154,14 +160,12 @@ msgstr "Enviar para"
 msgid "meta data"
 msgstr "meta dados"
 
+#, tao-public
 msgid "Monitor processes"
 msgstr "Monitor de processos"
 
 msgid "Monitoring processes"
 msgstr "Processos de monitorização"
-
-msgid "More detailed description here."
-msgstr "Descrição mais detalhada aqui."
 
 msgid "new process"
 msgstr "novo processo"
@@ -184,19 +188,13 @@ msgstr "Por favor escolha outro"
 msgid "Please confirm deletion"
 msgstr "Por favor confirme a eliminação"
 
-msgid ""
-"Please confirm deletion.\n"
+msgid "Please confirm deletion.\n"
 " Warning: related resources might be affected."
-msgstr ""
-"Por favor, confirme a eliminação. / N  Aviso: os recursos relacionados podem "
-"ser afectados."
+msgstr "Por favor, confirme a eliminação. / N  Aviso: os recursos relacionados podem ser afectados."
 
-msgid ""
-"Please confirm the deletion of the connector: \n"
+msgid "Please confirm the deletion of the connector: \n"
 " child connectors will be delete at the same time"
-msgstr ""
-"Por favor, confirme a eliminação do conector: / n  conectores dependentes "
-"serão eliminados ao mesmo tempo"
+msgstr "Por favor, confirme a eliminação do conector: / n  conectores dependentes serão eliminados ao mesmo tempo"
 
 msgid "Please select a delivery before authoring it"
 msgstr "Por favor seleccione uma distribuição antes de criar"
@@ -207,6 +205,7 @@ msgstr "Por favor seleccione um processo antes de criar"
 msgid "Positionning"
 msgstr "Posicionamento"
 
+#, tao-public
 msgid "Process authoring"
 msgstr "Processo de criação"
 
@@ -234,6 +233,7 @@ msgstr "Variável do processo"
 msgid "Process Variables"
 msgstr "Variáveis de processo"
 
+#, tao-public
 msgid "Processes"
 msgstr "Processos"
 
@@ -267,12 +267,9 @@ msgstr "Definição de serviço"
 msgid "Service library"
 msgstr "Biblioteca de serviço"
 
-msgid ""
-"Set the activity as a final one will delete its following connector. \n"
+msgid "Set the activity as a final one will delete its following connector. \n"
 " Are you sure?"
-msgstr ""
-"Definir esta actividade como uma actividade final irá apagar seu seguinte "
-"conector. / n  Tem certeza?"
+msgstr "Definir esta actividade como uma actividade final irá apagar seu seguinte conector. / n  Tem certeza?"
 
 msgid "Started Time"
 msgstr "Hora de inicio"
@@ -282,6 +279,10 @@ msgstr "Estado"
 
 msgid "Sure?"
 msgstr "De certeza?"
+
+#, tao-public
+msgid "TAO WorkFlow Assistant"
+msgstr ""
 
 msgid "the chosen code has already been used for the process variable"
 msgstr "O código escolhido já foi usado por um processo de variável"
@@ -295,12 +296,9 @@ msgstr "Então"
 msgid "type??"
 msgstr "Tipo??"
 
-msgid ""
-"Unable to delete the process execution.\n"
+msgid "Unable to delete the process execution.\n"
 "Close process before delete it."
-msgstr ""
-"Não é possível eliminar a execução do processo. / N Feche processo antes de "
-"eliminar."
+msgstr "Não é possível eliminar a execução do processo. / N Feche processo antes de eliminar."
 
 msgid "Unit"
 msgstr "unidade"
@@ -325,3 +323,4 @@ msgstr "XLIFF"
 
 msgid "XLIFF version"
 msgstr "Versão de XLIFF"
+

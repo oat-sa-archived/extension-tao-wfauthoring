@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: TAO v2.4-beta3\n"
-"PO-Revision-Date: 2013-09-03 14:49+0000\n"
+"Project-Id-Version: TAO v2.6-beta2\n"
+"PO-Revision-Date: 2014-05-30T15:55:31\n"
 "Last-Translator: TAO Translation Team <translation@tao.lu>\n"
 "MIME-Version: 1.0\n"
 "Language: fr-FR\n"
@@ -20,11 +20,17 @@ msgstr "Activité"
 msgid "Activity Editor"
 msgstr "Éditeur d'activités"
 
+msgid "Activity menu: select an action from the context menu."
+msgstr "Menu activité : sélectionnez une action depuis le menu contextuel."
+
 msgid "Activity or Connector"
 msgstr "Activité"
 
 msgid "Activity Variables"
 msgstr "Variables de l'activité"
+
+msgid "Add a variable"
+msgstr "Ajouter une variable"
 
 msgid "Back"
 msgstr "Retour"
@@ -75,10 +81,10 @@ msgstr "créer une nouvelle activité"
 msgid "create new connector"
 msgstr "créer un nouveau connecteur"
 
-msgid "Current Activities"
+msgid "Current activities"
 msgstr "Activités en cours"
 
-msgid "Current activities"
+msgid "Current Activities"
 msgstr "Activités en cours"
 
 msgid "Current User"
@@ -95,8 +101,15 @@ msgstr "Voulez vous changer le type du connecteur? \n"
 msgid "Edit"
 msgstr "Modifier"
 
+msgid "Edit Instance"
+msgstr ""
+
 msgid "Else"
 msgstr "Autrement"
+
+#, tao-public
+msgid "Execute workflows for assessment preparation."
+msgstr ""
 
 msgid "export"
 msgstr "exporter"
@@ -110,14 +123,17 @@ msgstr "Paramètre formel"
 msgid "History"
 msgstr "Historique"
 
-msgid "IF"
-msgstr "SI"
-
 msgid "If"
 msgstr "Si"
 
+msgid "IF"
+msgstr "SI"
+
 msgid "Input Parameters"
 msgstr "Paramètres d'entrée"
+
+msgid "Instance saved"
+msgstr ""
 
 msgid "interactive service saved"
 msgstr "service interactif enregistré"
@@ -135,6 +151,10 @@ msgstr "chargement..."
 msgid "Manage processes"
 msgstr "Gestion des processus"
 
+#, tao-public
+msgid "Manage services"
+msgstr "Gestion des services"
+
 msgid "Merge to "
 msgstr "Fusionner vers"
 
@@ -146,10 +166,7 @@ msgid "Monitor processes"
 msgstr "Suivi des processus"
 
 msgid "Monitoring processes"
-msgstr "Surveillance des processus"
-
-msgid "More detailed description here."
-msgstr "Description plus détaillée ici."
+msgstr "Gestion des processus"
 
 msgid "new process"
 msgstr "nouveau processus"
@@ -190,9 +207,6 @@ msgstr "Veuillez sélectionner un processus afin de l'éditer"
 
 msgid "Positionning"
 msgstr "Positionnement"
-
-msgid "Processes"
-msgstr "Processus"
 
 #, tao-public
 msgid "Process authoring"
@@ -253,6 +267,9 @@ msgstr "Choisissez un test."
 msgid "Service Definition"
 msgstr "Définition du service"
 
+msgid "Service library"
+msgstr "Bibliothèque de services"
+
 msgid "Set the activity as a final one will delete its following connector. \n"
 " Are you sure?"
 msgstr "Placer l'activité en tant que finale supprimera les connecteurs suivants.\n"
@@ -266,6 +283,10 @@ msgstr "Statut"
 
 msgid "Sure?"
 msgstr "Sûr?"
+
+#, tao-public
+msgid "TAO WorkFlow Assistant"
+msgstr ""
 
 msgid "the chosen code has already been used for the process variable"
 msgstr "le code choisi est déjà en cours d'utilisation pour une autre variable"
@@ -307,53 +328,3 @@ msgstr "XLIFF"
 msgid "XLIFF version"
 msgstr "Version XLIFF"
 
-msgid "Manage services"
-msgstr "Gestion des services"
-
-msgid "Process Diagram"
-msgstr "Diagrammes du processus"
-
-msgid "Save"
-msgstr "Enregistrer"
-
-msgid "Add Activity"
-msgstr "Ajouter activité"
-
-msgid "Edit the activity label then press \"enter\" or \"save\"."
-msgstr "Modifiez l'étiquette de l'activité puis faîtes \"Entrée\" ou \"Enregistrer\"."
-
-msgid "Activity menu: select an action from the context menu."
-msgstr "Menu activité : sélectionnez une action depuis le menu contextuel."
-
-msgid "Drag the arrow tip and connect it to an activity or a connector."
-msgstr "Glissez la pointe de flèche et reliez-la à une activité ou un connecteur."
-
-msgid "Drag and drop the selected activity."
-msgstr "Glissez-déposez l'activité sélectionnée."
-
-msgid "Drag and drop the selected connector."
-msgstr "Glissez-déposez le connecteur sélectionné."
-
-msgid "Move flex points or arrow tip."
-msgstr "Déplacez les points de flexion ou la pointe de flèche."
-
-msgid "Add a connector"
-msgstr "Ajouter un connecteur"
-
-msgid "Logged in as:"
-msgstr "Connecté en tant que : "
-
-msgid "Monitoring processes"
-msgstr "Gestion des processus"
-
-msgid "Execution of"
-msgstr "Exécution de"
-
-msgid "Add a variable"
-msgstr "Ajouter une variable"
-
-msgid "Service library"
-msgstr "Bibliothèque de services"
-
-msgid "url"
-msgstr "URL"

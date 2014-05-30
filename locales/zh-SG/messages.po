@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: TAO v2.6-alpha\n"
-"PO-Revision-Date: 2013-10-11T21:41:52\n"
+"Project-Id-Version: TAO v2.6-beta2\n"
+"PO-Revision-Date: 2014-05-30T15:55:31\n"
 "Last-Translator: TAO Translation Team <translation@tao.lu>\n"
 "MIME-Version: 1.0\n"
 "Language: zh-SG\n"
@@ -106,6 +106,10 @@ msgstr ""
 msgid "Else"
 msgstr ""
 
+#, tao-public
+msgid "Execute workflows for assessment preparation."
+msgstr ""
+
 msgid "export"
 msgstr ""
 
@@ -118,10 +122,10 @@ msgstr ""
 msgid "History"
 msgstr ""
 
-msgid "IF"
+msgid "If"
 msgstr ""
 
-msgid "If"
+msgid "IF"
 msgstr ""
 
 msgid "Input Parameters"
@@ -274,6 +278,10 @@ msgid "Status"
 msgstr ""
 
 msgid "Sure?"
+msgstr ""
+
+#, tao-public
+msgid "TAO WorkFlow Assistant"
 msgstr ""
 
 msgid "the chosen code has already been used for the process variable"
