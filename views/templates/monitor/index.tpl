@@ -124,8 +124,13 @@ use oat\tao\helpers\Template;
 		);
 	}
 
-		require(['jquery', 'i18n', 'generis.facetFilter', 'grid/tao.grid'], function($, __, GenerisFacetFilterClass) {
-			//the grid model
+		require(['jquery', 'i18n', 'helpers', 'generis.facetFilter', 'grid/tao.grid'], function($, __, helpers, GenerisFacetFilterClass) {
+			   
+            //copy to global for backward compat 
+            window.__ = __;
+            window.helpers = helpers;
+
+            //the grid model
 			model = <?=$model?>;
 
 			//workflow variables
@@ -136,7 +141,7 @@ use oat\tao\helpers\Template;
 			 */
 			var filterTabs = $('#filter-container').tabs()
                                             .removeClass("ui-corner-all ui-corner-top").addClass("ui-corner-bottom");
-			var processDetailsTabs = $('#filter-container').tabs()
+			var processDetailsTabs = $('#process-details-tabs').tabs()
                                             .removeClass("ui-corner-all ui-corner-top").addClass("ui-corner-bottom");
 			/*
 			 * instantiate the facet based filter widget
