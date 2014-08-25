@@ -15,8 +15,8 @@ return array(
     'version' => '2.6',
 	'author' => 'Open Assessment Technologies',
 	'requires' => array(
-	    'tao' => '2.6.*',
-	    'wfEngine' => '2.6.*'
+	    'tao' => '>=2.6',
+	    'wfEngine' => '>=2.6'
 	),
 	'install' => array(
 	),
