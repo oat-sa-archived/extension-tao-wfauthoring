@@ -1,21 +1,21 @@
 <?php
 use oat\tao\helpers\Template;
 ?>
-<script type="text/javascript" src="<?=BASE_URL?>views/js/grid/wfengine.grid.cancelProcess.js"></script>
-<script type="text/javascript" src="<?=BASE_URL?>views/js/grid/wfengine.grid.deleteProcess.js"></script>
-<script type="text/javascript" src="<?=BASE_URL?>views/js/grid/wfengine.grid.resumeProcess.js"></script>
-<script type="text/javascript" src="<?=BASE_URL?>views/js/grid/wfengine.grid.pauseProcess.js"></script>
-<script type="text/javascript" src="<?=BASE_URL?>views/js/grid/wfengine.grid.currentActivities.js"></script>
-<script type="text/javascript" src="<?=BASE_URL?>views/js/grid/wfengine.grid.currentActivitiesLabel.js"></script>
-<script type="text/javascript" src="<?=BASE_URL?>views/js/grid/wfengine.grid.processPreviousActivity.js"></script>
-<script type="text/javascript" src="<?=BASE_URL?>views/js/grid/wfengine.grid.processNextActivity.js"></script>
+<script type="text/javascript" src="<?= Template::js('grid/wfengine.grid.cancelProcess.js') ?>"></script>
+<script type="text/javascript" src="<?= Template::js('grid/wfengine.grid.deleteProcess.js') ?>"></script>
+<script type="text/javascript" src="<?= Template::js('grid/wfengine.grid.resumeProcess.js') ?>"></script>
+<script type="text/javascript" src="<?= Template::js('grid/wfengine.grid.pauseProcess.js') ?>"></script>
+<script type="text/javascript" src="<?= Template::js('grid/wfengine.grid.currentActivities.js') ?>"></script>
+<script type="text/javascript" src="<?= Template::js('grid/wfengine.grid.currentActivitiesLabel.js') ?>"></script>
+<script type="text/javascript" src="<?= Template::js('grid/wfengine.grid.processPreviousActivity.js') ?>"></script>
+<script type="text/javascript" src="<?= Template::js('grid/wfengine.grid.processNextActivity.js') ?>"></script>
 
-<script type="text/javascript" src="<?=BASE_URL?>views/js/grid/wfengine.grid.activityVariables.js"></script>
-<script type="text/javascript" src="<?=BASE_URL?>views/js/grid/wfengine.grid.activityVariable.js"></script>
-<script type="text/javascript" src="<?=BASE_URL?>views/js/grid/wfengine.grid.activityVariableLabel.js"></script>
+<script type="text/javascript" src="<?= Template::js('grid/wfengine.grid.activityVariables.js') ?>"></script>
+<script type="text/javascript" src="<?= Template::js('grid/wfengine.grid.activityVariable.js') ?>"></script>
+<script type="text/javascript" src="<?= Template::js('grid/wfengine.grid.activityVariableLabel.js') ?>"></script>
 
-<script type="text/javascript" src="<?=BASE_URL?>views/js/grid/wfengine.grid.activityPreviousActivity.js"></script>
-<script type="text/javascript" src="<?=BASE_URL?>views/js/grid/wfengine.grid.activityNextActivity.js"></script>
+<script type="text/javascript" src="<?= Template::js('grid/wfengine.grid.activityPreviousActivity.js') ?>"></script>
+<script type="text/javascript" src="<?= Template::js('grid/wfengine.grid.activityNextActivity.js') ?>"></script>
 
 <script type="text/javascript" src="<?=Template::js('wfApi/wfApi.min.js', 'wfEngine')?>"></script>
 
