@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE extension SYSTEM "../../tao/doc/structures.dtd">
+<!DOCTYPE structures SYSTEM "../../tao/doc/structures.dtd">
 <structures>
-	<structure id="wfauthoring" name="Processes" level="6" visible="true">
+	<structure id="wfauthoring" name="Processes" level="6" group="main">
 		<description>Build processes to drive activities into a workflow.</description>
 		<sections>
 			<section id="manage_process" name="Manage processes" url="/wfAuthoring/Process/index">
