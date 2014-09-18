@@ -1,8 +1,7 @@
 <?php
 use oat\tao\helpers\Template;
+$sectionName = get_data("section");
 ?>
-
-<?$sectionName=get_data("section");?>
 
 <div id="<?=$sectionName?>-form">
 	<?=get_data("formPlus")?>

@@ -1,6 +1,6 @@
 <div class="ui-widget-content ui-corner-bottom">
 
-	<?$sectionName=get_data("section");?>
+	<?php $sectionName=get_data("section");?>
 
 	<div id="tree-<?=$sectionName?>" ></div>
 	<div id="tree-actions-<?=$sectionName?>" class="tree-actions">

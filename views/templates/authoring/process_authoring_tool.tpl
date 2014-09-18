@@ -17,13 +17,13 @@ use oat\tao\helpers\Template;
 		<span class="ui-widget ui-state-default ui-corner-all" style="padding:5px;">
 			<?php if(get_data('extension')=='taoDelivery'):?>
 				<a href="#" onclick="helpers.selectTabByName('manage_deliveries');"><?=__('Back')?></a>
-			<?else://==wfEngine?>
+			<?php else://==wfEngine?>
 				<a href="#" onclick="helpers.selectTabByName('manage_process');"><?=__('Back')?></a>
 			<?php endif;?>
 		</span>
 	</div>
 
-<?else:?>
+<?php else:?>
 	<style type="text/css">
 		/*need to be loaded fast*/
 		#accordion_container_1 {float:left;height:100%;width:15%;padding:0px;}

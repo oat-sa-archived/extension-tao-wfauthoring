@@ -158,7 +158,7 @@ use oat\tao\helpers\Template;
 			};
 			//set the filter nodes
 			var filterNodes = [
-<?
+<?php
 	$empty = true;
 	foreach ($properties as $property):
 		if (!$empty) echo ','; ?>
@@ -172,7 +172,7 @@ use oat\tao\helpers\Template;
 						'filterItself': false
 					}
 				}
-<?
+<?php
 		$empty = false;
 	endforeach;
 ?>

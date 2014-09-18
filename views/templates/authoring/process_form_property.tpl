@@ -1,4 +1,6 @@
-<?$sectionName = get_data("sectionName");//must be either activity or process?>
+<?php
+$sectionName = get_data("sectionName");//must be either activity or process
+?>
 
 <div id="<?=$sectionName?>-property-form">
 	<?php if(!get_data("saved")):?>
@@ -115,7 +117,7 @@
 
 			});
 		</script>
-	<?else:?>
+	<?php else:?>
 
 		<?php if(get_data('newLabel')):?>
 			<script type="text/javascript">
