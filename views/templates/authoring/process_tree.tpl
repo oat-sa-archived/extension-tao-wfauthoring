@@ -24,11 +24,11 @@
 				duplicateAction: 		authoringControllerPath+"cloneInstance",
 				instanceName:			"<?=$sectionName?>"
 			});
-<?if($sectionName == "serviceDefinition"):?>
+<?php if($sectionName == "serviceDefinition"):?>
 
 			//add a callback function to disable instantiating servicedefinition class directly
 			$("#tree-serviceDefinition > ul > li:first").removeClass("node-class");
-<?endif;?>
+<?php endif;?>
 		});
 	});
 </script>

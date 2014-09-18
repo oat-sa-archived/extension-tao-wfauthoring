@@ -1,7 +1,7 @@
 <?$sectionName = get_data("sectionName");//must be either activity or process?>
 
 <div id="<?=$sectionName?>-property-form">
-	<?if(!get_data("saved")):?>
+	<?php if(!get_data("saved")):?>
 		<?=get_data("myForm")?>
 		<input type="button" name="submit-<?=$sectionName?>-property" id="submit-<?=$sectionName?>-property" value="<?=__("save")?>"/>
 		<input type="button" id="reload-<?=$sectionName?>-property" value="<?=__("reload")?>"/>
@@ -67,10 +67,10 @@
 
 			$(document).ready(function(){
 
-				<?if($sectionName=="activity"):?>
+				<?php if($sectionName=="activity"):?>
 					switchACLmode();
 					$('select[id=\'<?=tao_helpers_Uri::encode(PROPERTY_ACTIVITIES_ACL_MODE)?>\']').change(switchACLmode);
-				<?endif;?>
+				<?php endif;?>
 
 				//edit the id of the tag of uri:
 				$("#<?=$sectionName?>-property-form input[id=uri]").attr("name","<?=$sectionName?>Uri");
@@ -86,27 +86,27 @@
 						success: function(response){
 							$("#<?=$sectionName?>-property-form").html(response);
 
-							<?if($sectionName=="process"):?>
+							<?php if($sectionName=="process"):?>
 							processProperty();
-							<?endif;?>
+							<?php endif;?>
 
-							<?if($sectionName=="activity"):?>
+							<?php if($sectionName=="activity"):?>
 							refreshActivityTree();
-							<?endif;?>
+							<?php endif;?>
 
 						}
 					});
 				});
 
 				$("#reload-<?=$sectionName?>-property").click(function(){
-					<?if($sectionName=="process"):?>
+					<?php if($sectionName=="process"):?>
 						processProperty();
-					<?endif;?>
+					<?php endif;?>
 
-					<?if($sectionName=="activity"):?>
+					<?php if($sectionName=="activity"):?>
 						//reselect the node
 						ActivityTreeClass.selectTreeNode($("#<?=$sectionName?>-property-form input[id=uri]").val());
-					<?endif;?>
+					<?php endif;?>
 				});
 
 				$("#cancel-<?=$sectionName?>-property").click(function(){
@@ -117,18 +117,18 @@
 		</script>
 	<?else:?>
 
-		<?if(get_data('newLabel')):?>
+		<?php if(get_data('newLabel')):?>
 			<script type="text/javascript">
 				//TODO: check if the label has been updated then replace it in the activity diagram object anyway:
 
 				//for the time being, simply reload the whole diagram (not resource efficient):
 				ActivityDiagramClass.reloadDiagram();
 			</script>
-		<?endif;?>
+		<?php endif;?>
 
 		<p><?=ucfirst($sectionName)?> property saved</p>
 
-	<?endif;?>
+	<?php endif;?>
 </div>
 
 

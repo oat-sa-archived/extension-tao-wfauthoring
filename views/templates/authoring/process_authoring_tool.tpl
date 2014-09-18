@@ -1,11 +1,11 @@
 <?php
 use oat\tao\helpers\Template;
 ?>
-<?if(get_data('error')):?>
+<?php if(get_data('error')):?>
 
 	<div class="main-container">
 		<div class="ui-state-error ui-corner-all" style="padding:5px;">
-			<?if(get_data('extension')=='taoDelivery'){
+			<?php if(get_data('extension')=='taoDelivery'){
 				echo __('Please select a delivery before authoring it');
 			}else{//==wfEngine
 				echo __('Please select a process before authoring it');
@@ -15,11 +15,11 @@ use oat\tao\helpers\Template;
 		</div>
 		<br />
 		<span class="ui-widget ui-state-default ui-corner-all" style="padding:5px;">
-			<?if(get_data('extension')=='taoDelivery'):?>
+			<?php if(get_data('extension')=='taoDelivery'):?>
 				<a href="#" onclick="helpers.selectTabByName('manage_deliveries');"><?=__('Back')?></a>
 			<?else://==wfEngine?>
 				<a href="#" onclick="helpers.selectTabByName('manage_process');"><?=__('Back')?></a>
-			<?endif;?>
+			<?php endif;?>
 		</span>
 	</div>
 
@@ -236,20 +236,20 @@ require(['jquery', 'i18n', 'helpers'], function($, __, helpers){
 				<div>
 					<div id="process_form"><?=__('loading...')?></div>
 				</div>
-				<?if(get_data('extension')=='taoDelivery'):?>
+				<?php if(get_data('extension')=='taoDelivery'):?>
 				<h3><a href="#"><?=__('Compilation')?></a></h3>
 				<div>
 					<div id="compile_info"><?=__('loading...')?></div>
 					<div id="compile_form"></div>
 				</div>
-				<?endif;?>
+				<?php endif;?>
 			</div><!--end accordion -->
 		</div><!--end accordion_container_2 -->
 
 		<div style="clear:both"/>
 	</div><!--end authoring-container -->
 
-<?endif;?>
+<?php endif;?>
 
 <?php
 Template::inc('footer.tpl');
