@@ -1,5 +1,6 @@
 <?php
-require_once dirname(__FILE__) . '/../../tao/test/TaoPhpUnitTestRunner.php';
+
+use oat\tao\test\TaoPhpUnitTestRunner;
 include_once dirname(__FILE__) . '/../includes/raw_start.php';
 
 class ProcessCheckerTestCase extends TaoPhpUnitTestRunner {
@@ -100,4 +101,3 @@ class ProcessCheckerTestCase extends TaoPhpUnitTestRunner {
     }
 
 }
-?>
