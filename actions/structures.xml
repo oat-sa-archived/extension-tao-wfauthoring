@@ -9,34 +9,31 @@
 					<tree name="Processes library"
 						className="Process"
 						dataUrl="/wfAuthoring/Process/getOntologyData"
-						editInstanceUrl="/wfAuthoring/Process/editProcess"
-						addInstanceUrl="/wfAuthoring/Process/addInstance"
-						deleteUrl="/wfAuthoring/Process/delete"
-						editClassUrl="/wfAuthoring/Process/editProcessClass"
+                        selectClass="process-class-properties"
+                        selectInstance="process-properties"
+                        delete="process-delete" 
 					/>
 				</trees>
 				<actions>
-                	  <action name="Edit class" url="/wfAuthoring/Process/editProcessClass" group="content" context="class">
+                	<action id="process-class-properties" name="Properties" url="/wfAuthoring/Process/editProcessClass" group="content" context="class">
                         <icon id="icon-edit"/>
                     </action>
-                    
-                    <action name="Edit process"  url="/wfAuthoring/Process/editProcess" group="content" context="instance">
+                    <action id="process-properties"  name="Properties"  url="/wfAuthoring/Process/editProcess" group="content" context="instance">
                         <icon id="icon-edit"/>
                     </action>
-					
-                    <action name="Filter" context="*" group="search" binding="launchFinder">
+                    <action id="process-class-filter"  name="Filter" context="*" group="search" binding="launchFinder">
                         <icon id="icon-filter"/>
                     </action>
-                    <action name="Search" url="/wfAuthoring/Process/search" context="*" group="search" binding="launchFinder">
+                    <action id="process-class-search" name="Search" url="/wfAuthoring/Process/search" context="*" group="search" binding="launchFinder">
                         <icon id="icon-find"/>
                     </action>
-                    <action name="New process" url="/wfAuthoring/Process/addInstance" context="class" group="content" binding="instanciate">
+                    <action  id="process-new" name="New process" url="/wfAuthoring/Process/addInstance" context="class" group="content" binding="instanciate">
                         <icon id="icon-users"/>
                     </action>                    		
-                    <action name="Delete" url="/wfAuthoring/Process/delete" context="resource" group="tree" binding="removeNode">
+                    <action id="process-delete" name="Delete" url="/wfAuthoring/Process/delete" context="resource" group="tree" binding="removeNode">
                         <icon id="icon-bin"/>
                     </action>
-                    <action name="Export" url="/tao/Export/index" context="resource" group="content">
+                    <action id="process-export" name="Export" url="/tao/Export/index" context="resource" group="content">
                         <icon id="icon-export"/>
                     </action>
 				</actions>
@@ -51,13 +48,24 @@
 					<tree name="Service library"
 						className="Services"
 						dataUrl="/wfAuthoring/Service/getOntologyData"
-						editInstanceUrl="/wfAuthoring/Service/editInstance"
-						addInstanceUrl="/wfAuthoring/Service/addInstance"
-						deleteUrl="/wfAuthoring/Service/delete"
-						editClassUrl="/wfAuthoring/Service/index"
+                        selectClass="service-index"
+                        selectInstance="service-properties"
+                        delete="service-delete" 
 					/>
 				</trees>
 				<actions>
+                	<action id="service-index" name="Properties" url="/wfAuthoring/Service/index" group="none" context="class">
+                        <icon id="icon-edit"/>
+                    </action>
+                    <action id="service-properties"  name="Properties"  url="/wfAuthoring/Service/editInstance" group="none" context="instance">
+                        <icon id="icon-edit"/>
+                    </action>
+                    <action  id="service-new" name="New service" url="/wfAuthoring/Service/addInstance" context="class" group="content" binding="instanciate">
+                        <icon id="icon-users"/>
+                    </action>                    		
+                    <action id="service-delete" name="Delete" url="/wfAuthoring/Service/delete" context="resource" group="tree" binding="removeNode">
+                        <icon id="icon-bin"/>
+                    </action>
 				</actions>
 			</section>
 		</sections>
