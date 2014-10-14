@@ -1,330 +1,334 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: TAO v2.6-RC03\n"
-"PO-Revision-Date: 2014-06-20T16:28:08\n"
+"Project-Id-Version: TAO v2.7\n"
+"PO-Revision-Date: 2014-10-14T10:43:32\n"
 "Last-Translator: TAO Translation Team <translation@tao.lu>\n"
 "MIME-Version: 1.0\n"
 "Language: fr-FR\n"
+"sourceLanguage: en-US\n"
+"targetLanguage: fr-FR\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ../../\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: .\n"
 
 msgid "(still undefined)"
-msgstr "(encore indéfini)"
+msgstr ""
 
 msgid "Access Control Mode"
-msgstr "Mode de contrôle d'accès"
+msgstr ""
 
 msgid "Activity"
-msgstr "Activité"
+msgstr ""
 
 msgid "Activity Editor"
-msgstr "Éditeur d'activités"
+msgstr ""
 
 msgid "Activity menu: select an action from the context menu."
-msgstr "Menu activité : sélectionnez une action depuis le menu contextuel."
+msgstr ""
 
 msgid "Activity or Connector"
-msgstr "Activité"
+msgstr ""
 
 msgid "Activity Variables"
-msgstr "Variables de l'activité"
+msgstr ""
 
 msgid "Add a variable"
-msgstr "Ajouter une variable"
+msgstr ""
 
 msgid "Back"
-msgstr "Retour"
+msgstr ""
 
 msgid "Browse Tests"
-msgstr "Naviguer dans les tests"
+msgstr ""
 
 #, tao-public
 msgid "Build processes to drive activities into a workflow."
-msgstr "Créer des processus pour assembler des activités dans un workflow."
+msgstr ""
 
 msgid "cancel"
-msgstr "annuler"
+msgstr ""
 
 msgid "check code"
-msgstr "vérifier le code"
+msgstr ""
 
 msgid "checking the code..."
-msgstr "vérification du code..."
+msgstr ""
 
 msgid "Close all"
-msgstr "Fermer tout"
+msgstr ""
 
 msgid "Code"
-msgstr "Code"
+msgstr ""
 
 msgid "Code already used"
-msgstr "Code déjà en cours d'utilisation"
+msgstr ""
 
 msgid "Compilation"
-msgstr "Compilation"
+msgstr ""
 
 msgid "Connector"
-msgstr "Connecteur"
+msgstr ""
 
 msgid "Connector Type"
-msgstr "Type de connecteur"
+msgstr ""
 
 msgid "Constant"
-msgstr "Constante"
+msgstr ""
 
 msgid "Country"
-msgstr "Pays"
+msgstr ""
 
 msgid "create new activity"
-msgstr "créer une nouvelle activité"
+msgstr ""
 
 msgid "create new connector"
-msgstr "créer un nouveau connecteur"
-
-msgid "Current activities"
-msgstr "Activités en cours"
+msgstr ""
 
 msgid "Current Activities"
-msgstr "Activités en cours"
+msgstr ""
+
+msgid "Current activities"
+msgstr ""
 
 msgid "Current User"
-msgstr "Utilisateur courant"
+msgstr ""
 
-msgid "delete"
-msgstr "supprimer"
+msgid "Delete"
+msgstr ""
 
 msgid "Do you want to change the connector type? \n"
 " THe child connectors will be deleted."
-msgstr "Voulez vous changer le type du connecteur? \n"
-"Les connecteurs enfants seront supprimés."
+msgstr ""
 
 msgid "Edit"
-msgstr "Modifier"
+msgstr ""
 
 msgid "Edit Instance"
 msgstr ""
 
 msgid "Else"
-msgstr "Autrement"
+msgstr ""
 
 #, tao-public
 msgid "Execute workflows for assessment preparation."
 msgstr ""
 
-msgid "export"
-msgstr "exporter"
+msgid "Export"
+msgstr ""
 
 msgid "Filter"
-msgstr "Filtrer"
+msgstr ""
 
 msgid "Formal Parameter"
-msgstr "Paramètre formel"
+msgstr ""
 
 msgid "History"
-msgstr "Historique"
+msgstr ""
 
 msgid "If"
-msgstr "Si"
+msgstr ""
 
 msgid "IF"
-msgstr "SI"
+msgstr ""
 
 msgid "Input Parameters"
-msgstr "Paramètres d'entrée"
+msgstr ""
 
 msgid "Instance saved"
 msgstr ""
 
 msgid "interactive service saved"
-msgstr "service interactif enregistré"
+msgstr ""
 
 msgid "Label"
-msgstr "Libellé"
+msgstr ""
 
 msgid "Language"
-msgstr "Langue"
+msgstr ""
 
 msgid "loading..."
-msgstr "chargement..."
+msgstr ""
 
 #, tao-public
 msgid "Manage processes"
-msgstr "Gestion des processus"
+msgstr ""
 
 #, tao-public
 msgid "Manage services"
-msgstr "Gestion des services"
+msgstr ""
 
 msgid "Merge to "
-msgstr "Fusionner vers"
-
-msgid "meta data"
-msgstr "méta-données"
+msgstr ""
 
 #, tao-public
 msgid "Monitor processes"
-msgstr "Suivi des processus"
+msgstr ""
 
 msgid "Monitoring processes"
-msgstr "Gestion des processus"
+msgstr ""
 
-msgid "new process"
-msgstr "nouveau processus"
+msgid "New process"
+msgstr ""
+
+msgid "New service"
+msgstr ""
 
 msgid "newly edited"
-msgstr "nouvellement édité"
+msgstr ""
 
 msgid "ok"
-msgstr "ok"
+msgstr ""
 
 msgid "Open all"
-msgstr "Ouvrir tout"
+msgstr ""
 
 msgid "Output Parameters"
-msgstr "Paramètres de sortie"
+msgstr ""
 
 msgid "please choose another one"
-msgstr "veuillez en choisir un autre"
+msgstr ""
 
 msgid "Please confirm deletion"
-msgstr "Veuilez confirmer la suppression"
+msgstr ""
 
 msgid "Please confirm deletion.\n"
 " Warning: related resources might be affected."
-msgstr "Veuillez confirmer la suppression.\n"
-" Attention : les ressources liées pourraient en être affectées."
+msgstr ""
 
 msgid "Please confirm the deletion of the connector: \n"
 " child connectors will be delete at the same time"
-msgstr "Veuillez confirmer la suppression du connecteur : \n"
-" les connecteurs enfant seront supprimés en même temps"
+msgstr ""
 
 msgid "Please select a delivery before authoring it"
-msgstr "Veuillez sélectionner une délivrance afin de l'éditer."
+msgstr ""
 
 msgid "Please select a process before authoring it"
-msgstr "Veuillez sélectionner un processus afin de l'éditer"
+msgstr ""
 
 msgid "Positionning"
-msgstr "Positionnement"
+msgstr ""
 
 #, tao-public
 msgid "Process authoring"
-msgstr "Éditeur de processus"
+msgstr ""
 
 msgid "Process Definition"
-msgstr "Définition de processus"
+msgstr ""
 
 msgid "Process Execution"
-msgstr "Exécution de processus"
+msgstr ""
 
 msgid "Process History"
-msgstr "Historique de processus"
+msgstr ""
 
 msgid "Process Property"
-msgstr "Propriété de processus"
+msgstr ""
 
 msgid "Process saved"
-msgstr "Processus enregistré"
+msgstr ""
 
 msgid "Process Tree:"
-msgstr "Arbre des processus:"
+msgstr ""
 
 msgid "Process Variable"
-msgstr "Variable de processus"
+msgstr ""
 
 msgid "Process Variables"
-msgstr "Variables du processus"
+msgstr ""
 
 #, tao-public
 msgid "Processes"
-msgstr "Processus"
+msgstr ""
 
 msgid "Processes library"
-msgstr "Bibliothèque de processus"
+msgstr ""
+
+msgid "Properties"
+msgstr ""
 
 msgid "reload"
-msgstr "rafraichir"
+msgstr ""
 
 msgid "reloading form..."
-msgstr "rechargement du formulaire..."
+msgstr ""
 
 msgid "Restricted to"
-msgstr "limité à"
+msgstr ""
 
 msgid "Role"
-msgstr "Rôle"
+msgstr ""
 
 msgid "save"
-msgstr "enregistrer"
+msgstr ""
 
-msgid "search"
-msgstr "recherche"
+msgid "Search"
+msgstr ""
 
 msgid "Select a test"
-msgstr "Choisissez un test."
+msgstr ""
 
 msgid "Service Definition"
-msgstr "Définition du service"
+msgstr ""
 
 msgid "Service library"
-msgstr "Bibliothèque de services"
+msgstr ""
 
 msgid "Set the activity as a final one will delete its following connector. \n"
 " Are you sure?"
-msgstr "Placer l'activité en tant que finale supprimera les connecteurs suivants.\n"
-"Etes vous sûr?"
+msgstr ""
 
 msgid "Started Time"
-msgstr "Démarrage"
+msgstr ""
 
 msgid "Status"
-msgstr "Statut"
+msgstr ""
 
 msgid "Sure?"
-msgstr "Sûr?"
+msgstr ""
 
 #, tao-public
 msgid "TAO WorkFlow Assistant"
 msgstr ""
 
 msgid "the chosen code has already been used for the process variable"
-msgstr "le code choisi est déjà en cours d'utilisation pour une autre variable"
+msgstr ""
 
 msgid "The Processes module allows to create Processes."
-msgstr "Le module Processus vous permet de créer des processus organisés sous forme d'activités liées par des connecteurs."
+msgstr ""
 
 msgid "Then"
-msgstr "Alors"
+msgstr ""
 
 msgid "type??"
-msgstr "type??"
+msgstr ""
 
 msgid "Unable to delete the process execution.\n"
 "Close process before delete it."
-msgstr "Impossible de supprimer l'exécution du processus tant qu'il est ouvert."
+msgstr ""
 
 msgid "Unit"
-msgstr "Unité"
+msgstr ""
 
 msgid "Use the * character to replace any string"
-msgstr "Utilisez le caractère (*) pour remplacer n'importe quelle chaîne"
+msgstr ""
 
 msgid "Value"
-msgstr "Valeur"
+msgstr ""
 
 msgid "Variables"
-msgstr "Variables"
+msgstr ""
 
 msgid "VFF"
-msgstr "VFF"
+msgstr ""
 
 msgid "VFF version"
-msgstr "Version VFF"
+msgstr ""
 
 msgid "XLIFF"
-msgstr "XLIFF"
+msgstr ""
 
 msgid "XLIFF version"
-msgstr "Version XLIFF"
+msgstr ""
 
