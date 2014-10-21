@@ -1,14 +1,11 @@
 <script type="text/javascript">
-require(['helpers', 'uiBootstrap'], function(helpers, uiBootstrap){
-	<?php if(get_data('uri') && get_data('classUri') && strpos(get_data('module'), 'Process') !== false):?>
-		helpers.updateTabUrl(uiBootstrap.tabs, 'process_authoring', "<?=_url('authoring', 'Process', null, array('uri' => get_data('uri'), 'classUri' => get_data('classUri') ))?>");
-	<?php else:?>
-		var tabindex = helpers.getTabIndexByName('process_authoring');
-		if (tabindex != -1) {
-			uiBootstrap.tabs.tabs('disable', tabindex);
-		}
-	<?php endif?>
+require(['layout/section'], function(section){
+    var authoringUrl = "<?=_url('authoring', 'Process', null, array('uri' => get_data('uri'), 'classUri' => get_data('classUri') ))?>";
 
-  //  uiBootstrap.initTrees();
+	<?php if(get_data('uri') && get_data('classUri') && strpos(get_data('module'), 'Process') !== false):?>
+		section.get('process_authoring').enable().selected.url = authoringUrl;
+	<?php else:?>
+		section.get('process_authoring').disable();
+	<?php endif?>
 });
 </script>

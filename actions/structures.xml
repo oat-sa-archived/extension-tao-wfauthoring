@@ -21,7 +21,7 @@
                     <action id="process-properties"  name="Properties"  url="/wfAuthoring/Process/editProcess" group="content" context="instance">
                         <icon id="icon-edit"/>
                     </action>
-                    <action id="process-class-filter"  name="Filter" context="*" group="search" binding="launchFinder">
+                    <action id="process-class-filter"  name="Filter" context="*" group="search" binding="filter">
                         <icon id="icon-filter"/>
                     </action>
                     <action id="process-class-search" name="Search" url="/wfAuthoring/Process/search" context="*" group="search" binding="launchFinder">
@@ -39,7 +39,7 @@
 				</actions>
 			</section>
 
-			<section id="process_authoring" name="Process authoring" url="/wfAuthoring/Process/authoring" />
+			<section id="process_authoring" name="Process authoring" url="/wfAuthoring/Process/authoring" disabled="true" />
 
 			<section id="monitor_process" name="Monitor processes" url="/wfAuthoring/Monitor/index" />
 			
