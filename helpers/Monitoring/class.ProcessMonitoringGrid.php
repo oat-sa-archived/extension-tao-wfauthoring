@@ -120,6 +120,4 @@ class wfAuthoring_helpers_Monitoring_ProcessMonitoringGrid
         return (bool) $returnValue;
     }
 
-} /* end of class wfAuthoring_helpers_Monitoring_ProcessMonitoringGrid */
-
-?>
+}

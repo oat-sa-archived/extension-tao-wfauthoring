@@ -143,6 +143,4 @@ class wfAuthoring_models_classes_wfAuthoringService
         return $returnValue;
     }
 
-} /* end of class wfAuthoring_models_classes_wfAuthoringService */
-
-?>
+}

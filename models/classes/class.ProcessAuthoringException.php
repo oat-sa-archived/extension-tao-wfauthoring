@@ -46,6 +46,4 @@ class wfAuthoring_models_classes_ProcessAuthoringException
 
     // --- OPERATIONS ---
 
-} /* end of class wfEngine_models_classes_ProcessDefinitonException */
-
-?>
+}

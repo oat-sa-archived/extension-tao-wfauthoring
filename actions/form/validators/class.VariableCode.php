@@ -87,6 +87,4 @@ class wfAuthoring_actions_form_validators_VariableCode
         return (bool) $returnValue;
     }
 
-} /* end of class wfAuthoring_actions_form_validators_VariableCode */
-
-?>
+}

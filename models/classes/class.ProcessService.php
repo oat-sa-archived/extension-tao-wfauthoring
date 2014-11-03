@@ -1536,6 +1536,4 @@ class wfAuthoring_models_classes_ProcessService
         return (bool) $returnValue;
     }
 
-} /* end of class wfAuthoring_models_classes_ProcessService */
-
-?>
+}

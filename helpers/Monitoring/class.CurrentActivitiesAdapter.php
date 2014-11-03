@@ -97,6 +97,4 @@ class wfAuthoring_helpers_Monitoring_CurrentActivitiesAdapter
         
     }
 
-} /* end of class wfAuthoring_helpers_Monitoring_CurrentActivitiesAdapter */
-
-?>
+}

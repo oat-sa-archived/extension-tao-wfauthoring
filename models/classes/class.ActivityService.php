@@ -301,6 +301,4 @@ class wfAuthoring_models_classes_ActivityService
         return (bool) $returnValue;
     }
 
-} /* end of class wfAuthoring_models_classes_ActivityService */
-
-?>
+}

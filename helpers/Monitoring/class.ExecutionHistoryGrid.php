@@ -60,6 +60,4 @@ class wfAuthoring_helpers_Monitoring_ExecutionHistoryGrid
         return (bool) $returnValue;
     }
 
-} /* end of class wfAuthoring_helpers_Monitoring_ExecutionHistoryGrid */
-
-?>
+}

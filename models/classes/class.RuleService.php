@@ -104,6 +104,4 @@ class wfAuthoring_models_classes_RuleService
         return $returnValue;
     }
 
-} /* end of class wfAuthoring_models_classes_RuleService */
-
-?>
+}

@@ -352,6 +352,4 @@ class wfAuthoring_models_classes_ProcessChecker
         return (bool) $returnValue;
     }
 
-} /* end of class wfAuthoring_models_classes_ProcessChecker */
-
-?>
+}

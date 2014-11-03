@@ -449,6 +449,4 @@ class wfAuthoring_models_classes_ConnectorService
         return (bool) $returnValue;
     }
 
-} /* end of class wfAuthoring_models_classes_ConnectorService */
-
-?>
+}

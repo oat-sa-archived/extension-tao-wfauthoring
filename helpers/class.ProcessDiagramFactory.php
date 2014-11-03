@@ -118,6 +118,4 @@ class wfAuthoring_helpers_ProcessDiagramFactory
         return (string) $returnValue;
     }
 
-} /* end of class wfAuthoring_helpers_ProcessDiagramFactory */
-
-?>
+}
