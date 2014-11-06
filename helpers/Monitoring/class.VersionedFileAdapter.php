@@ -139,6 +139,4 @@ class wfAuthoring_helpers_Monitoring_VersionedFileAdapter
         return $returnValue;
     }
 
-} /* end of class wfAuthoring_helpers_Monitoring_VersionedFileAdapter */
-
-?>
+}

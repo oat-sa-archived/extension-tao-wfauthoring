@@ -1133,6 +1133,4 @@ class wfAuthoring_models_classes_ProcessCloner
         
     }
 
-} /* end of class wfAuthoring_models_classes_ProcessCloner */
-
-?>
+}

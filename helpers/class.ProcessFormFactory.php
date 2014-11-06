@@ -906,6 +906,4 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 		return $returnValue;
 	}
     
-} /* end of class wfAuthoring_helpers_ProcessFormFactory */
-
-?>
+}

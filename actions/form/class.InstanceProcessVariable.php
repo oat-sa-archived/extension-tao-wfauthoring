@@ -78,6 +78,4 @@ class wfAuthoring_actions_form_InstanceProcessVariable
         
     }
 
-} /* end of class wfAuthoring_actions_form_InstanceProcessVariable */
-
-?>
+}

@@ -62,6 +62,4 @@ class wfAuthoring_actions_form_InstanceServiceDefinition
         return $returnValue;
     }
 
-} /* end of class wfAuthoring_actions_form_InstanceServiceDefinition */
-
-?>
+}

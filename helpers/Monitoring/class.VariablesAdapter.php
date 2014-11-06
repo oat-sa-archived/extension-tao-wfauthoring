@@ -94,6 +94,4 @@ class wfAuthoring_helpers_Monitoring_VariablesAdapter
         
     }
 
-} /* end of class wfAuthoring_helpers_Monitoring_VariablesAdapter */
-
-?>
+}

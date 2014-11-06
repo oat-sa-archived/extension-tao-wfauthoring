@@ -55,6 +55,4 @@ class wfAuthoring_actions_form_InstanceFormalParameter
         return $returnValue;
     }
 
-} /* end of class wfAuthoring_actions_form_InstanceFormalParameter */
-
-?>
+}

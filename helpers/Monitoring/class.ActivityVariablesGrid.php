@@ -94,6 +94,4 @@ class wfAuthoring_helpers_Monitoring_ActivityVariablesGrid
         return (bool) $returnValue;
     }
 
-} /* end of class wfAuthoring_helpers_Monitoring_ActivityVariablesGrid */
-
-?>
+}

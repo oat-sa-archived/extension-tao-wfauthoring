@@ -596,6 +596,4 @@ class wfAuthoring_models_classes_ProcessTreeService
         return (array) $returnValue;
     }
 
-} /* end of class wfAuthoring_models_classes_ProcessTreeService */
-
-?>
+}

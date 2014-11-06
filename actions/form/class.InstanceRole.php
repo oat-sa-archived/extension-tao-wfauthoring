@@ -56,6 +56,4 @@ class wfAuthoring_actions_form_InstanceRole
         return $returnValue;
     }
 
-} /* end of class wfAuthoring_actions_form_InstanceRole */
-
-?>
+}

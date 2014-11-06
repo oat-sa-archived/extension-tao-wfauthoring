@@ -197,6 +197,4 @@ class wfAuthoring_models_classes_ProcessDiagram
         return (string) $returnValue;
     }
 
-} /* end of class wfAuthoring_models_classes_ProcessDiagram */
-
-?>
+}
