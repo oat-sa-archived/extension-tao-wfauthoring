@@ -64,14 +64,6 @@ class DescriptorFactory{
 
 	// --- OPERATIONS ---
 
-	/**
-	 * Short description of method __construct
-	 *
-	 * @access public
-	 * @author firstname and lastname of author, <author@example.org>
-	 * @param string
-	 * @return core_kernel_classes_Session_void
-	 */
 	public function __construct(){
 		
 	}

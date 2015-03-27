@@ -143,7 +143,7 @@ class wfAuthoring_helpers_ProcessFormFactory extends tao_helpers_form_GenerisFor
 			return null;
 		}
 		$widget = ucfirst(strtolower(substr($widgetResource->getUri(), strrpos($widgetResource->getUri(), '#') + 1 )));
-		$element = tao_helpers_form_FormFactory::getElement(tao_helpers_Uri::encode($property->getUri()), $widget);
+		$element = tao_helpers_form_FormFactory::getElementByWidget(tao_helpers_Uri::encode($property->getUri()), $widgetResource);
 		if(!is_null($element)){
 			if($element->getWidget() != $widgetResource->getUri()){
 				return null;
