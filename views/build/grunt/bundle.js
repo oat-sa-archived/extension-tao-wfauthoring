@@ -1,4 +1,4 @@
-module.exports = function(grunt) { 
+module.exports = function(grunt) {
 
     var requirejs   = grunt.config('requirejs') || {};
     var clean       = grunt.config('clean') || {};
@@ -12,12 +12,12 @@ module.exports = function(grunt) {
     /**
      * Remove bundled and bundling files
      */
-    clean.taocebundle = [out];
-    
+    clean.wfauthoringbundle = [out];
+
     /**
-     * Compile tao files into a bundle 
+     * Compile tao files into a bundle
      */
-    requirejs.taocebundle = {
+    requirejs.wfauthoringbundle = {
         options: {
             baseUrl : '../js',
             dir : out,
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
     /**
      * copy the bundles to the right place
      */
-    copy.taocebundle = {
+    copy.wfauthoringbundle = {
         files: [
             { src: [out + '/wfAuthoring/controller/routes.js'],  dest: root + '/wfAuthoring/views/js/controllers.min.js' },
             { src: [out + '/wfAuthoring/controller/routes.js.map'],  dest: root + '/wfAuthoring/views/js/controllers.min.js.map' }
@@ -46,5 +46,5 @@ module.exports = function(grunt) {
     grunt.config('copy', copy);
 
     // bundle task
-    grunt.registerTask('taocebundle', ['clean:taocebundle', 'requirejs:taocebundle', 'copy:taocebundle']);
+    grunt.registerTask('wfauthoringbundle', ['clean:wfauthoringbundle', 'requirejs:wfauthoringbundle', 'copy:wfauthoringbundle']);
 };
