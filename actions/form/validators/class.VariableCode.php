@@ -37,25 +37,13 @@ class wfAuthoring_actions_form_validators_VariableCode
 
     // --- OPERATIONS ---
 
-    /**
-     * Short description of method __construct
-     *
-     * @access public
-     * @author Joel Bout, <joel.bout@tudor.lu>
-     * @param  array options
-     * @return mixed
-     */
-    public function __construct($options = array())
+    public function setOptions(array $options)
     {
-        
-		
-		parent::__construct($options);
-		
-		if(isset($this->options['uri'])){
-    		$this->message = __("Code already used");
-    	}
-		
-        
+        parent::setOptions($options);
+
+        if(isset($this->options['uri'])){
+            $this->message = __("Code already used");
+        }
     }
 
     /**
