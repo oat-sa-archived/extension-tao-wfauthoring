@@ -37,13 +37,9 @@ class wfAuthoring_actions_form_validators_VariableCode
 
     // --- OPERATIONS ---
 
-    public function setOptions(array $options)
+    protected function getDefaultMessage()
     {
-        parent::setOptions($options);
-
-        if(isset($this->options['uri'])){
-            $this->message = __("Code already used");
-        }
+        return __("Code already used");
     }
 
     /**
@@ -56,21 +52,16 @@ class wfAuthoring_actions_form_validators_VariableCode
      */
     public function evaluate($values)
     {
-        $returnValue = (bool) false;
-
-        
-		$returnValue = true;
-		if(isset($this->options['uri'])){
-			$variableService = wfEngine_models_classes_VariableService::singleton();
-			$processVar = $variableService->getProcessVariable($values);
-			if(!is_null($processVar)) {
-				if ($this->options['uri'] != $processVar->getUri()) {
-					$returnValue = false;
-				}
+	$returnValue = true;
+	if(isset($this->options['uri'])){
+		$variableService = wfEngine_models_classes_VariableService::singleton();
+		$processVar = $variableService->getProcessVariable($values);
+		if(!is_null($processVar)) {
+			if ($this->options['uri'] != $processVar->getUri()) {
+				$returnValue = false;
 			}
 		}
-		
-        
+	}
 
         return (bool) $returnValue;
     }
