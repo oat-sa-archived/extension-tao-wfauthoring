@@ -37,25 +37,9 @@ class wfAuthoring_actions_form_validators_VariableCode
 
     // --- OPERATIONS ---
 
-    /**
-     * Short description of method __construct
-     *
-     * @access public
-     * @author Joel Bout, <joel.bout@tudor.lu>
-     * @param  array options
-     * @return mixed
-     */
-    public function __construct($options = array())
+    protected function getDefaultMessage()
     {
-        
-		
-		parent::__construct($options);
-		
-		if(isset($this->options['uri'])){
-    		$this->message = __("Code already used");
-    	}
-		
-        
+        return __("Code already used");
     }
 
     /**
@@ -68,22 +52,14 @@ class wfAuthoring_actions_form_validators_VariableCode
      */
     public function evaluate($values)
     {
-        $returnValue = (bool) false;
-
-        
-		$returnValue = true;
-		if(isset($this->options['uri'])){
-			$variableService = wfEngine_models_classes_VariableService::singleton();
-			$processVar = $variableService->getProcessVariable($values);
-			if(!is_null($processVar)) {
-				if ($this->options['uri'] != $processVar->getUri()) {
-					$returnValue = false;
-				}
-			}
-		}
-		
-        
-
+        $returnValue = true;
+        if (isset($this->options['uri'])) {
+            $variableService = wfEngine_models_classes_VariableService::singleton();
+            $processVar = $variableService->getProcessVariable($values);
+            if(!is_null($processVar) && $this->options['uri'] != $processVar->getUri()) {
+                $returnValue = false;
+            }
+        }
         return (bool) $returnValue;
     }
 
