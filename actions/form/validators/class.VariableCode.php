@@ -52,17 +52,14 @@ class wfAuthoring_actions_form_validators_VariableCode
      */
     public function evaluate($values)
     {
-	$returnValue = true;
-	if(isset($this->options['uri'])){
-		$variableService = wfEngine_models_classes_VariableService::singleton();
-		$processVar = $variableService->getProcessVariable($values);
-		if(!is_null($processVar)) {
-			if ($this->options['uri'] != $processVar->getUri()) {
-				$returnValue = false;
-			}
-		}
-	}
-
+        $returnValue = true;
+        if (isset($this->options['uri'])) {
+            $variableService = wfEngine_models_classes_VariableService::singleton();
+            $processVar = $variableService->getProcessVariable($values);
+            if(!is_null($processVar) && $this->options['uri'] != $processVar->getUri()) {
+                $returnValue = false;
+            }
+        }
         return (bool) $returnValue;
     }
 
