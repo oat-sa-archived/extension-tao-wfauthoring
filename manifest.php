@@ -12,7 +12,7 @@ return array(
 	'label' => 'Workflow authoring tool',
 	'description' => 'Workflow Authoring extension',
     'license' => 'GPL-2.0',
-    'version' => '2.6',
+    'version' => '2.6.1',
 	'author' => 'Open Assessment Technologies',
 	'requires' => array(
 	    'tao' => '>=2.7.0',
@@ -26,6 +26,7 @@ return array(
     'acl' => array(
         array('grant', 'http://www.tao.lu/middleware/wfEngine.rdf#WfAuthoringManagerRole', array('ext'=>'wfAuthoring'))
     ),
+    'update' => 'oat\\taoWfAuthoring\\scripts\\update\\Updater',
 	'constants' => array(
 		# actions directory
 		"DIR_ACTIONS"			=> $extpath."actions".DIRECTORY_SEPARATOR,
